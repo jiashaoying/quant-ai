@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.py[c]
+*$py.class
+*.so
+.Python
+venv/
+ENV/
+.venv/
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+dist/
+.DS_Store
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Database
+*.db
+.sqlite3
+
+# Environment
+.env
+.env.local
+
+# Logs
+logs/
+*.log
+
+# Qoder cache
+.qoder/
