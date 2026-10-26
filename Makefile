@@ -1,4 +1,4 @@
-.PHONY: check check-backend check-frontend install-deps
+.PHONY: check check-backend check-frontend install-deps wiki wiki-serve
 
 # 运行全部验证
 check: check-backend check-frontend
@@ -18,3 +18,11 @@ check-frontend:
 install-deps:
 	cd backend && pip install -r requirements.txt
 	cd frontend && npm install
+
+# 构建 Repo Wiki 静态文档站（依赖 backend/venv 中的 mkdocs-material）
+wiki:
+	cd wiki-site && ../backend/venv/bin/python build.py
+
+# 本地预览文档站（http://127.0.0.1:8001）
+wiki-serve:
+	cd wiki-site && ../backend/venv/bin/python -m mkdocs serve -f mkdocs.yml -a 127.0.0.1:8001

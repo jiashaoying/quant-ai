@@ -2,13 +2,13 @@
 
 <cite>
 **本文引用的文件**   
-- [backend/main.py](file://backend/main.py)
-- [backend/app/api/backtest.py](file://backend/app/api/backtest.py)
-- [backend/app/backtest/engine.py](file://backend/app/backtest/engine.py)
-- [backend/app/strategies/engine.py](file://backend/app/strategies/engine.py)
-- [backend/app/services/market_data.py](file://backend/app/services/market_data.py)
-- [frontend/src/components/BacktestForm.tsx](file://frontend/src/components/BacktestForm.tsx)
-- [frontend/src/components/BacktestResult.tsx](file://frontend/src/components/BacktestResult.tsx)
+- [backend/main.py](../../../../../backend/main.py)
+- [backend/app/api/backtest.py](../../../../../backend/app/api/backtest.py)
+- [backend/app/backtest/engine.py](../../../../../backend/app/backtest/engine.py)
+- [backend/app/strategies/engine.py](../../../../../backend/app/strategies/engine.py)
+- [backend/app/services/market_data.py](../../../../../backend/app/services/market_data.py)
+- [frontend/src/components/BacktestForm.tsx](../../../../../frontend/src/components/BacktestForm.tsx)
+- [frontend/src/components/BacktestResult.tsx](../../../../../frontend/src/components/BacktestResult.tsx)
 </cite>
 
 ## 目录
@@ -54,14 +54,14 @@ Engine --> Result["回测结果<br/>metrics/trades/equity_curve/signals_data"]
 ```
 
 图表来源
-- [backend/main.py:9-27](file://backend/main.py#L9-L27)
-- [backend/app/api/backtest.py:13-66](file://backend/app/api/backtest.py#L13-L66)
-- [backend/app/services/market_data.py:11-41](file://backend/app/services/market_data.py#L11-L41)
-- [backend/app/strategies/engine.py:506-655](file://backend/app/strategies/engine.py#L506-L655)
-- [backend/app/backtest/engine.py:10-70](file://backend/app/backtest/engine.py#L10-L70)
+- [backend/main.py:9-27](../../../../../backend/main.py#L9-L27)
+- [backend/app/api/backtest.py:13-66](../../../../../backend/app/api/backtest.py#L13-L66)
+- [backend/app/services/market_data.py:11-41](../../../../../backend/app/services/market_data.py#L11-L41)
+- [backend/app/strategies/engine.py:506-655](../../../../../backend/app/strategies/engine.py#L506-L655)
+- [backend/app/backtest/engine.py:10-70](../../../../../backend/app/backtest/engine.py#L10-L70)
 
 章节来源
-- [backend/main.py:1-36](file://backend/main.py#L1-L36)
+- [backend/main.py:1-36](../../../../../backend/main.py#L1-L36)
 
 ## 核心组件
 - FastAPI应用与CORS配置：注册跨域、挂载路由前缀
@@ -71,11 +71,11 @@ Engine --> Result["回测结果<br/>metrics/trades/equity_curve/signals_data"]
 - 回测引擎：合并数据与信号，计算收益曲线、交易记录、绩效指标
 
 章节来源
-- [backend/main.py:9-27](file://backend/main.py#L9-L27)
-- [backend/app/api/backtest.py:16-66](file://backend/app/api/backtest.py#L16-L66)
-- [backend/app/strategies/engine.py:506-655](file://backend/app/strategies/engine.py#L506-L655)
-- [backend/app/services/market_data.py:11-41](file://backend/app/services/market_data.py#L11-L41)
-- [backend/app/backtest/engine.py:10-70](file://backend/app/backtest/engine.py#L10-L70)
+- [backend/main.py:9-27](../../../../../backend/main.py#L9-L27)
+- [backend/app/api/backtest.py:16-66](../../../../../backend/app/api/backtest.py#L16-L66)
+- [backend/app/strategies/engine.py:506-655](../../../../../backend/app/strategies/engine.py#L506-L655)
+- [backend/app/services/market_data.py:11-41](../../../../../backend/app/services/market_data.py#L11-L41)
+- [backend/app/backtest/engine.py:10-70](../../../../../backend/app/backtest/engine.py#L10-L70)
 
 ## 架构总览
 下图展示了从客户端发起回测到返回结果的完整时序。
@@ -101,11 +101,11 @@ R-->>C : JSON响应(含策略信息、symbol、data_source、is_mock)
 ```
 
 图表来源
-- [backend/main.py:24-27](file://backend/main.py#L24-L27)
-- [backend/app/api/backtest.py:28-66](file://backend/app/api/backtest.py#L28-L66)
-- [backend/app/services/market_data.py:14-41](file://backend/app/services/market_data.py#L14-L41)
-- [backend/app/strategies/engine.py:600-655](file://backend/app/strategies/engine.py#L600-L655)
-- [backend/app/backtest/engine.py:15-70](file://backend/app/backtest/engine.py#L15-L70)
+- [backend/main.py:24-27](../../../../../backend/main.py#L24-L27)
+- [backend/app/api/backtest.py:28-66](../../../../../backend/app/api/backtest.py#L28-L66)
+- [backend/app/services/market_data.py:14-41](../../../../../backend/app/services/market_data.py#L14-L41)
+- [backend/app/strategies/engine.py:600-655](../../../../../backend/app/strategies/engine.py#L600-L655)
+- [backend/app/backtest/engine.py:15-70](../../../../../backend/app/backtest/engine.py#L15-L70)
 
 ## 详细组件分析
 
@@ -139,7 +139,7 @@ R-->>C : JSON响应(含策略信息、symbol、data_source、is_mock)
 - 任何异常将返回HTTP 400，detail为异常消息文本
 
 章节来源
-- [backend/app/api/backtest.py:16-76](file://backend/app/api/backtest.py#L16-L76)
+- [backend/app/api/backtest.py:16-76](../../../../../backend/app/api/backtest.py#L16-L76)
 
 ### 回测引擎（BacktestEngine）
 职责
@@ -158,7 +158,7 @@ R-->>C : JSON响应(含策略信息、symbol、data_source、is_mock)
 - 对NaN/Inf进行清理，保证JSON序列化安全
 
 章节来源
-- [backend/app/backtest/engine.py:10-163](file://backend/app/backtest/engine.py#L10-L163)
+- [backend/app/backtest/engine.py:10-163](../../../../../backend/app/backtest/engine.py#L10-L163)
 
 ### 策略工厂与策略实现
 - 工厂函数create_strategy根据strategy_id动态创建策略实例
@@ -166,8 +166,8 @@ R-->>C : JSON响应(含策略信息、symbol、data_source、is_mock)
 - 每个策略实现generate_signals(data)，返回包含signal与position的DataFrame
 
 章节来源
-- [backend/app/strategies/engine.py:17-503](file://backend/app/strategies/engine.py#L17-L503)
-- [backend/app/strategies/engine.py:506-655](file://backend/app/strategies/engine.py#L506-L655)
+- [backend/app/strategies/engine.py:17-503](../../../../../backend/app/strategies/engine.py#L17-L503)
+- [backend/app/strategies/engine.py:506-655](../../../../../backend/app/strategies/engine.py#L506-L655)
 
 ### 市场数据服务
 - 统一入口MarketDataService.get_stock_data，委托给DataSourceManager
@@ -175,15 +175,15 @@ R-->>C : JSON响应(含策略信息、symbol、data_source、is_mock)
 - 返回(DataFrame, actual_source)
 
 章节来源
-- [backend/app/services/market_data.py:11-41](file://backend/app/services/market_data.py#L11-L41)
+- [backend/app/services/market_data.py:11-41](../../../../../backend/app/services/market_data.py#L11-L41)
 
 ### 前端交互（参考）
 - BacktestForm负责收集用户输入并提交到后端
 - BacktestResult负责渲染metrics、trades、equity_curve等
 
 章节来源
-- [frontend/src/components/BacktestForm.tsx:21-44](file://frontend/src/components/BacktestForm.tsx#L21-L44)
-- [frontend/src/components/BacktestResult.tsx:9-41](file://frontend/src/components/BacktestResult.tsx#L9-L41)
+- [frontend/src/components/BacktestForm.tsx:21-44](../../../../../frontend/src/components/BacktestForm.tsx#L21-L44)
+- [frontend/src/components/BacktestResult.tsx:9-41](../../../../../frontend/src/components/BacktestResult.tsx#L9-L41)
 
 ## 依赖关系分析
 - 路由层依赖：策略工厂、回测引擎、市场数据服务
@@ -215,10 +215,10 @@ BacktestRouter --> BacktestEngine : "执行回测"
 ```
 
 图表来源
-- [backend/app/api/backtest.py:13-66](file://backend/app/api/backtest.py#L13-L66)
-- [backend/app/services/market_data.py:11-41](file://backend/app/services/market_data.py#L11-L41)
-- [backend/app/strategies/engine.py:506-655](file://backend/app/strategies/engine.py#L506-L655)
-- [backend/app/backtest/engine.py:10-70](file://backend/app/backtest/engine.py#L10-L70)
+- [backend/app/api/backtest.py:13-66](../../../../../backend/app/api/backtest.py#L13-L66)
+- [backend/app/services/market_data.py:11-41](../../../../../backend/app/services/market_data.py#L11-L41)
+- [backend/app/strategies/engine.py:506-655](../../../../../backend/app/strategies/engine.py#L506-L655)
+- [backend/app/backtest/engine.py:10-70](../../../../../backend/app/backtest/engine.py#L10-L70)
 
 ## 性能与扩展性
 - 单请求同步执行：适合小规模回测与交互式探索
@@ -243,8 +243,8 @@ BacktestRouter --> BacktestEngine : "执行回测"
 - 空交易记录：可能是信号过于稀疏或阈值设置不当，调整策略参数
 
 章节来源
-- [backend/app/api/backtest.py:68-69](file://backend/app/api/backtest.py#L68-L69)
-- [backend/app/strategies/engine.py:647-655](file://backend/app/strategies/engine.py#L647-L655)
+- [backend/app/api/backtest.py:68-69](../../../../../backend/app/api/backtest.py#L68-L69)
+- [backend/app/strategies/engine.py:647-655](../../../../../backend/app/strategies/engine.py#L647-L655)
 
 ## 结论
 本回测API提供了端到端的策略回测能力，覆盖从数据获取、信号生成到绩效评估的全链路。通过清晰的请求/响应结构与可扩展的策略体系，既满足快速验证需求，也为后续异步化与批量化扩展预留了空间。
@@ -314,9 +314,9 @@ BacktestRouter --> BacktestEngine : "执行回测"
   - detail：字符串，错误描述
 
 章节来源
-- [backend/app/api/backtest.py:16-66](file://backend/app/api/backtest.py#L16-L66)
-- [backend/app/backtest/engine.py:63-70](file://backend/app/backtest/engine.py#L63-L70)
-- [backend/app/backtest/engine.py:105-162](file://backend/app/backtest/engine.py#L105-L162)
+- [backend/app/api/backtest.py:16-66](../../../../../backend/app/api/backtest.py#L16-L66)
+- [backend/app/backtest/engine.py:63-70](../../../../../backend/app/backtest/engine.py#L63-L70)
+- [backend/app/backtest/engine.py:105-162](../../../../../backend/app/backtest/engine.py#L105-L162)
 
 ### curl命令示例
 - 基本回测（均线交叉策略）
@@ -367,7 +367,7 @@ BacktestRouter --> BacktestEngine : "执行回测"
     }'
 
 章节来源
-- [backend/app/api/backtest.py:28-66](file://backend/app/api/backtest.py#L28-L66)
+- [backend/app/api/backtest.py:28-66](../../../../../backend/app/api/backtest.py#L28-L66)
 
 ### JavaScript客户端调用示例
 - 使用fetch发起请求
@@ -381,8 +381,8 @@ BacktestRouter --> BacktestEngine : "执行回测"
   - 对large数据集增加超时与进度提示
 
 章节来源
-- [frontend/src/components/BacktestForm.tsx:28-44](file://frontend/src/components/BacktestForm.tsx#L28-L44)
-- [frontend/src/components/BacktestResult.tsx:9-41](file://frontend/src/components/BacktestResult.tsx#L9-L41)
+- [frontend/src/components/BacktestForm.tsx:28-44](../../../../../frontend/src/components/BacktestForm.tsx#L28-L44)
+- [frontend/src/components/BacktestResult.tsx:9-41](../../../../../frontend/src/components/BacktestResult.tsx#L9-L41)
 
 ### 错误码与处理建议
 - 400 Bad Request：参数错误或内部异常
@@ -392,7 +392,7 @@ BacktestRouter --> BacktestEngine : "执行回测"
 - 其他HTTP错误：根据状态码处理并重试或提示用户
 
 章节来源
-- [backend/app/api/backtest.py:68-69](file://backend/app/api/backtest.py#L68-L69)
+- [backend/app/api/backtest.py:68-69](../../../../../backend/app/api/backtest.py#L68-L69)
 
 ### 高级功能：批量回测与异步处理
 - 批量回测

@@ -2,11 +2,11 @@
 
 <cite>
 **本文引用的文件**   
-- [QUICKSTART.md](file://QUICKSTART.md)
-- [backend/main.py](file://backend/main.py)
-- [backend/app/core/config.py](file://backend/app/core/config.py)
-- [frontend/vite.config.ts](file://frontend/vite.config.ts)
-- [frontend/package.json](file://frontend/package.json)
+- [QUICKSTART.md](../../../../../../QUICKSTART.md)
+- [backend/main.py](../../../../../../backend/main.py)
+- [backend/app/core/config.py](../../../../../../backend/app/core/config.py)
+- [frontend/vite.config.ts](../../../../../../frontend/vite.config.ts)
+- [frontend/package.json](../../../../../../frontend/package.json)
 </cite>
 
 ## 目录
@@ -37,12 +37,12 @@ Nginx --> |/api/*| Backend["FastAPI/Uvicorn(:8000)"]
 ```
 
 **图示来源**
-- [QUICKSTART.md:25-64](file://QUICKSTART.md#L25-L64)
-- [frontend/vite.config.ts:4-14](file://frontend/vite.config.ts#L4-L14)
+- [QUICKSTART.md:25-64](../../../../../../QUICKSTART.md#L25-L64)
+- [frontend/vite.config.ts:4-14](../../../../../../frontend/vite.config.ts#L4-L14)
 
 **章节来源**
-- [QUICKSTART.md:25-64](file://QUICKSTART.md#L25-L64)
-- [frontend/vite.config.ts:4-14](file://frontend/vite.config.ts#L4-L14)
+- [QUICKSTART.md:25-64](../../../../../../QUICKSTART.md#L25-L64)
+- [frontend/vite.config.ts:4-14](../../../../../../frontend/vite.config.ts#L4-L14)
 
 ## 核心组件
 - 后端应用：FastAPI 应用实例，注册路由并启用 CORS 中间件。
@@ -55,9 +55,9 @@ Nginx --> |/api/*| Backend["FastAPI/Uvicorn(:8000)"]
 - Vite 开发服务器端口与 /api 代理目标指向本地后端。
 
 **章节来源**
-- [backend/main.py:1-36](file://backend/main.py#L1-L36)
-- [backend/app/core/config.py:1-25](file://backend/app/core/config.py#L1-L25)
-- [frontend/vite.config.ts:4-14](file://frontend/vite.config.ts#L4-L14)
+- [backend/main.py:1-36](../../../../../../backend/main.py#L1-L36)
+- [backend/app/core/config.py:1-25](../../../../../../backend/app/core/config.py#L1-L25)
+- [frontend/vite.config.ts:4-14](../../../../../../frontend/vite.config.ts#L4-L14)
 
 ## 架构总览
 生产环境推荐拓扑：
@@ -100,7 +100,7 @@ LB --> BE2
 - location /docs 与 /redoc 根据需求限制访问或关闭。
 
 **章节来源**
-- [QUICKSTART.md:25-64](file://QUICKSTART.md#L25-L64)
+- [QUICKSTART.md:25-64](../../../../../../QUICKSTART.md#L25-L64)
 
 ### 负载均衡与高可用
 - 使用 upstream 定义多个后端实例，按权重或轮询分发。
@@ -113,7 +113,7 @@ LB --> BE2
 - location /api 使用 proxy_pass http://backend_servers;
 
 **章节来源**
-- [QUICKSTART.md:25-64](file://QUICKSTART.md#L25-L64)
+- [QUICKSTART.md:25-64](../../../../../../QUICKSTART.md#L25-L64)
 
 ### 静态资源缓存策略
 - 对 HTML、CSS、JS、图片等资源设置合适的 Cache-Control 与 ETag。
@@ -126,7 +126,7 @@ LB --> BE2
 - gzip_types 包含 text/css、application/javascript 等。
 
 **章节来源**
-- [frontend/package.json:6-11](file://frontend/package.json#L6-L11)
+- [frontend/package.json:6-11](../../../../../../frontend/package.json#L6-L11)
 
 ### Gzip 压缩配置
 - 启用 gzip 与 gzip_comp_level/gzip_min_length。
@@ -139,7 +139,7 @@ LB --> BE2
 - gzip_vary on;
 
 **章节来源**
-- [frontend/package.json:6-11](file://frontend/package.json#L6-L11)
+- [frontend/package.json:6-11](../../../../../../frontend/package.json#L6-L11)
 
 ### CORS 跨域与安全头部
 - 后端已启用 FastAPI CORSMiddleware，允许所有来源与方法，适合开发环境。
@@ -153,7 +153,7 @@ LB --> BE2
 - add_header Referrer-Policy "strict-origin-when-cross-origin";
 
 **章节来源**
-- [backend/main.py:15-22](file://backend/main.py#L15-L22)
+- [backend/main.py:15-22](../../../../../../backend/main.py#L15-L22)
 
 ### WebSocket 支持
 - FastAPI 原生支持 WebSocket，Nginx 需透传 Upgrade 与 Connection 头。
@@ -168,7 +168,7 @@ LB --> BE2
   }
 
 **章节来源**
-- [QUICKSTART.md:25-64](file://QUICKSTART.md#L25-L64)
+- [QUICKSTART.md:25-64](../../../../../../QUICKSTART.md#L25-L64)
 
 ### 文件上传限制
 - 在 Nginx 层设置 client_max_body_size 限制上传大小。
@@ -179,7 +179,7 @@ LB --> BE2
 - 后端校验上传字段大小与类型。
 
 **章节来源**
-- [QUICKSTART.md:25-64](file://QUICKSTART.md#L25-L64)
+- [QUICKSTART.md:25-64](../../../../../../QUICKSTART.md#L25-L64)
 
 ### 访问日志与错误日志管理
 - 自定义 access_log 与 error_log 格式，记录客户端 IP、请求时间、方法、URI、状态码、耗时等。
@@ -194,7 +194,7 @@ LB --> BE2
 - error_log /var/log/nginx/error.log warn;
 
 **章节来源**
-- [QUICKSTART.md:25-64](file://QUICKSTART.md#L25-L64)
+- [QUICKSTART.md:25-64](../../../../../../QUICKSTART.md#L25-L64)
 
 ### 性能调优参数
 - worker_processes auto;
@@ -210,7 +210,7 @@ LB --> BE2
 - upstream/backend 与 location 中的 proxy_*_timeout 设置。
 
 **章节来源**
-- [QUICKSTART.md:25-64](file://QUICKSTART.md#L25-L64)
+- [QUICKSTART.md:25-64](../../../../../../QUICKSTART.md#L25-L64)
 
 ### 连接池与超时设置
 - Nginx 与后端之间使用 HTTP/1.1 长连接，减少握手开销。
@@ -223,7 +223,7 @@ LB --> BE2
 - proxy_connect_timeout 5s; proxy_send_timeout 30s; proxy_read_timeout 60s;
 
 **章节来源**
-- [QUICKSTART.md:25-64](file://QUICKSTART.md#L25-L64)
+- [QUICKSTART.md:25-64](../../../../../../QUICKSTART.md#L25-L64)
 
 ### 前端代理与开发体验
 - Vite 开发服务器将 /api 代理到后端，便于本地联调。
@@ -233,7 +233,7 @@ LB --> BE2
 - server.proxy['/api'] 指向 http://localhost:8000。
 
 **章节来源**
-- [frontend/vite.config.ts:4-14](file://frontend/vite.config.ts#L4-L14)
+- [frontend/vite.config.ts:4-14](../../../../../../frontend/vite.config.ts#L4-L14)
 
 ## 依赖关系分析
 - 后端 FastAPI 应用依赖 Uvicorn 作为 ASGI 服务器。
@@ -249,12 +249,12 @@ BE --> |REST API| App["FastAPI 应用"]
 ```
 
 **图示来源**
-- [backend/main.py:1-36](file://backend/main.py#L1-L36)
-- [frontend/vite.config.ts:4-14](file://frontend/vite.config.ts#L4-L14)
+- [backend/main.py:1-36](../../../../../../backend/main.py#L1-L36)
+- [frontend/vite.config.ts:4-14](../../../../../../frontend/vite.config.ts#L4-L14)
 
 **章节来源**
-- [backend/main.py:1-36](file://backend/main.py#L1-L36)
-- [frontend/vite.config.ts:4-14](file://frontend/vite.config.ts#L4-L14)
+- [backend/main.py:1-36](../../../../../../backend/main.py#L1-L36)
+- [frontend/vite.config.ts:4-14](../../../../../../frontend/vite.config.ts#L4-L14)
 
 ## 性能考虑
 - 静态资源优先由 Nginx 处理，开启 gzip/brotli 与强缓存。
@@ -276,7 +276,7 @@ BE --> |REST API| App["FastAPI 应用"]
 - 性能瓶颈：观察 Nginx 与后端日志，定位慢请求与热点接口，优化查询与缓存。
 
 **章节来源**
-- [QUICKSTART.md:236-291](file://QUICKSTART.md#L236-L291)
+- [QUICKSTART.md:236-291](../../../../../../QUICKSTART.md#L236-L291)
 
 ## 结论
 通过 Nginx 统一入口、HTTPS 终止、静态资源缓存与压缩、合理的反向代理与安全头部，可将前端与后端解耦，获得更高的安全性与性能。结合负载均衡、WebSocket 透传、上传限制与完善的日志监控，可在生产环境中稳定运行。建议逐步收紧 CORS 与安全策略，持续监控与优化关键指标。
@@ -311,12 +311,12 @@ FastAPI_App --> Settings : "读取配置"
 ```
 
 **图示来源**
-- [backend/main.py:9-35](file://backend/main.py#L9-L35)
-- [backend/app/core/config.py:8-24](file://backend/app/core/config.py#L8-L24)
+- [backend/main.py:9-35](../../../../../../backend/main.py#L9-L35)
+- [backend/app/core/config.py:8-24](../../../../../../backend/app/core/config.py#L8-L24)
 
 **章节来源**
-- [backend/main.py:1-36](file://backend/main.py#L1-L36)
-- [backend/app/core/config.py:1-25](file://backend/app/core/config.py#L1-L25)
+- [backend/main.py:1-36](../../../../../../backend/main.py#L1-L36)
+- [backend/app/core/config.py:1-25](../../../../../../backend/app/core/config.py#L1-L25)
 
 ### 前端开发服务器代理流程
 - Vite 开发服务器监听 3000 端口。
@@ -334,9 +334,9 @@ Vite-->>Browser : 返回数据
 ```
 
 **图示来源**
-- [frontend/vite.config.ts:4-14](file://frontend/vite.config.ts#L4-L14)
-- [QUICKSTART.md:45-64](file://QUICKSTART.md#L45-L64)
+- [frontend/vite.config.ts:4-14](../../../../../../frontend/vite.config.ts#L4-L14)
+- [QUICKSTART.md:45-64](../../../../../../QUICKSTART.md#L45-L64)
 
 **章节来源**
-- [frontend/vite.config.ts:4-14](file://frontend/vite.config.ts#L4-L14)
-- [QUICKSTART.md:45-64](file://QUICKSTART.md#L45-L64)
+- [frontend/vite.config.ts:4-14](../../../../../../frontend/vite.config.ts#L4-L14)
+- [QUICKSTART.md:45-64](../../../../../../QUICKSTART.md#L45-L64)

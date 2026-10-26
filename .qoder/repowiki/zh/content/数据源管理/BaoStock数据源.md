@@ -2,8 +2,8 @@
 
 <cite>
 **本文引用的文件**   
-- [data_source_manager.py](file://backend/app/services/data_source_manager.py)
-- [DATA_SOURCES.md](file://DATA_SOURCES.md)
+- [data_source_manager.py](../../../../../backend/app/services/data_source_manager.py)
+- [DATA_SOURCES.md](../../../../../DATA_SOURCES.md)
 </cite>
 
 ## 目录
@@ -42,19 +42,19 @@ Manager --> Mock["模拟数据"]
 ```
 
 图表来源
-- [data_source_manager.py:14-54](file://backend/app/services/data_source_manager.py#L14-L54)
+- [data_source_manager.py:14-54](../../../../../backend/app/services/data_source_manager.py#L14-L54)
 
 章节来源
-- [data_source_manager.py:14-54](file://backend/app/services/data_source_manager.py#L14-L54)
-- [DATA_SOURCES.md:1-25](file://DATA_SOURCES.md#L1-L25)
+- [data_source_manager.py:14-54](../../../../../backend/app/services/data_source_manager.py#L14-L54)
+- [DATA_SOURCES.md:1-25](../../../../../DATA_SOURCES.md#L1-L25)
 
 ## 核心组件
 - DataSourceManager：统一的数据源入口，负责根据市场与可用性自动选择或指定数据源。
 - BaoStock数据获取方法：封装了登录、查询、迭代、类型转换、列重命名与登出等步骤。
 
 章节来源
-- [data_source_manager.py:14-54](file://backend/app/services/data_source_manager.py#L14-L54)
-- [data_source_manager.py:337-416](file://backend/app/services/data_source_manager.py#L337-L416)
+- [data_source_manager.py:14-54](../../../../../backend/app/services/data_source_manager.py#L14-L54)
+- [data_source_manager.py:337-416](../../../../../backend/app/services/data_source_manager.py#L337-L416)
 
 ## 架构总览
 下图展示了BaoStock在整体数据获取流程中的位置，以及与自动降级策略的关系。
@@ -81,8 +81,8 @@ Manager-->>Client : (DataFrame, "baostock")
 ```
 
 图表来源
-- [data_source_manager.py:56-109](file://backend/app/services/data_source_manager.py#L56-L109)
-- [data_source_manager.py:337-416](file://backend/app/services/data_source_manager.py#L337-L416)
+- [data_source_manager.py:56-109](../../../../../backend/app/services/data_source_manager.py#L56-L109)
+- [data_source_manager.py:337-416](../../../../../backend/app/services/data_source_manager.py#L337-L416)
 
 ## 详细组件分析
 
@@ -120,10 +120,10 @@ Logout --> End(["返回DataFrame"])
 ```
 
 图表来源
-- [data_source_manager.py:337-416](file://backend/app/services/data_source_manager.py#L337-L416)
+- [data_source_manager.py:337-416](../../../../../backend/app/services/data_source_manager.py#L337-L416)
 
 章节来源
-- [data_source_manager.py:337-416](file://backend/app/services/data_source_manager.py#L337-L416)
+- [data_source_manager.py:337-416](../../../../../backend/app/services/data_source_manager.py#L337-L416)
 
 ### 代码级类与方法关系
 ```mermaid
@@ -136,8 +136,8 @@ class DataSourceManager {
 ```
 
 图表来源
-- [data_source_manager.py:14-54](file://backend/app/services/data_source_manager.py#L14-L54)
-- [data_source_manager.py:337-416](file://backend/app/services/data_source_manager.py#L337-L416)
+- [data_source_manager.py:14-54](../../../../../backend/app/services/data_source_manager.py#L14-L54)
+- [data_source_manager.py:337-416](../../../../../backend/app/services/data_source_manager.py#L337-L416)
 
 ### query_history_k_data_plus函数使用说明
 - 参数说明
@@ -150,7 +150,7 @@ class DataSourceManager {
   - 返回记录集对象，可通过rs.fields获取字段名，通过rs.next()迭代数据行
 
 章节来源
-- [data_source_manager.py:374-382](file://backend/app/services/data_source_manager.py#L374-L382)
+- [data_source_manager.py:374-382](../../../../../backend/app/services/data_source_manager.py#L374-L382)
 
 ### 数据迭代与类型转换
 - 迭代过程
@@ -161,7 +161,7 @@ class DataSourceManager {
   - 将BaoStock原始列名映射为标准列名，并将Date列解析为datetime类型。
 
 章节来源
-- [data_source_manager.py:384-410](file://backend/app/services/data_source_manager.py#L384-L410)
+- [data_source_manager.py:384-410](../../../../../backend/app/services/data_source_manager.py#L384-L410)
 
 ### BaoStock数据源特点
 - 专业金融数据：面向A股市场，提供高质量的历史K线数据。
@@ -169,9 +169,9 @@ class DataSourceManager {
 - 需要登录认证：每次使用前需调用bs.login()，使用后必须调用bs.logout()释放资源。
 
 章节来源
-- [DATA_SOURCES.md:12-15](file://DATA_SOURCES.md#L12-L15)
-- [data_source_manager.py:347-350](file://backend/app/services/data_source_manager.py#L347-L350)
-- [data_source_manager.py:414-416](file://backend/app/services/data_source_manager.py#L414-L416)
+- [DATA_SOURCES.md:12-15](../../../../../DATA_SOURCES.md#L12-L15)
+- [data_source_manager.py:347-350](../../../../../backend/app/services/data_source_manager.py#L347-L350)
+- [data_source_manager.py:414-416](../../../../../backend/app/services/data_source_manager.py#L414-L416)
 
 ## 依赖关系分析
 - 模块内依赖
@@ -191,12 +191,12 @@ Manager --> Mock["_generate_mock_data"]
 ```
 
 图表来源
-- [data_source_manager.py:14-54](file://backend/app/services/data_source_manager.py#L14-L54)
-- [data_source_manager.py:56-109](file://backend/app/services/data_source_manager.py#L56-L109)
+- [data_source_manager.py:14-54](../../../../../backend/app/services/data_source_manager.py#L14-L54)
+- [data_source_manager.py:56-109](../../../../../backend/app/services/data_source_manager.py#L56-L109)
 
 章节来源
-- [data_source_manager.py:14-54](file://backend/app/services/data_source_manager.py#L14-L54)
-- [data_source_manager.py:56-109](file://backend/app/services/data_source_manager.py#L56-L109)
+- [data_source_manager.py:14-54](../../../../../backend/app/services/data_source_manager.py#L14-L54)
+- [data_source_manager.py:56-109](../../../../../backend/app/services/data_source_manager.py#L56-L109)
 
 ## 性能与资源管理
 - 连接池管理
@@ -226,8 +226,8 @@ Manager --> Mock["_generate_mock_data"]
   - 处理建议：确保open/high/low/close/volume已转换为float类型。
 
 章节来源
-- [data_source_manager.py:347-350](file://backend/app/services/data_source_manager.py#L347-L350)
-- [data_source_manager.py:384-410](file://backend/app/services/data_source_manager.py#L384-L410)
+- [data_source_manager.py:347-350](../../../../../backend/app/services/data_source_manager.py#L347-L350)
+- [data_source_manager.py:384-410](../../../../../backend/app/services/data_source_manager.py#L384-L410)
 
 ## 结论
 BaoStock数据源在本项目中通过DataSourceManager统一接入，提供了专业的A股历史数据能力。其实现涵盖了完整的登录生命周期管理、股票代码格式转换、数据查询与迭代、类型转换与列重命名等关键环节。尽管需要登录认证，但其在历史数据完整性与专业性方面具有显著优势。结合自动降级策略，系统在多种数据源之间灵活切换，提升了整体的可用性与鲁棒性。
@@ -252,5 +252,5 @@ BaoStock数据源在本项目中通过DataSourceManager统一接入，提供了�
   - 将清洗后的DataFrame用于后续的回测或分析。
 
 章节来源
-- [data_source_manager.py:17-54](file://backend/app/services/data_source_manager.py#L17-L54)
-- [data_source_manager.py:337-416](file://backend/app/services/data_source_manager.py#L337-L416)
+- [data_source_manager.py:17-54](../../../../../backend/app/services/data_source_manager.py#L17-L54)
+- [data_source_manager.py:337-416](../../../../../backend/app/services/data_source_manager.py#L337-L416)

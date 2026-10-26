@@ -1,0 +1,151 @@
+# 本文件由 wiki-site/build.py 生成，请勿手工编辑 nav 部分
+site_name: quant-ai 量化策略查看系统文档
+site_description: 股票量化策略查看与回测系统（Repo Wiki）静态文档站
+docs_dir: ../.qoder/repowiki/zh/content
+site_dir: site
+theme:
+  name: material
+  language: zh
+  features:
+    - navigation.indexes
+    - navigation.top
+    - navigation.sections
+    - content.code.copy
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-night
+        name: 切换至深色模式
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-sunny
+        name: 切换至浅色模式
+extra_css:
+  - stylesheets/extra.css
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+plugins:
+  - search
+validation:
+  links:
+    not_found: ignore
+    absolute_links: ignore
+    unrecognized_links: ignore
+nav:
+  - 首页: index.md
+  - 项目概述: 项目概述.md
+  - 快速开始: 快速开始.md
+  - 回测系统: 回测系统.md
+  - API参考文档:
+    - API参考文档: API参考文档/API参考文档.md
+    - 回测API: API参考文档/回测API.md
+    - 市场数据API: API参考文档/市场数据API.md
+    - 策略管理API: API参考文档/策略管理API.md
+  - stylesheets: []
+  - 前端开发:
+    - 前端开发: 前端开发/前端开发.md
+    - React应用架构: 前端开发/React应用架构.md
+    - 数据可视化集成: 前端开发/数据可视化集成.md
+    - 样式与主题系统: 前端开发/样式与主题系统.md
+    - 核心组件详解:
+      - 核心组件详解: 前端开发/核心组件详解/核心组件详解.md
+      - 回测结果组件: 前端开发/核心组件详解/回测结果组件.md
+      - 回测表单组件: 前端开发/核心组件详解/回测表单组件.md
+      - 策略列表组件: 前端开发/核心组件详解/策略列表组件.md
+  - 后端开发:
+    - 后端开发: 后端开发/后端开发.md
+    - API路由设计:
+      - API路由设计: 后端开发/API路由设计/API路由设计.md
+      - 回测执行API: 后端开发/API路由设计/回测执行API.md
+      - 市场数据API: 后端开发/API路由设计/市场数据API.md
+      - 策略管理API: 后端开发/API路由设计/策略管理API.md
+    - FastAPI应用架构: 后端开发/FastAPI应用架构.md
+    - 回测引擎核心: 后端开发/回测引擎核心.md
+    - 数据服务层: 后端开发/数据服务层.md
+    - 策略引擎实现:
+      - 策略引擎实现: 后端开发/策略引擎实现/策略引擎实现.md
+      - BaseStrategy基类设计: 后端开发/策略引擎实现/BaseStrategy基类设计.md
+      - 传统技术指标策略:
+        - 传统技术指标策略: 后端开发/策略引擎实现/传统技术指标策略/传统技术指标策略.md
+        - RSI策略: 后端开发/策略引擎实现/传统技术指标策略/RSI策略.md
+        - 动量策略: 后端开发/策略引擎实现/传统技术指标策略/动量策略.md
+        - 均值回归策略: 后端开发/策略引擎实现/传统技术指标策略/均值回归策略.md
+        - 均线交叉策略: 后端开发/策略引擎实现/传统技术指标策略/均线交叉策略.md
+        - 布林带策略: 后端开发/策略引擎实现/传统技术指标策略/布林带策略.md
+      - 高级策略实现:
+        - 高级策略实现: 后端开发/策略引擎实现/高级策略实现/高级策略实现.md
+        - Transformer深度学习策略: 后端开发/策略引擎实现/高级策略实现/Transformer深度学习策略.md
+        - 多因子选股策略: 后端开发/策略引擎实现/高级策略实现/多因子选股策略.md
+  - 开发指南:
+    - 开发指南: 开发指南/开发指南.md
+    - 代码规范: 开发指南/代码规范.md
+    - 功能扩展指南:
+      - 功能扩展指南: 开发指南/功能扩展指南/功能扩展指南.md
+      - 添加新数据源: 开发指南/功能扩展指南/添加新数据源.md
+      - 添加新策略: 开发指南/功能扩展指南/添加新策略.md
+      - 自定义可视化组件: 开发指南/功能扩展指南/自定义可视化组件.md
+    - 测试策略: 开发指南/测试策略.md
+    - 调试与优化: 开发指南/调试与优化.md
+  - 数据源管理:
+    - 数据源管理: 数据源管理/数据源管理.md
+    - AKShare数据源: 数据源管理/AKShare数据源.md
+    - BaoStock数据源: 数据源管理/BaoStock数据源.md
+    - YFinance数据源: 数据源管理/YFinance数据源.md
+    - 数据源架构设计: 数据源管理/数据源架构设计.md
+    - 智能降级机制: 数据源管理/智能降级机制.md
+    - 模拟数据源: 数据源管理/模拟数据源.md
+    - 腾讯财经数据源: 数据源管理/腾讯财经数据源.md
+  - 系统架构:
+    - 系统架构: 系统架构/系统架构.md
+    - 前端架构设计: 系统架构/前端架构设计.md
+    - 后端架构设计: 系统架构/后端架构设计.md
+    - 数据流设计: 系统架构/数据流设计.md
+    - 组件交互关系: 系统架构/组件交互关系.md
+  - 部署运维:
+    - 部署运维: 部署运维/部署运维.md
+    - 安全运维: 部署运维/安全运维.md
+    - 环境配置: 部署运维/环境配置.md
+    - 生产部署:
+      - 生产部署: 部署运维/生产部署/生产部署.md
+      - CI_CD流水线: 部署运维/生产部署/CI_CD流水线.md
+      - Docker容器化部署: 部署运维/生产部署/Docker容器化部署.md
+      - Web服务器配置: 部署运维/生产部署/Web服务器配置.md
+      - 进程管理服务: 部署运维/生产部署/进程管理服务.md
+    - 监控日志: 部署运维/监控日志.md
+  - 量化策略:
+    - 量化策略: 量化策略/量化策略.md
+    - 传统技术指标策略:
+      - 传统技术指标策略: 量化策略/传统技术指标策略/传统技术指标策略.md
+      - RSI策略: 量化策略/传统技术指标策略/RSI策略.md
+      - 动量策略: 量化策略/传统技术指标策略/动量策略.md
+      - 均值回归策略: 量化策略/传统技术指标策略/均值回归策略.md
+      - 均线交叉策略: 量化策略/传统技术指标策略/均线交叉策略.md
+      - 布林带策略: 量化策略/传统技术指标策略/布林带策略.md
+    - 策略开发指南: 量化策略/策略开发指南.md
+    - 高级策略:
+      - 高级策略: 量化策略/高级策略/高级策略.md
+      - Transformer深度学习策略: 量化策略/高级策略/Transformer深度学习策略.md
+      - 多因子选股策略: 量化策略/高级策略/多因子选股策略.md

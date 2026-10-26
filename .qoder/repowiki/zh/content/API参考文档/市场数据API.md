@@ -2,10 +2,10 @@
 
 <cite>
 **本文引用的文件**   
-- [backend/main.py](file://backend/main.py)
-- [backend/app/api/market.py](file://backend/app/api/market.py)
-- [backend/app/services/market_data.py](file://backend/app/services/market_data.py)
-- [backend/app/services/data_source_manager.py](file://backend/app/services/data_source_manager.py)
+- [backend/main.py](../../../../../backend/main.py)
+- [backend/app/api/market.py](../../../../../backend/app/api/market.py)
+- [backend/app/services/market_data.py](../../../../../backend/app/services/market_data.py)
+- [backend/app/services/data_source_manager.py](../../../../../backend/app/services/data_source_manager.py)
 </cite>
 
 ## 目录
@@ -40,14 +40,14 @@ DSM --> Mock["模拟数据"]
 ```
 
 **图表来源**
-- [backend/main.py:9-27](file://backend/main.py#L9-L27)
-- [backend/app/api/market.py:8-46](file://backend/app/api/market.py#L8-L46)
-- [backend/app/services/market_data.py:11-41](file://backend/app/services/market_data.py#L11-L41)
-- [backend/app/services/data_source_manager.py:14-54](file://backend/app/services/data_source_manager.py#L14-L54)
+- [backend/main.py:9-27](../../../../../backend/main.py#L9-L27)
+- [backend/app/api/market.py:8-46](../../../../../backend/app/api/market.py#L8-L46)
+- [backend/app/services/market_data.py:11-41](../../../../../backend/app/services/market_data.py#L11-L41)
+- [backend/app/services/data_source_manager.py:14-54](../../../../../backend/app/services/data_source_manager.py#L14-L54)
 
 **章节来源**
-- [backend/main.py:9-27](file://backend/main.py#L9-L27)
-- [backend/app/api/market.py:8-46](file://backend/app/api/market.py#L8-L46)
+- [backend/main.py:9-27](../../../../../backend/main.py#L9-L27)
+- [backend/app/api/market.py:8-46](../../../../../backend/app/api/market.py#L8-L46)
 
 ## 核心组件
 - 路由层：定义市场数据API端点，负责参数校验与异常包装。
@@ -60,9 +60,9 @@ DSM --> Mock["模拟数据"]
 - 数据源管理器集中处理不同数据源的适配、日期范围计算、列名标准化与空结果处理。
 
 **章节来源**
-- [backend/app/api/market.py:11-46](file://backend/app/api/market.py#L11-L46)
-- [backend/app/services/market_data.py:11-41](file://backend/app/services/market_data.py#L11-L41)
-- [backend/app/services/data_source_manager.py:14-54](file://backend/app/services/data_source_manager.py#L14-L54)
+- [backend/app/api/market.py:11-46](../../../../../backend/app/api/market.py#L11-L46)
+- [backend/app/services/market_data.py:11-41](../../../../../backend/app/services/market_data.py#L11-L41)
+- [backend/app/services/data_source_manager.py:14-54](../../../../../backend/app/services/data_source_manager.py#L14-L54)
 
 ## 架构总览
 下图展示一次典型的股票数据请求从客户端到数据源再到响应的完整流程。
@@ -93,10 +93,10 @@ R-->>C : {symbol, data : records[]}
 ```
 
 **图表来源**
-- [backend/main.py:24-27](file://backend/main.py#L24-L27)
-- [backend/app/api/market.py:11-27](file://backend/app/api/market.py#L11-L27)
-- [backend/app/services/market_data.py:14-41](file://backend/app/services/market_data.py#L14-L41)
-- [backend/app/services/data_source_manager.py:17-54](file://backend/app/services/data_source_manager.py#L17-L54)
+- [backend/main.py:24-27](../../../../../backend/main.py#L24-L27)
+- [backend/app/api/market.py:11-27](../../../../../backend/app/api/market.py#L11-L27)
+- [backend/app/services/market_data.py:14-41](../../../../../backend/app/services/market_data.py#L14-L41)
+- [backend/app/services/data_source_manager.py:17-54](../../../../../backend/app/services/data_source_manager.py#L17-L54)
 
 ## 详细接口规范
 
@@ -141,14 +141,14 @@ CallService --> |异常| RaiseErr["抛出400错误"]
 ```
 
 **图表来源**
-- [backend/app/api/market.py:11-27](file://backend/app/api/market.py#L11-L27)
-- [backend/app/services/market_data.py:14-41](file://backend/app/services/market_data.py#L14-L41)
-- [backend/app/services/data_source_manager.py:17-54](file://backend/app/services/data_source_manager.py#L17-L54)
+- [backend/app/api/market.py:11-27](../../../../../backend/app/api/market.py#L11-L27)
+- [backend/app/services/market_data.py:14-41](../../../../../backend/app/services/market_data.py#L14-L41)
+- [backend/app/services/data_source_manager.py:17-54](../../../../../backend/app/services/data_source_manager.py#L17-L54)
 
 **章节来源**
-- [backend/app/api/market.py:11-27](file://backend/app/api/market.py#L11-L27)
-- [backend/app/services/market_data.py:14-41](file://backend/app/services/market_data.py#L14-L41)
-- [backend/app/services/data_source_manager.py:17-54](file://backend/app/services/data_source_manager.py#L17-L54)
+- [backend/app/api/market.py:11-27](../../../../../backend/app/api/market.py#L11-L27)
+- [backend/app/services/market_data.py:14-41](../../../../../backend/app/services/market_data.py#L14-L41)
+- [backend/app/services/data_source_manager.py:17-54](../../../../../backend/app/services/data_source_manager.py#L17-L54)
 
 ### 接口二：获取股票基本信息
 - 方法：GET
@@ -168,8 +168,8 @@ CallService --> |异常| RaiseErr["抛出400错误"]
   - 响应体：{detail: 错误信息字符串}
 
 **章节来源**
-- [backend/app/api/market.py:30-38](file://backend/app/api/market.py#L30-L38)
-- [backend/app/services/market_data.py:43-82](file://backend/app/services/market_data.py#L43-L82)
+- [backend/app/api/market.py:30-38](../../../../../backend/app/api/market.py#L30-L38)
+- [backend/app/services/market_data.py:43-82](../../../../../backend/app/services/market_data.py#L43-L82)
 
 ### 接口三：搜索股票代码
 - 方法：GET
@@ -184,8 +184,8 @@ CallService --> |异常| RaiseErr["抛出400错误"]
   - 状态码：400（当keyword缺失或长度不足时由框架校验）
 
 **章节来源**
-- [backend/app/api/market.py:41-46](file://backend/app/api/market.py#L41-L46)
-- [backend/app/services/market_data.py:84-105](file://backend/app/services/market_data.py#L84-L105)
+- [backend/app/api/market.py:41-46](../../../../../backend/app/api/market.py#L41-L46)
+- [backend/app/services/market_data.py:84-105](../../../../../backend/app/services/market_data.py#L84-L105)
 
 ## 依赖关系分析
 - 路由层依赖服务层，服务层依赖数据源管理器。
@@ -216,12 +216,12 @@ MarketDataService --> DataSourceManager : "委托获取数据"
 ```
 
 **图表来源**
-- [backend/app/services/market_data.py:11-41](file://backend/app/services/market_data.py#L11-L41)
-- [backend/app/services/data_source_manager.py:14-54](file://backend/app/services/data_source_manager.py#L14-L54)
+- [backend/app/services/market_data.py:11-41](../../../../../backend/app/services/market_data.py#L11-L41)
+- [backend/app/services/data_source_manager.py:14-54](../../../../../backend/app/services/data_source_manager.py#L14-L54)
 
 **章节来源**
-- [backend/app/services/market_data.py:11-41](file://backend/app/services/market_data.py#L11-L41)
-- [backend/app/services/data_source_manager.py:14-109](file://backend/app/services/data_source_manager.py#L14-L109)
+- [backend/app/services/market_data.py:11-41](../../../../../backend/app/services/market_data.py#L11-L41)
+- [backend/app/services/data_source_manager.py:14-109](../../../../../backend/app/services/data_source_manager.py#L14-L109)
 
 ## 性能与缓存
 - 数据源选择与降级：
@@ -253,8 +253,8 @@ MarketDataService --> DataSourceManager : "委托获取数据"
   - AKShare/BaoStock：检查依赖安装与登录状态。
 
 **章节来源**
-- [backend/app/api/market.py:26-27](file://backend/app/api/market.py#L26-L27)
-- [backend/app/services/data_source_manager.py:56-109](file://backend/app/services/data_source_manager.py#L56-L109)
+- [backend/app/api/market.py:26-27](../../../../../backend/app/api/market.py#L26-L27)
+- [backend/app/services/data_source_manager.py:56-109](../../../../../backend/app/services/data_source_manager.py#L56-L109)
 
 ## 结论
 市场数据API通过FastAPI提供简洁的REST接口，服务层与数据源管理器解耦了外部数据接入，实现了多数据源自动选择与降级，确保系统稳定可用。接口返回标准化的OHLCV数据，便于前端与量化分析工具消费。建议在后续版本中加入缓存、分页与更丰富的技术指标计算能力，以满足更广泛的业务场景。

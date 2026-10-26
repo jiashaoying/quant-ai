@@ -2,10 +2,10 @@
 
 <cite>
 **本文引用的文件**   
-- [backend/main.py](file://backend/main.py)
-- [backend/app/api/strategies.py](file://backend/app/api/strategies.py)
-- [backend/app/strategies/engine.py](file://backend/app/strategies/engine.py)
-- [backend/app/models/models.py](file://backend/app/models/models.py)
+- [backend/main.py](../../../../../../backend/main.py)
+- [backend/app/api/strategies.py](../../../../../../backend/app/api/strategies.py)
+- [backend/app/strategies/engine.py](../../../../../../backend/app/strategies/engine.py)
+- [backend/app/models/models.py](../../../../../../backend/app/models/models.py)
 </cite>
 
 ## 目录
@@ -43,16 +43,16 @@ C --> D["数据库模型(参考)<br/>backend/app/models/models.py"]
 ```
 
 图表来源
-- [backend/main.py:24-27](file://backend/main.py#L24-L27)
-- [backend/app/api/strategies.py:8-24](file://backend/app/api/strategies.py#L8-L24)
-- [backend/app/strategies/engine.py:506-597](file://backend/app/strategies/engine.py#L506-L597)
-- [backend/app/models/models.py:11-21](file://backend/app/models/models.py#L11-L21)
+- [backend/main.py:24-27](../../../../../../backend/main.py#L24-L27)
+- [backend/app/api/strategies.py:8-24](../../../../../../backend/app/api/strategies.py#L8-L24)
+- [backend/app/strategies/engine.py:506-597](../../../../../../backend/app/strategies/engine.py#L506-L597)
+- [backend/app/models/models.py:11-21](../../../../../../backend/app/models/models.py#L11-L21)
 
 章节来源
-- [backend/main.py:1-36](file://backend/main.py#L1-L36)
-- [backend/app/api/strategies.py:1-25](file://backend/app/api/strategies.py#L1-L25)
-- [backend/app/strategies/engine.py:1-656](file://backend/app/strategies/engine.py#L1-L656)
-- [backend/app/models/models.py:1-44](file://backend/app/models/models.py#L1-L44)
+- [backend/main.py:1-36](../../../../../../backend/main.py#L1-L36)
+- [backend/app/api/strategies.py:1-25](../../../../../../backend/app/api/strategies.py#L1-L25)
+- [backend/app/strategies/engine.py:1-656](../../../../../../backend/app/strategies/engine.py#L1-L656)
+- [backend/app/models/models.py:1-44](../../../../../../backend/app/models/models.py#L1-L44)
 
 ## 核心组件
 - FastAPI应用与路由注册：负责挂载策略路由到 /api/strategies 前缀下。
@@ -61,10 +61,10 @@ C --> D["数据库模型(参考)<br/>backend/app/models/models.py"]
 - 数据库模型：定义持久化策略表结构（供其他模块参考）。
 
 章节来源
-- [backend/main.py:24-27](file://backend/main.py#L24-L27)
-- [backend/app/api/strategies.py:11-24](file://backend/app/api/strategies.py#L11-L24)
-- [backend/app/strategies/engine.py:506-655](file://backend/app/strategies/engine.py#L506-L655)
-- [backend/app/models/models.py:11-21](file://backend/app/models/models.py#L11-L21)
+- [backend/main.py:24-27](../../../../../../backend/main.py#L24-L27)
+- [backend/app/api/strategies.py:11-24](../../../../../../backend/app/api/strategies.py#L11-L24)
+- [backend/app/strategies/engine.py:506-655](../../../../../../backend/app/strategies/engine.py#L506-L655)
+- [backend/app/models/models.py:11-21](../../../../../../backend/app/models/models.py#L11-L21)
 
 ## 架构总览
 策略管理API的调用链路如下：客户端请求进入FastAPI，路由分发到策略API处理器，处理器调用策略引擎提供的函数以获取或筛选策略信息。
@@ -93,9 +93,9 @@ end
 ```
 
 图表来源
-- [backend/main.py:24-27](file://backend/main.py#L24-L27)
-- [backend/app/api/strategies.py:11-24](file://backend/app/api/strategies.py#L11-L24)
-- [backend/app/strategies/engine.py:506-597](file://backend/app/strategies/engine.py#L506-L597)
+- [backend/main.py:24-27](../../../../../../backend/main.py#L24-L27)
+- [backend/app/api/strategies.py:11-24](../../../../../../backend/app/api/strategies.py#L11-L24)
+- [backend/app/strategies/engine.py:506-597](../../../../../../backend/app/strategies/engine.py#L506-L597)
 
 ## 详细组件分析
 
@@ -108,7 +108,7 @@ end
 - 详情接口通过遍历策略列表进行匹配，未命中时返回404。
 
 章节来源
-- [backend/app/api/strategies.py:11-24](file://backend/app/api/strategies.py#L11-L24)
+- [backend/app/api/strategies.py:11-24](../../../../../../backend/app/api/strategies.py#L11-L24)
 
 ### 策略引擎与工厂模式
 - 可用策略清单：由 get_available_strategies 返回，包含每个策略的 id、name、description、parameters 等元数据。
@@ -119,7 +119,7 @@ end
 - 工厂方法统一创建入口，新增策略只需在清单与工厂两处扩展。
 
 章节来源
-- [backend/app/strategies/engine.py:506-655](file://backend/app/strategies/engine.py#L506-L655)
+- [backend/app/strategies/engine.py:506-655](../../../../../../backend/app/strategies/engine.py#L506-L655)
 
 ### 策略数据结构定义
 当前API返回的策略对象字段如下：
@@ -132,8 +132,8 @@ end
 - 该结构与数据库模型中的 Strategy 表字段不完全一致。API返回的是“策略元数据”，而数据库模型用于持久化存储（例如回测系统可能用到）。
 
 章节来源
-- [backend/app/strategies/engine.py:506-597](file://backend/app/strategies/engine.py#L506-L597)
-- [backend/app/models/models.py:11-21](file://backend/app/models/models.py#L11-L21)
+- [backend/app/strategies/engine.py:506-597](../../../../../../backend/app/strategies/engine.py#L506-L597)
+- [backend/app/models/models.py:11-21](../../../../../../backend/app/models/models.py#L11-L21)
 
 ### 类与关系图（策略基类与具体策略）
 ```mermaid
@@ -160,7 +160,7 @@ BaseStrategy <|-- TransformerPredictStrategy
 ```
 
 图表来源
-- [backend/app/strategies/engine.py:17-503](file://backend/app/strategies/engine.py#L17-L503)
+- [backend/app/strategies/engine.py:17-503](../../../../../../backend/app/strategies/engine.py#L17-L503)
 
 ## 依赖关系分析
 - 路由依赖策略引擎提供的 get_available_strategies。
@@ -174,14 +174,14 @@ StratAPI --> Engine["app/strategies/engine.py"]
 ```
 
 图表来源
-- [backend/main.py:24-27](file://backend/main.py#L24-L27)
-- [backend/app/api/strategies.py:6-14](file://backend/app/api/strategies.py#L6-L14)
-- [backend/app/strategies/engine.py:506-597](file://backend/app/strategies/engine.py#L506-L597)
+- [backend/main.py:24-27](../../../../../../backend/main.py#L24-L27)
+- [backend/app/api/strategies.py:6-14](../../../../../../backend/app/api/strategies.py#L6-L14)
+- [backend/app/strategies/engine.py:506-597](../../../../../../backend/app/strategies/engine.py#L506-L597)
 
 章节来源
-- [backend/main.py:24-27](file://backend/main.py#L24-L27)
-- [backend/app/api/strategies.py:1-25](file://backend/app/api/strategies.py#L1-L25)
-- [backend/app/strategies/engine.py:506-655](file://backend/app/strategies/engine.py#L506-L655)
+- [backend/main.py:24-27](../../../../../../backend/main.py#L24-L27)
+- [backend/app/api/strategies.py:1-25](../../../../../../backend/app/api/strategies.py#L1-L25)
+- [backend/app/strategies/engine.py:506-655](../../../../../../backend/app/strategies/engine.py#L506-L655)
 
 ## 性能与可扩展性
 - 列表接口每次返回完整策略清单，适合轻量级元数据场景；若策略数量增长，可考虑缓存策略清单。
@@ -196,8 +196,8 @@ StratAPI --> Engine["app/strategies/engine.py"]
 - 深度学习策略依赖：如需使用 transformer_dl 策略，需安装相应依赖；否则工厂方法会抛出导入异常。
 
 章节来源
-- [backend/app/api/strategies.py:17-24](file://backend/app/api/strategies.py#L17-L24)
-- [backend/app/strategies/engine.py:647-655](file://backend/app/strategies/engine.py#L647-L655)
+- [backend/app/api/strategies.py:17-24](../../../../../../backend/app/api/strategies.py#L17-L24)
+- [backend/app/strategies/engine.py:647-655](../../../../../../backend/app/strategies/engine.py#L647-L655)
 
 ## 结论
 策略管理API通过简洁的路由与集中的策略引擎，提供了稳定的策略元数据查询能力。结合工厂模式，系统具备良好的可扩展性与可维护性。建议在调用方对参数进行严格校验，并在策略规模扩大时考虑缓存与索引优化。
@@ -244,5 +244,5 @@ StratAPI --> Engine["app/strategies/engine.py"]
   - 响应体：包含 detail 字段提示未找到
 
 章节来源
-- [backend/app/api/strategies.py:11-24](file://backend/app/api/strategies.py#L11-L24)
-- [backend/app/strategies/engine.py:506-597](file://backend/app/strategies/engine.py#L506-L597)
+- [backend/app/api/strategies.py:11-24](../../../../../../backend/app/api/strategies.py#L11-L24)
+- [backend/app/strategies/engine.py:506-597](../../../../../../backend/app/strategies/engine.py#L506-L597)

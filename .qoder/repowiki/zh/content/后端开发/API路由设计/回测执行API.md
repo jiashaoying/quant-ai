@@ -2,12 +2,12 @@
 
 <cite>
 **本文引用的文件**   
-- [main.py](file://backend/main.py)
-- [backtest.py](file://backend/app/api/backtest.py)
-- [engine.py（策略引擎）](file://backend/app/strategies/engine.py)
-- [engine.py（回测引擎）](file://backend/app/backtest/engine.py)
-- [market_data.py](file://backend/app/services/market_data.py)
-- [models.py](file://backend/app/models/models.py)
+- [main.py](../../../../../../backend/main.py)
+- [backtest.py](../../../../../../backend/app/api/backtest.py)
+- [engine.py（策略引擎）](../../../../../../backend/app/strategies/engine.py)
+- [engine.py（回测引擎）](../../../../../../backend/app/backtest/engine.py)
+- [market_data.py](../../../../../../backend/app/services/market_data.py)
+- [models.py](../../../../../../backend/app/models/models.py)
 </cite>
 
 ## 目录
@@ -50,14 +50,14 @@ MarketSvc --> DataSourceMgr["数据源管理器<br/>services/data_source_manager
 ```
 
 图表来源
-- [main.py:9-27](file://backend/main.py#L9-L27)
-- [backtest.py:13-66](file://backend/app/api/backtest.py#L13-L66)
-- [market_data.py:11-41](file://backend/app/services/market_data.py#L11-L41)
-- [engine.py（策略引擎）:600-655](file://backend/app/strategies/engine.py#L600-L655)
-- [engine.py（回测引擎）:10-70](file://backend/app/backtest/engine.py#L10-L70)
+- [main.py:9-27](../../../../../../backend/main.py#L9-L27)
+- [backtest.py:13-66](../../../../../../backend/app/api/backtest.py#L13-L66)
+- [market_data.py:11-41](../../../../../../backend/app/services/market_data.py#L11-L41)
+- [engine.py（策略引擎）:600-655](../../../../../../backend/app/strategies/engine.py#L600-L655)
+- [engine.py（回测引擎）:10-70](../../../../../../backend/app/backtest/engine.py#L10-L70)
 
 章节来源
-- [main.py:1-36](file://backend/main.py#L1-L36)
+- [main.py:1-36](../../../../../../backend/main.py#L1-L36)
 
 ## 核心组件
 - 回测路由：定义 /api/backtest/run 接口，接收请求并编排数据获取、信号生成、回测执行。
@@ -67,11 +67,11 @@ MarketSvc --> DataSourceMgr["数据源管理器<br/>services/data_source_manager
 - 数据库模型：预留策略与回测结果的持久化结构（历史查询尚未实现）。
 
 章节来源
-- [backtest.py:16-66](file://backend/app/api/backtest.py#L16-L66)
-- [engine.py（策略引擎）:17-655](file://backend/app/strategies/engine.py#L17-L655)
-- [engine.py（回测引擎）:10-163](file://backend/app/backtest/engine.py#L10-L163)
-- [market_data.py:11-41](file://backend/app/services/market_data.py#L11-L41)
-- [models.py:11-44](file://backend/app/models/models.py#L11-L44)
+- [backtest.py:16-66](../../../../../../backend/app/api/backtest.py#L16-L66)
+- [engine.py（策略引擎）:17-655](../../../../../../backend/app/strategies/engine.py#L17-L655)
+- [engine.py（回测引擎）:10-163](../../../../../../backend/app/backtest/engine.py#L10-L163)
+- [market_data.py:11-41](../../../../../../backend/app/services/market_data.py#L11-L41)
+- [models.py:11-44](../../../../../../backend/app/models/models.py#L11-L44)
 
 ## 架构总览
 下图展示一次回测执行的端到端时序：
@@ -97,10 +97,10 @@ R-->>C : JSON 响应
 ```
 
 图表来源
-- [backtest.py:28-66](file://backend/app/api/backtest.py#L28-L66)
-- [market_data.py:14-41](file://backend/app/services/market_data.py#L14-L41)
-- [engine.py（策略引擎）:600-655](file://backend/app/strategies/engine.py#L600-L655)
-- [engine.py（回测引擎）:15-70](file://backend/app/backtest/engine.py#L15-L70)
+- [backtest.py:28-66](../../../../../../backend/app/api/backtest.py#L28-L66)
+- [market_data.py:14-41](../../../../../../backend/app/services/market_data.py#L14-L41)
+- [engine.py（策略引擎）:600-655](../../../../../../backend/app/strategies/engine.py#L600-L655)
+- [engine.py（回测引擎）:15-70](../../../../../../backend/app/backtest/engine.py#L15-L70)
 
 ## 详细组件分析
 
@@ -124,7 +124,7 @@ R-->>C : JSON 响应
 - 返回值：包含 metrics、trades、equity_curve、signals_data 以及策略与标的信息的字典
 
 章节来源
-- [backtest.py:16-66](file://backend/app/api/backtest.py#L16-L66)
+- [backtest.py:16-66](../../../../../../backend/app/api/backtest.py#L16-L66)
 
 ### 策略引擎与工厂
 - BaseStrategy：抽象基类，定义 generate_signals 接口
@@ -133,7 +133,7 @@ R-->>C : JSON 响应
 - 可用策略列表：get_available_strategies 返回策略元信息与参数约束
 
 章节来源
-- [engine.py（策略引擎）:17-655](file://backend/app/strategies/engine.py#L17-L655)
+- [engine.py（策略引擎）:17-655](../../../../../../backend/app/strategies/engine.py#L17-L655)
 
 ### 回测引擎
 - 输入：价格数据 DataFrame（含 Date/Open/High/Low/Close/Volume）与信号 DataFrame（含 signal/position）
@@ -150,14 +150,14 @@ R-->>C : JSON 响应
   - 数值清洗（填充 NaN/Inf），日期格式化以保障 JSON 可序列化
 
 章节来源
-- [engine.py（回测引擎）:10-163](file://backend/app/backtest/engine.py#L10-L163)
+- [engine.py（回测引擎）:10-163](../../../../../../backend/app/backtest/engine.py#L10-L163)
 
 ### 市场数据服务
 - 统一入口 MarketDataService.get_stock_data：委托 DataSourceManager 获取数据，返回 (DataFrame, actual_source)
 - 其他辅助方法：get_stock_info、search_symbol（简化版）
 
 章节来源
-- [market_data.py:11-41](file://backend/app/services/market_data.py#L11-L41)
+- [market_data.py:11-41](../../../../../../backend/app/services/market_data.py#L11-L41)
 
 ## 依赖关系分析
 - 路由层依赖：
@@ -196,10 +196,10 @@ BacktestRouter --> BacktestEngine : "执行回测"
 ```
 
 图表来源
-- [backtest.py:28-66](file://backend/app/api/backtest.py#L28-L66)
-- [market_data.py:11-41](file://backend/app/services/market_data.py#L11-L41)
-- [engine.py（策略引擎）:600-655](file://backend/app/strategies/engine.py#L600-L655)
-- [engine.py（回测引擎）:10-163](file://backend/app/backtest/engine.py#L10-L163)
+- [backtest.py:28-66](../../../../../../backend/app/api/backtest.py#L28-L66)
+- [market_data.py:11-41](../../../../../../backend/app/services/market_data.py#L11-L41)
+- [engine.py（策略引擎）:600-655](../../../../../../backend/app/strategies/engine.py#L600-L655)
+- [engine.py（回测引擎）:10-163](../../../../../../backend/app/backtest/engine.py#L10-L163)
 
 ## 性能与优化
 - 数据获取与缓存
@@ -227,9 +227,9 @@ BacktestRouter --> BacktestEngine : "执行回测"
 - 健康检查：GET /api/health 返回 {"status": "healthy"}
 
 章节来源
-- [backtest.py:68-69](file://backend/app/api/backtest.py#L68-L69)
-- [engine.py（策略引擎）:647-655](file://backend/app/strategies/engine.py#L647-L655)
-- [main.py:33-35](file://backend/main.py#L33-L35)
+- [backtest.py:68-69](../../../../../../backend/app/api/backtest.py#L68-L69)
+- [engine.py（策略引擎）:647-655](../../../../../../backend/app/strategies/engine.py#L647-L655)
+- [main.py:33-35](../../../../../../backend/main.py#L33-L35)
 
 ## 请求与响应示例
 
@@ -306,8 +306,8 @@ BacktestRouter --> BacktestEngine : "执行回测"
 }
 
 章节来源
-- [backtest.py:28-69](file://backend/app/api/backtest.py#L28-L69)
-- [engine.py（策略引擎）:647-655](file://backend/app/strategies/engine.py#L647-L655)
+- [backtest.py:28-69](../../../../../../backend/app/api/backtest.py#L28-L69)
+- [engine.py（策略引擎）:647-655](../../../../../../backend/app/strategies/engine.py#L647-L655)
 
 ## 故障排查指南
 - 无法获取数据
@@ -325,9 +325,9 @@ BacktestRouter --> BacktestEngine : "执行回测"
   - 观察 CPU/内存占用，考虑引入线程池/进程池与缓存
 
 章节来源
-- [market_data.py:14-41](file://backend/app/services/market_data.py#L14-L41)
-- [engine.py（策略引擎）:506-597](file://backend/app/strategies/engine.py#L506-L597)
-- [engine.py（回测引擎）:72-163](file://backend/app/backtest/engine.py#L72-L163)
+- [market_data.py:14-41](../../../../../../backend/app/services/market_data.py#L14-L41)
+- [engine.py（策略引擎）:506-597](../../../../../../backend/app/strategies/engine.py#L506-L597)
+- [engine.py（回测引擎）:72-163](../../../../../../backend/app/backtest/engine.py#L72-L163)
 
 ## 结论
 回测执行API通过清晰的职责分层实现了从数据获取、策略信号生成到回测计算的完整链路。当前实现提供了丰富的策略族与稳健的回测指标计算，同时具备基础的错误处理与可序列化保障。后续可在数据缓存、并发执行、历史持久化等方面进一步增强系统稳定性与吞吐能力。

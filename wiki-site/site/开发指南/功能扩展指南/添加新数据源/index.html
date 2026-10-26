@@ -1,0 +1,4376 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="股票量化策略查看与回测系统（Repo Wiki）静态文档站">
+      
+      
+      
+      
+        <link rel="prev" href="../%E5%8A%9F%E8%83%BD%E6%89%A9%E5%B1%95%E6%8C%87%E5%8D%97/">
+      
+      
+        <link rel="next" href="../%E6%B7%BB%E5%8A%A0%E6%96%B0%E7%AD%96%E7%95%A5/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
+    
+    
+      
+        <title>添加新数据源 - quant-ai 量化策略查看系统文档</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../.." title="quant-ai 量化策略查看系统文档" class="md-header__button md-logo" aria-label="quant-ai 量化策略查看系统文档" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            quant-ai 量化策略查看系统文档
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              添加新数据源
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="切换至深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换至深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="切换至浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换至浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="quant-ai 量化策略查看系统文档" class="md-nav__button md-logo" aria-label="quant-ai 量化策略查看系统文档" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    quant-ai 量化策略查看系统文档
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%A1%B9%E7%9B%AE%E6%A6%82%E8%BF%B0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    项目概述
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    快速开始
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E5%9B%9E%E6%B5%8B%E7%B3%BB%E7%BB%9F/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    回测系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API参考文档
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API参考文档
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../API%E5%8F%82%E8%80%83%E6%96%87%E6%A1%A3/API%E5%8F%82%E8%80%83%E6%96%87%E6%A1%A3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API参考文档
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../API%E5%8F%82%E8%80%83%E6%96%87%E6%A1%A3/%E5%9B%9E%E6%B5%8BAPI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    回测API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../API%E5%8F%82%E8%80%83%E6%96%87%E6%A1%A3/%E5%B8%82%E5%9C%BA%E6%95%B0%E6%8D%AEAPI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    市场数据API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../API%E5%8F%82%E8%80%83%E6%96%87%E6%A1%A3/%E7%AD%96%E7%95%A5%E7%AE%A1%E7%90%86API/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    策略管理API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    stylesheets
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    前端开发
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    前端开发
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    前端开发
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/React%E5%BA%94%E7%94%A8%E6%9E%B6%E6%9E%84/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    React应用架构
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E9%9B%86%E6%88%90/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据可视化集成
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/%E6%A0%B7%E5%BC%8F%E4%B8%8E%E4%B8%BB%E9%A2%98%E7%B3%BB%E7%BB%9F/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    样式与主题系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_5" id="__nav_7_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    核心组件详解
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    核心组件详解
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/%E6%A0%B8%E5%BF%83%E7%BB%84%E4%BB%B6%E8%AF%A6%E8%A7%A3/%E6%A0%B8%E5%BF%83%E7%BB%84%E4%BB%B6%E8%AF%A6%E8%A7%A3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    核心组件详解
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/%E6%A0%B8%E5%BF%83%E7%BB%84%E4%BB%B6%E8%AF%A6%E8%A7%A3/%E5%9B%9E%E6%B5%8B%E7%BB%93%E6%9E%9C%E7%BB%84%E4%BB%B6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    回测结果组件
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/%E6%A0%B8%E5%BF%83%E7%BB%84%E4%BB%B6%E8%AF%A6%E8%A7%A3/%E5%9B%9E%E6%B5%8B%E8%A1%A8%E5%8D%95%E7%BB%84%E4%BB%B6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    回测表单组件
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/%E6%A0%B8%E5%BF%83%E7%BB%84%E4%BB%B6%E8%AF%A6%E8%A7%A3/%E7%AD%96%E7%95%A5%E5%88%97%E8%A1%A8%E7%BB%84%E4%BB%B6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    策略列表组件
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    后端开发
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    后端开发
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    后端开发
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_2" id="__nav_8_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API路由设计
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API路由设计
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/API%E8%B7%AF%E7%94%B1%E8%AE%BE%E8%AE%A1/API%E8%B7%AF%E7%94%B1%E8%AE%BE%E8%AE%A1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API路由设计
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/API%E8%B7%AF%E7%94%B1%E8%AE%BE%E8%AE%A1/%E5%9B%9E%E6%B5%8B%E6%89%A7%E8%A1%8CAPI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    回测执行API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/API%E8%B7%AF%E7%94%B1%E8%AE%BE%E8%AE%A1/%E5%B8%82%E5%9C%BA%E6%95%B0%E6%8D%AEAPI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    市场数据API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/API%E8%B7%AF%E7%94%B1%E8%AE%BE%E8%AE%A1/%E7%AD%96%E7%95%A5%E7%AE%A1%E7%90%86API/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    策略管理API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/FastAPI%E5%BA%94%E7%94%A8%E6%9E%B6%E6%9E%84/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FastAPI应用架构
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E5%9B%9E%E6%B5%8B%E5%BC%95%E6%93%8E%E6%A0%B8%E5%BF%83/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    回测引擎核心
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E6%95%B0%E6%8D%AE%E6%9C%8D%E5%8A%A1%E5%B1%82/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据服务层
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_6" id="__nav_8_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    策略引擎实现
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    策略引擎实现
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E7%AD%96%E7%95%A5%E5%BC%95%E6%93%8E%E5%AE%9E%E7%8E%B0/%E7%AD%96%E7%95%A5%E5%BC%95%E6%93%8E%E5%AE%9E%E7%8E%B0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    策略引擎实现
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E7%AD%96%E7%95%A5%E5%BC%95%E6%93%8E%E5%AE%9E%E7%8E%B0/BaseStrategy%E5%9F%BA%E7%B1%BB%E8%AE%BE%E8%AE%A1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BaseStrategy基类设计
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_6_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_6_3" id="__nav_8_6_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    传统技术指标策略
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_8_6_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_6_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    传统技术指标策略
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E7%AD%96%E7%95%A5%E5%BC%95%E6%93%8E%E5%AE%9E%E7%8E%B0/%E4%BC%A0%E7%BB%9F%E6%8A%80%E6%9C%AF%E6%8C%87%E6%A0%87%E7%AD%96%E7%95%A5/%E4%BC%A0%E7%BB%9F%E6%8A%80%E6%9C%AF%E6%8C%87%E6%A0%87%E7%AD%96%E7%95%A5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    传统技术指标策略
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E7%AD%96%E7%95%A5%E5%BC%95%E6%93%8E%E5%AE%9E%E7%8E%B0/%E4%BC%A0%E7%BB%9F%E6%8A%80%E6%9C%AF%E6%8C%87%E6%A0%87%E7%AD%96%E7%95%A5/RSI%E7%AD%96%E7%95%A5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RSI策略
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E7%AD%96%E7%95%A5%E5%BC%95%E6%93%8E%E5%AE%9E%E7%8E%B0/%E4%BC%A0%E7%BB%9F%E6%8A%80%E6%9C%AF%E6%8C%87%E6%A0%87%E7%AD%96%E7%95%A5/%E5%8A%A8%E9%87%8F%E7%AD%96%E7%95%A5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    动量策略
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E7%AD%96%E7%95%A5%E5%BC%95%E6%93%8E%E5%AE%9E%E7%8E%B0/%E4%BC%A0%E7%BB%9F%E6%8A%80%E6%9C%AF%E6%8C%87%E6%A0%87%E7%AD%96%E7%95%A5/%E5%9D%87%E5%80%BC%E5%9B%9E%E5%BD%92%E7%AD%96%E7%95%A5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    均值回归策略
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E7%AD%96%E7%95%A5%E5%BC%95%E6%93%8E%E5%AE%9E%E7%8E%B0/%E4%BC%A0%E7%BB%9F%E6%8A%80%E6%9C%AF%E6%8C%87%E6%A0%87%E7%AD%96%E7%95%A5/%E5%9D%87%E7%BA%BF%E4%BA%A4%E5%8F%89%E7%AD%96%E7%95%A5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    均线交叉策略
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E7%AD%96%E7%95%A5%E5%BC%95%E6%93%8E%E5%AE%9E%E7%8E%B0/%E4%BC%A0%E7%BB%9F%E6%8A%80%E6%9C%AF%E6%8C%87%E6%A0%87%E7%AD%96%E7%95%A5/%E5%B8%83%E6%9E%97%E5%B8%A6%E7%AD%96%E7%95%A5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    布林带策略
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_6_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_6_4" id="__nav_8_6_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    高级策略实现
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_8_6_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_6_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    高级策略实现
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E7%AD%96%E7%95%A5%E5%BC%95%E6%93%8E%E5%AE%9E%E7%8E%B0/%E9%AB%98%E7%BA%A7%E7%AD%96%E7%95%A5%E5%AE%9E%E7%8E%B0/%E9%AB%98%E7%BA%A7%E7%AD%96%E7%95%A5%E5%AE%9E%E7%8E%B0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    高级策略实现
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E7%AD%96%E7%95%A5%E5%BC%95%E6%93%8E%E5%AE%9E%E7%8E%B0/%E9%AB%98%E7%BA%A7%E7%AD%96%E7%95%A5%E5%AE%9E%E7%8E%B0/Transformer%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AD%96%E7%95%A5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transformer深度学习策略
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E7%AD%96%E7%95%A5%E5%BC%95%E6%93%8E%E5%AE%9E%E7%8E%B0/%E9%AB%98%E7%BA%A7%E7%AD%96%E7%95%A5%E5%AE%9E%E7%8E%B0/%E5%A4%9A%E5%9B%A0%E5%AD%90%E9%80%89%E8%82%A1%E7%AD%96%E7%95%A5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    多因子选股策略
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    开发指南
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    开发指南
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    开发指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    代码规范
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_9_3" id="__nav_9_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    功能扩展指南
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_9_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    功能扩展指南
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E5%8A%9F%E8%83%BD%E6%89%A9%E5%B1%95%E6%8C%87%E5%8D%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    功能扩展指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    添加新数据源
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    添加新数据源
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        目录
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        引言
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        项目结构
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        核心组件
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        架构总览
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        详细组件分析
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="详细组件分析">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#datasourcemanager" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DataSourceManager 架构与智能降级
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_fetch_xxx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        数据获取方法 _fetch_xxx 的实现规范
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ohlcv-dataframe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        数据格式标准化要求（OHLCV DataFrame）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        前端同步更新步骤
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        完整实现示例（路径指引）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        依赖关系分析
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        性能与稳定性
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        测试与验证
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        故障排查
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        结论
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E6%B7%BB%E5%8A%A0%E6%96%B0%E7%AD%96%E7%95%A5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    添加新策略
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E8%87%AA%E5%AE%9A%E4%B9%89%E5%8F%AF%E8%A7%86%E5%8C%96%E7%BB%84%E4%BB%B6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    自定义可视化组件
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%B5%8B%E8%AF%95%E7%AD%96%E7%95%A5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    测试策略
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%B0%83%E8%AF%95%E4%B8%8E%E4%BC%98%E5%8C%96/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    调试与优化
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据源管理
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    数据源管理
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%95%B0%E6%8D%AE%E6%BA%90%E7%AE%A1%E7%90%86/%E6%95%B0%E6%8D%AE%E6%BA%90%E7%AE%A1%E7%90%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据源管理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%95%B0%E6%8D%AE%E6%BA%90%E7%AE%A1%E7%90%86/AKShare%E6%95%B0%E6%8D%AE%E6%BA%90/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AKShare数据源
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%95%B0%E6%8D%AE%E6%BA%90%E7%AE%A1%E7%90%86/BaoStock%E6%95%B0%E6%8D%AE%E6%BA%90/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BaoStock数据源
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%95%B0%E6%8D%AE%E6%BA%90%E7%AE%A1%E7%90%86/YFinance%E6%95%B0%E6%8D%AE%E6%BA%90/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    YFinance数据源
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%95%B0%E6%8D%AE%E6%BA%90%E7%AE%A1%E7%90%86/%E6%95%B0%E6%8D%AE%E6%BA%90%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据源架构设计
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%95%B0%E6%8D%AE%E6%BA%90%E7%AE%A1%E7%90%86/%E6%99%BA%E8%83%BD%E9%99%8D%E7%BA%A7%E6%9C%BA%E5%88%B6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    智能降级机制
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%95%B0%E6%8D%AE%E6%BA%90%E7%AE%A1%E7%90%86/%E6%A8%A1%E6%8B%9F%E6%95%B0%E6%8D%AE%E6%BA%90/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模拟数据源
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E6%95%B0%E6%8D%AE%E6%BA%90%E7%AE%A1%E7%90%86/%E8%85%BE%E8%AE%AF%E8%B4%A2%E7%BB%8F%E6%95%B0%E6%8D%AE%E6%BA%90/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    腾讯财经数据源
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    系统架构
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    系统架构
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    系统架构
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    前端架构设计
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84/%E5%90%8E%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    后端架构设计
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84/%E6%95%B0%E6%8D%AE%E6%B5%81%E8%AE%BE%E8%AE%A1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据流设计
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84/%E7%BB%84%E4%BB%B6%E4%BA%A4%E4%BA%92%E5%85%B3%E7%B3%BB/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    组件交互关系
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    部署运维
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    部署运维
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%83%A8%E7%BD%B2%E8%BF%90%E7%BB%B4/%E9%83%A8%E7%BD%B2%E8%BF%90%E7%BB%B4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    部署运维
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%83%A8%E7%BD%B2%E8%BF%90%E7%BB%B4/%E5%AE%89%E5%85%A8%E8%BF%90%E7%BB%B4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    安全运维
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%83%A8%E7%BD%B2%E8%BF%90%E7%BB%B4/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    环境配置
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_12_4" id="__nav_12_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    生产部署
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_12_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    生产部署
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%83%A8%E7%BD%B2%E8%BF%90%E7%BB%B4/%E7%94%9F%E4%BA%A7%E9%83%A8%E7%BD%B2/%E7%94%9F%E4%BA%A7%E9%83%A8%E7%BD%B2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    生产部署
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%83%A8%E7%BD%B2%E8%BF%90%E7%BB%B4/%E7%94%9F%E4%BA%A7%E9%83%A8%E7%BD%B2/CI_CD%E6%B5%81%E6%B0%B4%E7%BA%BF/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CI_CD流水线
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%83%A8%E7%BD%B2%E8%BF%90%E7%BB%B4/%E7%94%9F%E4%BA%A7%E9%83%A8%E7%BD%B2/Docker%E5%AE%B9%E5%99%A8%E5%8C%96%E9%83%A8%E7%BD%B2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Docker容器化部署
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%83%A8%E7%BD%B2%E8%BF%90%E7%BB%B4/%E7%94%9F%E4%BA%A7%E9%83%A8%E7%BD%B2/Web%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%BD%AE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Web服务器配置
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%83%A8%E7%BD%B2%E8%BF%90%E7%BB%B4/%E7%94%9F%E4%BA%A7%E9%83%A8%E7%BD%B2/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86%E6%9C%8D%E5%8A%A1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    进程管理服务
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%83%A8%E7%BD%B2%E8%BF%90%E7%BB%B4/%E7%9B%91%E6%8E%A7%E6%97%A5%E5%BF%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    监控日志
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13" >
+        
+          
+          <label class="md-nav__link" for="__nav_13" id="__nav_13_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    量化策略
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_13">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    量化策略
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%87%8F%E5%8C%96%E7%AD%96%E7%95%A5/%E9%87%8F%E5%8C%96%E7%AD%96%E7%95%A5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    量化策略
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_13_2" id="__nav_13_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    传统技术指标策略
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_13_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_13_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    传统技术指标策略
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%87%8F%E5%8C%96%E7%AD%96%E7%95%A5/%E4%BC%A0%E7%BB%9F%E6%8A%80%E6%9C%AF%E6%8C%87%E6%A0%87%E7%AD%96%E7%95%A5/%E4%BC%A0%E7%BB%9F%E6%8A%80%E6%9C%AF%E6%8C%87%E6%A0%87%E7%AD%96%E7%95%A5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    传统技术指标策略
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%87%8F%E5%8C%96%E7%AD%96%E7%95%A5/%E4%BC%A0%E7%BB%9F%E6%8A%80%E6%9C%AF%E6%8C%87%E6%A0%87%E7%AD%96%E7%95%A5/RSI%E7%AD%96%E7%95%A5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RSI策略
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%87%8F%E5%8C%96%E7%AD%96%E7%95%A5/%E4%BC%A0%E7%BB%9F%E6%8A%80%E6%9C%AF%E6%8C%87%E6%A0%87%E7%AD%96%E7%95%A5/%E5%8A%A8%E9%87%8F%E7%AD%96%E7%95%A5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    动量策略
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%87%8F%E5%8C%96%E7%AD%96%E7%95%A5/%E4%BC%A0%E7%BB%9F%E6%8A%80%E6%9C%AF%E6%8C%87%E6%A0%87%E7%AD%96%E7%95%A5/%E5%9D%87%E5%80%BC%E5%9B%9E%E5%BD%92%E7%AD%96%E7%95%A5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    均值回归策略
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%87%8F%E5%8C%96%E7%AD%96%E7%95%A5/%E4%BC%A0%E7%BB%9F%E6%8A%80%E6%9C%AF%E6%8C%87%E6%A0%87%E7%AD%96%E7%95%A5/%E5%9D%87%E7%BA%BF%E4%BA%A4%E5%8F%89%E7%AD%96%E7%95%A5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    均线交叉策略
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%87%8F%E5%8C%96%E7%AD%96%E7%95%A5/%E4%BC%A0%E7%BB%9F%E6%8A%80%E6%9C%AF%E6%8C%87%E6%A0%87%E7%AD%96%E7%95%A5/%E5%B8%83%E6%9E%97%E5%B8%A6%E7%AD%96%E7%95%A5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    布林带策略
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%87%8F%E5%8C%96%E7%AD%96%E7%95%A5/%E7%AD%96%E7%95%A5%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    策略开发指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_13_4" id="__nav_13_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    高级策略
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_13_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_13_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    高级策略
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%87%8F%E5%8C%96%E7%AD%96%E7%95%A5/%E9%AB%98%E7%BA%A7%E7%AD%96%E7%95%A5/%E9%AB%98%E7%BA%A7%E7%AD%96%E7%95%A5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    高级策略
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%87%8F%E5%8C%96%E7%AD%96%E7%95%A5/%E9%AB%98%E7%BA%A7%E7%AD%96%E7%95%A5/Transformer%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AD%96%E7%95%A5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transformer深度学习策略
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E9%87%8F%E5%8C%96%E7%AD%96%E7%95%A5/%E9%AB%98%E7%BA%A7%E7%AD%96%E7%95%A5/%E5%A4%9A%E5%9B%A0%E5%AD%90%E9%80%89%E8%82%A1%E7%AD%96%E7%95%A5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    多因子选股策略
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        目录
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        引言
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        项目结构
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        核心组件
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        架构总览
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        详细组件分析
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="详细组件分析">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#datasourcemanager" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DataSourceManager 架构与智能降级
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_fetch_xxx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        数据获取方法 _fetch_xxx 的实现规范
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ohlcv-dataframe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        数据格式标准化要求（OHLCV DataFrame）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        前端同步更新步骤
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        完整实现示例（路径指引）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        依赖关系分析
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        性能与稳定性
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        测试与验证
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        故障排查
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        结论
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="_1">添加新数据源<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p><cite>
+<strong>本文引用的文件</strong> <br />
+- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/services/data_source_manager.py">backend/app/services/data_source_manager.py</a>
+- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/services/market_data.py">backend/app/services/market_data.py</a>
+- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/api/market.py">backend/app/api/market.py</a>
+- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/frontend/src/components/BacktestForm.tsx">frontend/src/components/BacktestForm.tsx</a>
+- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/frontend/src/components/BacktestResult.tsx">frontend/src/components/BacktestResult.tsx</a>
+- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/DATA_SOURCES.md">DATA_SOURCES.md</a>
+</cite></p>
+<h2 id="_2">目录<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<ol>
+<li><a href="#引言">引言</a></li>
+<li><a href="#项目结构">项目结构</a></li>
+<li><a href="#核心组件">核心组件</a></li>
+<li><a href="#架构总览">架构总览</a></li>
+<li><a href="#详细组件分析">详细组件分析</a></li>
+<li><a href="#依赖关系分析">依赖关系分析</a></li>
+<li><a href="#性能与稳定性">性能与稳定性</a></li>
+<li><a href="#测试与验证">测试与验证</a></li>
+<li><a href="#故障排查">故障排查</a></li>
+<li><a href="#结论">结论</a></li>
+</ol>
+<h2 id="_3">引言<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>本文面向希望为系统新增一个市场数据源的开发者，目标是：
+- 理解 DataSourceManager 的架构设计与智能降级机制
+- 掌握实现新的 _fetch_xxx 静态方法的标准流程（网络请求、数据解析、异常处理）
+- 遵循统一的 OHLCV DataFrame 列名规范
+- 完成前端同步更新（DATA_SOURCES 数组与 dataSourceNames 映射）
+- 提供完整的实现示例路径与测试方法，并给出数据质量验证与性能优化建议</p>
+<h2 id="_4">项目结构<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>本功能涉及后端服务层、API 路由以及前端展示层的联动。关键文件如下：
+- 后端数据源管理器：负责多数据源调度、自动选择与降级
+- 后端市场数据服务：对外暴露统一的数据获取接口
+- 后端 API 路由：将前端请求转发到服务层
+- 前端表单：用户选择数据源并提交回测参数
+- 前端结果页：展示数据来源名称及是否使用模拟数据的提示</p>
+<pre class="mermaid"><code>graph TB
+FE_Form["前端: BacktestForm.tsx"] --&gt; API["后端API: market.py"]
+API --&gt; Service["服务层: market_data.py"]
+Service --&gt; Manager["数据源管理: data_source_manager.py"]
+Manager --&gt; Tencent["腾讯财经"]
+Manager --&gt; YF["YFinance"]
+Manager --&gt; AK["AKShare"]
+Manager --&gt; BS["BaoStock"]
+Manager --&gt; Mock["模拟数据"]</code></pre>
+<p>图表来源
+- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/api/market.py#L11-L27">backend/app/api/market.py:11-27</a>
+- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/services/market_data.py#L14-L41">backend/app/services/market_data.py:14-41</a>
+- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/services/data_source_manager.py#L14-L54">backend/app/services/data_source_manager.py:14-54</a></p>
+<p>章节来源
+- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/api/market.py#L1-L47">backend/app/api/market.py:1-47</a>
+- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/services/market_data.py#L1-L55">backend/app/services/market_data.py:1-55</a>
+- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/services/data_source_manager.py#L1-L469">backend/app/services/data_source_manager.py:1-469</a>
+- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/frontend/src/components/BacktestForm.tsx#L11-L19">frontend/src/components/BacktestForm.tsx:11-19</a>
+- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/frontend/src/components/BacktestResult.tsx#L12-L20">frontend/src/components/BacktestResult.tsx:12-20</a></p>
+<h2 id="_5">核心组件<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<ul>
+<li>DataSourceManager：集中管理所有数据源，提供 get_stock_data 入口和 _auto_fetch 智能降级逻辑</li>
+<li>MarketDataService：对上层暴露统一的数据获取方法，内部委托给 DataSourceManager</li>
+<li>API 路由：提供 /stock/{symbol} 等接口，返回标准化 OHLCV 数据</li>
+<li>前端 DATA_SOURCES：定义可选数据源列表及其描述</li>
+<li>前端 dataSourceNames：将后端返回的数据源标识映射为可读名称</li>
+</ul>
+<p>章节来源
+- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/services/data_source_manager.py#L14-L109">backend/app/services/data_source_manager.py:14-109</a>
+- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/services/market_data.py#L14-L41">backend/app/services/market_data.py:14-41</a>
+- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/api/market.py#L11-L27">backend/app/api/market.py:11-27</a>
+- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/frontend/src/components/BacktestForm.tsx#L11-L19">frontend/src/components/BacktestForm.tsx:11-19</a>
+- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/frontend/src/components/BacktestResult.tsx#L12-L20">frontend/src/components/BacktestResult.tsx:12-20</a></p>
+<h2 id="_6">架构总览<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<p>DataSourceManager 采用“单一入口 + 策略分发”的设计：
+- 统一入口 get_stock_data 接收 symbol、日期范围、周期和数据源标识
+- 当 source=auto 时，调用 _auto_fetch 进行智能选择
+- 指定 source 时直接调用对应 _fetch_xxx 静态方法
+- 每个 _fetch_xxx 必须返回标准化的 OHLCV DataFrame，列名为 Date, Open, High, Low, Close, Volume</p>
+<pre class="mermaid"><code>classDiagram
+class DataSourceManager {
++get_stock_data(symbol, start_date, end_date, period, source) tuple
+-_auto_fetch(symbol, start_date, end_date, period) tuple
+-_fetch_tencent(symbol, start_date, end_date, period) DataFrame
+-_convert_to_tencent_symbol(symbol) string
+-_fetch_yfinance(symbol, start_date, end_date, period) DataFrame
+-_fetch_akshare(symbol, start_date, end_date, period) DataFrame
+-_fetch_baostock(symbol, start_date, end_date, period) DataFrame
+-_generate_mock_data(symbol, period) DataFrame
+}
+class MarketDataService {
++get_stock_data(symbol, start_date, end_date, period, source) tuple
++get_stock_info(symbol) dict
+}
+class API_Market {
++get_stock_data(symbol, start_date, end_date, period) Response
++get_stock_info(symbol) Response
++search_symbol(keyword) Response
+}
+API_Market --&gt; MarketDataService : "调用"
+MarketDataService --&gt; DataSourceManager : "委托"</code></pre>
+<p>图表来源
+- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/services/data_source_manager.py#L14-L109">backend/app/services/data_source_manager.py:14-109</a>
+- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/services/market_data.py#L14-L41">backend/app/services/market_data.py:14-41</a>
+- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/api/market.py#L11-L27">backend/app/api/market.py:11-27</a></p>
+<h2 id="_7">详细组件分析<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<h3 id="datasourcemanager">DataSourceManager 架构与智能降级<a class="headerlink" href="#datasourcemanager" title="Permanent link">&para;</a></h3>
+<ul>
+<li>统一入口：get_stock_data 支持 auto 与具体数据源名称</li>
+<li>智能降级：_auto_fetch 按市场类型优先尝试不同数据源，任一失败则继续下一个，最终兜底为模拟数据</li>
+<li>扩展点：新增数据源需实现 _fetch_xxx 并在 get_stock_data 与 _auto_fetch 中注册</li>
+</ul>
+<pre class="mermaid"><code>flowchart TD
+Start(["开始"]) --&gt; CheckSource{"source == 'auto'?"}
+CheckSource --&gt; |是| AutoFetch["_auto_fetch()"]
+CheckSource --&gt; |否| Dispatch["根据 source 调用 _fetch_xxx()"]
+AutoFetch --&gt; DetectMarket["判断 A股/港股/美股"]
+DetectMarket --&gt; TryTencent["尝试腾讯财经"]
+TryTencent --&gt; HasData{"有数据?"}
+HasData --&gt; |是| ReturnTencent["返回 tencent 数据"]
+HasData --&gt; |否| TryYF["尝试 YFinance"]
+TryYF --&gt; HasData2{"有数据?"}
+HasData2 --&gt; |是| ReturnYF["返回 yfinance 数据"]
+HasData2 --&gt; |否| TryAK["尝试 AKShare(A股)"]
+TryAK --&gt; HasData3{"有数据?"}
+HasData3 --&gt; |是| ReturnAK["返回 akshare 数据"]
+HasData3 --&gt; |否| TryBS["尝试 BaoStock(A股)"]
+TryBS --&gt; HasData4{"有数据?"}
+HasData4 --&gt; |是| ReturnBS["返回 baostock 数据"]
+HasData4 --&gt; |否| UseMock["返回 mock 数据"]
+Dispatch --&gt; ReturnSpecific["返回指定数据源数据"]
+ReturnTencent --&gt; End(["结束"])
+ReturnYF --&gt; End
+ReturnAK --&gt; End
+ReturnBS --&gt; End
+UseMock --&gt; End</code></pre>
+<p>图表来源
+- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/services/data_source_manager.py#L17-L109">backend/app/services/data_source_manager.py:17-109</a></p>
+<p>章节来源
+- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/services/data_source_manager.py#L17-L109">backend/app/services/data_source_manager.py:17-109</a></p>
+<h3 id="_fetch_xxx">数据获取方法 _fetch_xxx 的实现规范<a class="headerlink" href="#_fetch_xxx" title="Permanent link">&para;</a></h3>
+<p>新增数据源需遵循以下规范：
+- 方法签名：_fetch_xxx(symbol, start_date, end_date, period) -&gt; pd.DataFrame
+- 网络请求：包含超时、重试或错误码处理；必要时设置 User-Agent/Referer 等头
+- 数据解析：将第三方库返回的结构转换为统一的 OHLCV DataFrame
+- 列名标准化：Date, Open, High, Low, Close, Volume
+- 数据类型：Date 为 datetime，Open/High/Low/Close/Volume 为数值型
+- 空数据处理：若无数据返回空 DataFrame，便于上层降级逻辑继续尝试其他数据源
+- 异常处理：捕获网络异常、解析异常，记录日志或抛出明确错误信息</p>
+<p>以现有实现为例：
+- 腾讯财经：_fetch_tencent 通过 HTTP 接口拉取 K 线，解析 JSON 后构造 DataFrame
+- YFinance：_fetch_yfinance 使用 yf.Ticker.history 获取数据并重命名列
+- AKShare：_fetch_akshare 调用 stock_zh_a_hist，重命名列并转换日期
+- BaoStock：_fetch_baostock 登录并查询历史K线，转换列名与类型
+- 模拟数据：_generate_mock_data 生成随机 OHLCV 序列用于测试</p>
+<p>章节来源
+- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/services/data_source_manager.py#L111-L208">backend/app/services/data_source_manager.py:111-208</a>
+- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/services/data_source_manager.py#L250-L274">backend/app/services/data_source_manager.py:250-274</a>
+- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/services/data_source_manager.py#L276-L335">backend/app/services/data_source_manager.py:276-335</a>
+- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/services/data_source_manager.py#L337-L416">backend/app/services/data_source_manager.py:337-416</a>
+- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/services/data_source_manager.py#L418-L469">backend/app/services/data_source_manager.py:418-469</a></p>
+<h3 id="ohlcv-dataframe">数据格式标准化要求（OHLCV DataFrame）<a class="headerlink" href="#ohlcv-dataframe" title="Permanent link">&para;</a></h3>
+<p>所有数据源返回的 DataFrame 必须满足：
+- 列名：Date, Open, High, Low, Close, Volume
+- Date 为 datetime 类型
+- Open/High/Low/Close/Volume 为浮点数
+- 无缺失关键列；若某条记录不完整，应过滤或填充
+- 时间序列有序（建议按日期升序）</p>
+<p>校验建议：
+- 在 _fetch_xxx 末尾增加列存在性与类型检查
+- 对空 DataFrame 进行快速返回，避免后续逻辑报错
+- 对重复日期去重，保留最新一条</p>
+<p>章节来源
+- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/services/data_source_manager.py#L181-L208">backend/app/services/data_source_manager.py:181-208</a>
+- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/services/data_source_manager.py#L270-L274">backend/app/services/data_source_manager.py:270-274</a>
+- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/services/data_source_manager.py#L315-L331">backend/app/services/data_source_manager.py:315-331</a>
+- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/services/data_source_manager.py#L393-L411">backend/app/services/data_source_manager.py:393-411</a></p>
+<h3 id="_8">前端同步更新步骤<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<p>新增数据源后，需要在前端两处同步配置：
+- BacktestForm.tsx 中的 DATA_SOURCES 数组：添加新的选项（value、label、desc、icon）
+- BacktestResult.tsx 中的 dataSourceNames 映射：将后端返回的数据源标识映射为可读名称</p>
+<p>步骤：
+1. 在 DATA_SOURCES 中添加一项，确保 value 与后端支持的 source 一致
+2. 在 dataSourceNames 中添加 key-value，key 与 value 保持一致
+3. 提交前可预览下拉框显示与描述文案
+4. 运行回测，确认结果页能正确显示数据来源名称</p>
+<p>章节来源
+- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/frontend/src/components/BacktestForm.tsx#L11-L19">frontend/src/components/BacktestForm.tsx:11-19</a>
+- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/frontend/src/components/BacktestResult.tsx#L12-L20">frontend/src/components/BacktestResult.tsx:12-20</a></p>
+<h3 id="_9">完整实现示例（路径指引）<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<p>以下为新增数据源的标准流程与参考位置：
+- 在 data_source_manager.py 中新增 _fetch_newsource 静态方法
+- 在 get_stock_data 中增加分支，支持 source="newsource"
+- 在 _auto_fetch 中增加对新数据源的尝试逻辑（按优先级插入）
+- 在 BacktestForm.tsx 的 DATA_SOURCES 中添加 newsource 选项
+- 在 BacktestResult.tsx 的 dataSourceNames 中添加 newsource 映射
+- 在 DATA_SOURCES.md 中补充安装说明与对比表</p>
+<p>章节来源
+- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/services/data_source_manager.py#L17-L54">backend/app/services/data_source_manager.py:17-54</a>
+- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/services/data_source_manager.py#L56-L109">backend/app/services/data_source_manager.py:56-109</a>
+- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/frontend/src/components/BacktestForm.tsx#L11-L19">frontend/src/components/BacktestForm.tsx:11-19</a>
+- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/frontend/src/components/BacktestResult.tsx#L12-L20">frontend/src/components/BacktestResult.tsx:12-20</a>
+- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/DATA_SOURCES.md#L26-L43">DATA_SOURCES.md:26-43</a></p>
+<h2 id="_10">依赖关系分析<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<ul>
+<li>API 层依赖 MarketDataService</li>
+<li>MarketDataService 依赖 DataSourceManager</li>
+<li>DataSourceManager 依赖多个外部数据源（HTTP、yfinance、akshare、baostock、本地模拟）</li>
+</ul>
+<pre class="mermaid"><code>graph LR
+API["market.py"] --&gt; Service["market_data.py"]
+Service --&gt; Manager["data_source_manager.py"]
+Manager --&gt; Ext1["腾讯财经(HTTP)"]
+Manager --&gt; Ext2["YFinance"]
+Manager --&gt; Ext3["AKShare"]
+Manager --&gt; Ext4["BaoStock"]
+Manager --&gt; Ext5["模拟数据"]</code></pre>
+<p>图表来源
+- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/api/market.py#L11-L27">backend/app/api/market.py:11-27</a>
+- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/services/market_data.py#L14-L41">backend/app/services/market_data.py:14-41</a>
+- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/services/data_source_manager.py#L14-L109">backend/app/services/data_source_manager.py:14-109</a></p>
+<p>章节来源
+- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/api/market.py#L1-L47">backend/app/api/market.py:1-47</a>
+- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/services/market_data.py#L1-L55">backend/app/services/market_data.py:1-55</a>
+- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/services/data_source_manager.py#L1-L469">backend/app/services/data_source_manager.py:1-469</a></p>
+<h2 id="_11">性能与稳定性<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<ul>
+<li>网络请求优化</li>
+<li>设置合理的超时与重试次数</li>
+<li>复用连接池（如 requests.Session）</li>
+<li>限制单次请求的数据量，避免过大响应</li>
+<li>数据解析优化</li>
+<li>批量转换列类型，减少逐行操作</li>
+<li>尽早过滤无效记录，降低内存占用</li>
+<li>降级策略优化</li>
+<li>根据市场类型调整尝试顺序，减少无效调用</li>
+<li>缓存最近一次成功的数据源，避免频繁切换</li>
+<li>前端体验优化</li>
+<li>在 DATA_SOURCES 中提供清晰的描述与图标</li>
+<li>在结果页显示数据来源与是否使用模拟数据的提示</li>
+</ul>
+<p>[本节为通用指导，不直接分析具体文件]</p>
+<h2 id="_12">测试与验证<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
+<ul>
+<li>单元测试要点</li>
+<li>覆盖 _fetch_xxx 的成功、空数据、异常三种场景</li>
+<li>校验返回 DataFrame 的列名与类型是否符合标准</li>
+<li>验证 _auto_fetch 的降级顺序与最终兜底行为</li>
+<li>集成测试要点</li>
+<li>通过 API 调用 /stock/{symbol}，验证返回结构与字段</li>
+<li>前端选择不同数据源，确认下拉项与结果页名称映射正确</li>
+<li>数据质量验证</li>
+<li>检查 OHLCV 合理性：High &gt;= Max(Open, Close)，Low &lt;= Min(Open, Close)</li>
+<li>检查成交量非负</li>
+<li>检查日期连续性与去重</li>
+<li>性能基准</li>
+<li>统计各数据源的平均延迟与成功率</li>
+<li>对比不同周期（1mo/1y/5y）下的耗时与内存占用</li>
+</ul>
+<p>章节来源
+- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/services/data_source_manager.py#L111-L469">backend/app/services/data_source_manager.py:111-469</a>
+- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/api/market.py#L11-L27">backend/app/api/market.py:11-27</a>
+- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/frontend/src/components/BacktestForm.tsx#L94-L108">frontend/src/components/BacktestForm.tsx:94-108</a>
+- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/frontend/src/components/BacktestResult.tsx#L44-L59">frontend/src/components/BacktestResult.tsx:44-59</a></p>
+<h2 id="_13">故障排查<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h2>
+<ul>
+<li>常见错误</li>
+<li>未知数据源：get_stock_data 会抛出 ValueError，检查 source 值是否在支持列表中</li>
+<li>股票代码无法转换：腾讯财经转换器返回 None，检查符号后缀（.SS/.SZ/.BJ/.HK）</li>
+<li>网络请求失败：requests.raise_for_status 抛错，检查 URL、Headers、超时</li>
+<li>第三方库未安装：yfinance/akshare/baostock 导入失败，按文档安装依赖</li>
+<li>定位方法</li>
+<li>查看控制台打印的尝试与失败日志</li>
+<li>检查返回的 data_source 是否为 mock，若是则说明真实数据源均失败</li>
+<li>在 _fetch_xxx 中加入更详细的异常信息与堆栈</li>
+<li>修复建议</li>
+<li>修正股票代码格式或数据源选择逻辑</li>
+<li>增加重试与退避策略</li>
+<li>完善空数据与异常分支，确保降级流程稳定</li>
+</ul>
+<p>章节来源
+- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/services/data_source_manager.py#L51-L54">backend/app/services/data_source_manager.py:51-54</a>
+- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/services/data_source_manager.py#L127-L129">backend/app/services/data_source_manager.py:127-129</a>
+- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/services/data_source_manager.py#L158-L164">backend/app/services/data_source_manager.py:158-164</a>
+- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/services/data_source_manager.py#L257-L274">backend/app/services/data_source_manager.py:257-274</a>
+- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/services/data_source_manager.py#L283-L335">backend/app/services/data_source_manager.py:283-335</a>
+- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/services/data_source_manager.py#L344-L416">backend/app/services/data_source_manager.py:344-416</a></p>
+<h2 id="_14">结论<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h2>
+<p>通过 DataSourceManager 的统一入口与智能降级机制，系统能够灵活接入多种市场数据源，并在任一数据源不可用时自动切换到备选方案，最终保证回测流程可用。新增数据源的关键在于：
+- 实现标准化的 _fetch_xxx 静态方法
+- 在 get_stock_data 与 _auto_fetch 中注册新数据源
+- 保持 OHLCV DataFrame 列名与类型一致
+- 同步更新前端 DATA_SOURCES 与 dataSourceNames
+- 完善测试与数据质量校验，确保稳定性与性能</p>
+<p>[本节为总结性内容，不直接分析具体文件]</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.indexes", "navigation.top", "navigation.sections", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.c21346df.min.js"></script>
+      
+    
+  </body>
+</html>

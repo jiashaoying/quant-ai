@@ -2,12 +2,12 @@
 
 <cite>
 **本文引用的文件**   
-- [transformer_dl.py](file://backend/app/strategies/transformer_dl.py)
-- [engine.py（策略引擎）](file://backend/app/strategies/engine.py)
-- [engine.py（回测引擎）](file://backend/app/backtest/engine.py)
-- [models.py](file://backend/app/models/models.py)
-- [market_data.py](file://backend/app/services/market_data.py)
-- [strategies.py（API路由）](file://backend/app/api/strategies.py)
+- [transformer_dl.py](../../../../../../backend/app/strategies/transformer_dl.py)
+- [engine.py（策略引擎）](../../../../../../backend/app/strategies/engine.py)
+- [engine.py（回测引擎）](../../../../../../backend/app/backtest/engine.py)
+- [models.py](../../../../../../backend/app/models/models.py)
+- [market_data.py](../../../../../../backend/app/services/market_data.py)
+- [strategies.py（API路由）](../../../../../../backend/app/api/strategies.py)
 </cite>
 
 ## 目录
@@ -54,18 +54,18 @@ MarketData["市场数据服务"] --> StrategyEngine
 ```
 
 图表来源
-- [strategies.py（API路由）:11-24](file://backend/app/api/strategies.py#L11-L24)
-- [engine.py（策略引擎）:17-656](file://backend/app/strategies/engine.py#L17-L656)
-- [transformer_dl.py:30-516](file://backend/app/strategies/transformer_dl.py#L30-L516)
-- [engine.py（回测引擎）:10-163](file://backend/app/backtest/engine.py#L10-L163)
-- [market_data.py:11-41](file://backend/app/services/market_data.py#L11-L41)
+- [strategies.py（API路由）:11-24](../../../../../../backend/app/api/strategies.py#L11-L24)
+- [engine.py（策略引擎）:17-656](../../../../../../backend/app/strategies/engine.py#L17-L656)
+- [transformer_dl.py:30-516](../../../../../../backend/app/strategies/transformer_dl.py#L30-L516)
+- [engine.py（回测引擎）:10-163](../../../../../../backend/app/backtest/engine.py#L10-L163)
+- [market_data.py:11-41](../../../../../../backend/app/services/market_data.py#L11-L41)
 
 章节来源
-- [engine.py（策略引擎）:17-656](file://backend/app/strategies/engine.py#L17-L656)
-- [engine.py（回测引擎）:10-163](file://backend/app/backtest/engine.py#L10-L163)
-- [transformer_dl.py:30-516](file://backend/app/strategies/transformer_dl.py#L30-L516)
-- [strategies.py（API路由）:11-24](file://backend/app/api/strategies.py#L11-L24)
-- [market_data.py:11-41](file://backend/app/services/market_data.py#L11-L41)
+- [engine.py（策略引擎）:17-656](../../../../../../backend/app/strategies/engine.py#L17-L656)
+- [engine.py（回测引擎）:10-163](../../../../../../backend/app/backtest/engine.py#L10-L163)
+- [transformer_dl.py:30-516](../../../../../../backend/app/strategies/transformer_dl.py#L30-L516)
+- [strategies.py（API路由）:11-24](../../../../../../backend/app/api/strategies.py#L11-L24)
+- [market_data.py:11-41](../../../../../../backend/app/services/market_data.py#L11-L41)
 
 ## 核心组件
 - 特征工程类：从 OHLCV 构建标准化特征与未来收益目标
@@ -81,9 +81,9 @@ MarketData["市场数据服务"] --> StrategyEngine
 - 回测引擎：信号转收益、资金曲线、交易记录、综合指标
 
 章节来源
-- [transformer_dl.py:30-516](file://backend/app/strategies/transformer_dl.py#L30-L516)
-- [engine.py（策略引擎）:17-656](file://backend/app/strategies/engine.py#L17-L656)
-- [engine.py（回测引擎）:10-163](file://backend/app/backtest/engine.py#L10-L163)
+- [transformer_dl.py:30-516](../../../../../../backend/app/strategies/transformer_dl.py#L30-L516)
+- [engine.py（策略引擎）:17-656](../../../../../../backend/app/strategies/engine.py#L17-L656)
+- [engine.py（回测引擎）:10-163](../../../../../../backend/app/backtest/engine.py#L10-L163)
 
 ## 架构总览
 Transformer 深度学习策略的整体流程如下：
@@ -118,8 +118,8 @@ BT-->>BT : 计算收益/回撤/夏普/胜率等指标
 ```
 
 图表来源
-- [transformer_dl.py:331-487](file://backend/app/strategies/transformer_dl.py#L331-L487)
-- [engine.py（回测引擎）:15-70](file://backend/app/backtest/engine.py#L15-L70)
+- [transformer_dl.py:331-487](../../../../../../backend/app/strategies/transformer_dl.py#L331-L487)
+- [engine.py（回测引擎）:15-70](../../../../../../backend/app/backtest/engine.py#L15-L70)
 
 ## 详细组件分析
 
@@ -136,7 +136,7 @@ BT-->>BT : 计算收益/回撤/夏普/胜率等指标
   - 标准化：按列统计 mean/std，提升训练稳定性
 
 章节来源
-- [transformer_dl.py:30-137](file://backend/app/strategies/transformer_dl.py#L30-L137)
+- [transformer_dl.py:30-137](../../../../../../backend/app/strategies/transformer_dl.py#L30-L137)
 
 ### PyTorch 模型组件
 
@@ -148,7 +148,7 @@ BT-->>BT : 计算收益/回撤/夏普/胜率等指标
 - 复杂度：O(max_len * d_model) 预计算；forward O(seq_len * d_model)
 
 章节来源
-- [transformer_dl.py:143-166](file://backend/app/strategies/transformer_dl.py#L143-L166)
+- [transformer_dl.py:143-166](../../../../../../backend/app/strategies/transformer_dl.py#L143-L166)
 
 #### MultiHeadAttention
 - 作用：多头自注意力机制，支持可选 mask
@@ -161,20 +161,20 @@ BT-->>BT : 计算收益/回撤/夏普/胜率等指标
   - 主要计算在矩阵乘法，约 O(batch * seq_len^2 * d_model)
 
 章节来源
-- [transformer_dl.py:168-213](file://backend/app/strategies/transformer_dl.py#L168-L213)
+- [transformer_dl.py:168-213](../../../../../../backend/app/strategies/transformer_dl.py#L168-L213)
 
 #### FeedForwardNetwork
 - 作用：位置前馈网络，两层线性 + ReLU + Dropout + 残差 + LayerNorm
 - 复杂度：O(seq_len * d_model * d_ff)
 
 章节来源
-- [transformer_dl.py:215-235](file://backend/app/strategies/transformer_dl.py#L215-L235)
+- [transformer_dl.py:215-235](../../../../../../backend/app/strategies/transformer_dl.py#L215-L235)
 
 #### TransformerEncoderLayer
 - 作用：封装多头注意力与 FFN，顺序执行 Attention -> FFN
 
 章节来源
-- [transformer_dl.py:237-247](file://backend/app/strategies/transformer_dl.py#L237-L247)
+- [transformer_dl.py:237-247](../../../../../../backend/app/strategies/transformer_dl.py#L237-L247)
 
 #### StockTransformer
 - 作用：完整模型，包含输入投影、位置编码、N 层编码器、输出头
@@ -183,14 +183,14 @@ BT-->>BT : 计算收益/回撤/夏普/胜率等指标
 - forward：取最后一个时间步作为上下文，经输出头得到预测向量
 
 章节来源
-- [transformer_dl.py:249-304](file://backend/app/strategies/transformer_dl.py#L249-L304)
+- [transformer_dl.py:249-304](../../../../../../backend/app/strategies/transformer_dl.py#L249-L304)
 
 #### StockDataset 与 DataLoader
 - 作用：将特征与目标转换为滑动窗口样本
 - __getitem__：返回 (x_seq, y_target)
 
 章节来源
-- [transformer_dl.py:306-320](file://backend/app/strategies/transformer_dl.py#L306-L320)
+- [transformer_dl.py:306-320](../../../../../../backend/app/strategies/transformer_dl.py#L306-L320)
 
 ### TransformerDLStrategy（深度学习策略）
 - 参数：
@@ -229,10 +229,10 @@ Signals --> End(["返回DataFrame"])
 ```
 
 图表来源
-- [transformer_dl.py:331-487](file://backend/app/strategies/transformer_dl.py#L331-L487)
+- [transformer_dl.py:331-487](../../../../../../backend/app/strategies/transformer_dl.py#L331-L487)
 
 章节来源
-- [transformer_dl.py:324-487](file://backend/app/strategies/transformer_dl.py#L324-L487)
+- [transformer_dl.py:324-487](../../../../../../backend/app/strategies/transformer_dl.py#L324-L487)
 
 ### 策略引擎与传统策略
 - BaseStrategy：统一接口，要求实现 generate_signals
@@ -242,7 +242,7 @@ Signals --> End(["返回DataFrame"])
 - create_strategy：按 id 实例化具体策略
 
 章节来源
-- [engine.py（策略引擎）:17-656](file://backend/app/strategies/engine.py#L17-L656)
+- [engine.py（策略引擎）:17-656](../../../../../../backend/app/strategies/engine.py#L17-L656)
 
 ### 回测引擎
 - 输入：原始行情 DataFrame 与信号 DataFrame
@@ -254,15 +254,15 @@ Signals --> End(["返回DataFrame"])
 - 输出：metrics、trades、equity_curve、signals_data
 
 章节来源
-- [engine.py（回测引擎）:10-163](file://backend/app/backtest/engine.py#L10-L163)
+- [engine.py（回测引擎）:10-163](../../../../../../backend/app/backtest/engine.py#L10-L163)
 
 ### 数据与持久化
 - 市场数据服务：统一入口，支持多数据源自动选择
 - 数据库模型：策略与回测结果的 SQLAlchemy 模型定义
 
 章节来源
-- [market_data.py:11-41](file://backend/app/services/market_data.py#L11-L41)
-- [models.py:11-44](file://backend/app/models/models.py#L11-L44)
+- [market_data.py:11-41](../../../../../../backend/app/services/market_data.py#L11-L41)
+- [models.py:11-44](../../../../../../backend/app/models/models.py#L11-L44)
 
 ## 依赖关系分析
 - 模块耦合：
@@ -290,16 +290,16 @@ BT --> MET["指标计算"]
 ```
 
 图表来源
-- [strategies.py（API路由）:11-24](file://backend/app/api/strategies.py#L11-L24)
-- [engine.py（策略引擎）:17-656](file://backend/app/strategies/engine.py#L17-L656)
-- [transformer_dl.py:143-304](file://backend/app/strategies/transformer_dl.py#L143-L304)
-- [engine.py（回测引擎）:10-163](file://backend/app/backtest/engine.py#L10-L163)
+- [strategies.py（API路由）:11-24](../../../../../../backend/app/api/strategies.py#L11-L24)
+- [engine.py（策略引擎）:17-656](../../../../../../backend/app/strategies/engine.py#L17-L656)
+- [transformer_dl.py:143-304](../../../../../../backend/app/strategies/transformer_dl.py#L143-L304)
+- [engine.py（回测引擎）:10-163](../../../../../../backend/app/backtest/engine.py#L10-L163)
 
 章节来源
-- [strategies.py（API路由）:11-24](file://backend/app/api/strategies.py#L11-L24)
-- [engine.py（策略引擎）:17-656](file://backend/app/strategies/engine.py#L17-L656)
-- [transformer_dl.py:143-304](file://backend/app/strategies/transformer_dl.py#L143-L304)
-- [engine.py（回测引擎）:10-163](file://backend/app/backtest/engine.py#L10-L163)
+- [strategies.py（API路由）:11-24](../../../../../../backend/app/api/strategies.py#L11-L24)
+- [engine.py（策略引擎）:17-656](../../../../../../backend/app/strategies/engine.py#L17-L656)
+- [transformer_dl.py:143-304](../../../../../../backend/app/strategies/transformer_dl.py#L143-L304)
+- [engine.py（回测引擎）:10-163](../../../../../../backend/app/backtest/engine.py#L10-L163)
 
 ## 性能与优化建议
 - 硬件加速：
@@ -340,8 +340,8 @@ BT --> MET["指标计算"]
   - 影响交易频率与滑点成本；需结合历史回测优化
 
 章节来源
-- [transformer_dl.py:331-395](file://backend/app/strategies/transformer_dl.py#L331-L395)
-- [engine.py（策略引擎）:582-596](file://backend/app/strategies/engine.py#L582-L596)
+- [transformer_dl.py:331-395](../../../../../../backend/app/strategies/transformer_dl.py#L331-L395)
+- [engine.py（策略引擎）:582-596](../../../../../../backend/app/strategies/engine.py#L582-L596)
 
 ## 训练流程与预测逻辑
 
@@ -367,10 +367,10 @@ K --> L["生成交易信号"]
 ```
 
 图表来源
-- [transformer_dl.py:397-487](file://backend/app/strategies/transformer_dl.py#L397-L487)
+- [transformer_dl.py:397-487](../../../../../../backend/app/strategies/transformer_dl.py#L397-L487)
 
 章节来源
-- [transformer_dl.py:397-487](file://backend/app/strategies/transformer_dl.py#L397-L487)
+- [transformer_dl.py:397-487](../../../../../../backend/app/strategies/transformer_dl.py#L397-L487)
 
 ### 预测逻辑
 - 输入：最近 seq_length 步的特征张量
@@ -379,7 +379,7 @@ K --> L["生成交易信号"]
 - 信号：根据 buy/sell 阈值映射为 1/-1，diff 得到仓位变化
 
 章节来源
-- [transformer_dl.py:438-487](file://backend/app/strategies/transformer_dl.py#L438-L487)
+- [transformer_dl.py:438-487](../../../../../../backend/app/strategies/transformer_dl.py#L438-L487)
 
 ## 常见问题与排错
 - PyTorch 未安装或导入失败：
@@ -399,9 +399,9 @@ K --> L["生成交易信号"]
   - 解决：确保滚动窗口与 Walk-forward 验证，信号使用滞后一期
 
 章节来源
-- [transformer_dl.py:492-516](file://backend/app/strategies/transformer_dl.py#L492-L516)
-- [engine.py（策略引擎）:647-653](file://backend/app/strategies/engine.py#L647-L653)
-- [engine.py（回测引擎）:31-35](file://backend/app/backtest/engine.py#L31-L35)
+- [transformer_dl.py:492-516](../../../../../../backend/app/strategies/transformer_dl.py#L492-L516)
+- [engine.py（策略引擎）:647-653](../../../../../../backend/app/strategies/engine.py#L647-L653)
+- [engine.py（回测引擎）:31-35](../../../../../../backend/app/backtest/engine.py#L31-L35)
 
 ## 结论
 本策略以 Transformer 为核心，通过严谨的特征工程与滚动窗口训练，结合 Walk-forward 验证，有效避免未来数据泄露。模型组件清晰、可扩展性强，便于在不同资产与频率上迁移。建议在实盘前进行充分的历史回测与参数搜索，并结合风险控制与资金管理策略，以获得稳健的交易表现。

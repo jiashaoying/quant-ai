@@ -2,14 +2,14 @@
 
 <cite>
 **本文引用的文件**   
-- [frontend/src/main.tsx](file://frontend/src/main.tsx)
-- [frontend/index.html](file://frontend/index.html)
-- [frontend/src/App.tsx](file://frontend/src/App.tsx)
-- [frontend/src/components/StrategyList.tsx](file://frontend/src/components/StrategyList.tsx)
-- [frontend/src/components/BacktestForm.tsx](file://frontend/src/components/BacktestForm.tsx)
-- [frontend/src/components/BacktestResult.tsx](file://frontend/src/components/BacktestResult.tsx)
-- [frontend/vite.config.ts](file://frontend/vite.config.ts)
-- [frontend/package.json](file://frontend/package.json)
+- [frontend/src/main.tsx](../../../../../frontend/src/main.tsx)
+- [frontend/index.html](../../../../../frontend/index.html)
+- [frontend/src/App.tsx](../../../../../frontend/src/App.tsx)
+- [frontend/src/components/StrategyList.tsx](../../../../../frontend/src/components/StrategyList.tsx)
+- [frontend/src/components/BacktestForm.tsx](../../../../../frontend/src/components/BacktestForm.tsx)
+- [frontend/src/components/BacktestResult.tsx](../../../../../frontend/src/components/BacktestResult.tsx)
+- [frontend/vite.config.ts](../../../../../frontend/vite.config.ts)
+- [frontend/package.json](../../../../../frontend/package.json)
 </cite>
 
 ## 目录
@@ -41,16 +41,16 @@ DEV_SERVER --> PROXY["API 代理<br/>/api -> 后端 8000"]
 ```
 
 图表来源
-- [frontend/index.html:1-14](file://frontend/index.html#L1-L14)
-- [frontend/src/main.tsx:1-11](file://frontend/src/main.tsx#L1-L11)
-- [frontend/src/App.tsx:1-100](file://frontend/src/App.tsx#L1-L100)
-- [frontend/vite.config.ts:1-16](file://frontend/vite.config.ts#L1-L16)
+- [frontend/index.html:1-14](../../../../../frontend/index.html#L1-L14)
+- [frontend/src/main.tsx:1-11](../../../../../frontend/src/main.tsx#L1-L11)
+- [frontend/src/App.tsx:1-100](../../../../../frontend/src/App.tsx#L1-L100)
+- [frontend/vite.config.ts:1-16](../../../../../frontend/vite.config.ts#L1-L16)
 
 章节来源
-- [frontend/index.html:1-14](file://frontend/index.html#L1-L14)
-- [frontend/src/main.tsx:1-11](file://frontend/src/main.tsx#L1-L11)
-- [frontend/vite.config.ts:1-16](file://frontend/vite.config.ts#L1-L16)
-- [frontend/package.json:1-28](file://frontend/package.json#L1-L28)
+- [frontend/index.html:1-14](../../../../../frontend/index.html#L1-L14)
+- [frontend/src/main.tsx:1-11](../../../../../frontend/src/main.tsx#L1-L11)
+- [frontend/vite.config.ts:1-16](../../../../../frontend/vite.config.ts#L1-L16)
+- [frontend/package.json:1-28](../../../../../frontend/package.json#L1-L28)
 
 ## 核心组件
 - main.tsx：应用初始化与挂载，启用 StrictMode，渲染 App 根组件。
@@ -60,11 +60,11 @@ DEV_SERVER --> PROXY["API 代理<br/>/api -> 后端 8000"]
 - BacktestResult.tsx：回测结果可视化，包含指标卡片、资金曲线与交易明细表格。
 
 章节来源
-- [frontend/src/main.tsx:1-11](file://frontend/src/main.tsx#L1-L11)
-- [frontend/src/App.tsx:1-100](file://frontend/src/App.tsx#L1-L100)
-- [frontend/src/components/StrategyList.tsx:1-69](file://frontend/src/components/StrategyList.tsx#L1-L69)
-- [frontend/src/components/BacktestForm.tsx:1-522](file://frontend/src/components/BacktestForm.tsx#L1-L522)
-- [frontend/src/components/BacktestResult.tsx:1-221](file://frontend/src/components/BacktestResult.tsx#L1-L221)
+- [frontend/src/main.tsx:1-11](../../../../../frontend/src/main.tsx#L1-L11)
+- [frontend/src/App.tsx:1-100](../../../../../frontend/src/App.tsx#L1-L100)
+- [frontend/src/components/StrategyList.tsx:1-69](../../../../../frontend/src/components/StrategyList.tsx#L1-L69)
+- [frontend/src/components/BacktestForm.tsx:1-522](../../../../../frontend/src/components/BacktestForm.tsx#L1-L522)
+- [frontend/src/components/BacktestResult.tsx:1-221](../../../../../frontend/src/components/BacktestResult.tsx#L1-L221)
 
 ## 架构总览
 应用采用“父组件提升状态”的模式：App 作为状态中心，持有全局 UI 状态与业务数据，子组件仅负责展示与局部交互。网络请求集中在 App 中统一处理，保证错误处理与加载态一致。
@@ -86,9 +86,9 @@ App->>Result : 渲染 result
 ```
 
 图表来源
-- [frontend/src/components/BacktestForm.tsx:28-44](file://frontend/src/components/BacktestForm.tsx#L28-L44)
-- [frontend/src/App.tsx:13-36](file://frontend/src/App.tsx#L13-L36)
-- [frontend/src/components/BacktestResult.tsx:1-221](file://frontend/src/components/BacktestResult.tsx#L1-L221)
+- [frontend/src/components/BacktestForm.tsx:28-44](../../../../../frontend/src/components/BacktestForm.tsx#L28-L44)
+- [frontend/src/App.tsx:13-36](../../../../../frontend/src/App.tsx#L13-L36)
+- [frontend/src/components/BacktestResult.tsx:1-221](../../../../../frontend/src/components/BacktestResult.tsx#L1-L221)
 
 ## 详细组件分析
 
@@ -116,10 +116,10 @@ Finally --> End(["完成"])
 ```
 
 图表来源
-- [frontend/src/App.tsx:8-36](file://frontend/src/App.tsx#L8-L36)
+- [frontend/src/App.tsx:8-36](../../../../../frontend/src/App.tsx#L8-L36)
 
 章节来源
-- [frontend/src/App.tsx:1-100](file://frontend/src/App.tsx#L1-L100)
+- [frontend/src/App.tsx:1-100](../../../../../frontend/src/App.tsx#L1-L100)
 
 ### StrategyList 组件
 - 职责：获取策略列表、展示策略卡片、处理选中逻辑。
@@ -145,11 +145,11 @@ StrategyList --> Strategy : "展示"
 ```
 
 图表来源
-- [frontend/src/components/StrategyList.tsx:4-14](file://frontend/src/components/StrategyList.tsx#L4-L14)
-- [frontend/src/components/StrategyList.tsx:16-41](file://frontend/src/components/StrategyList.tsx#L16-L41)
+- [frontend/src/components/StrategyList.tsx:4-14](../../../../../frontend/src/components/StrategyList.tsx#L4-L14)
+- [frontend/src/components/StrategyList.tsx:16-41](../../../../../frontend/src/components/StrategyList.tsx#L16-L41)
 
 章节来源
-- [frontend/src/components/StrategyList.tsx:1-69](file://frontend/src/components/StrategyList.tsx#L1-L69)
+- [frontend/src/components/StrategyList.tsx:1-69](../../../../../frontend/src/components/StrategyList.tsx#L1-L69)
 
 ### BacktestForm 组件
 - 职责：收集股票代码、周期、初始资金、数据源与策略参数，校验并触发父组件的回测流程。
@@ -167,10 +167,10 @@ Submit --> ParentHandle["父组件 handleBacktest"]
 ```
 
 图表来源
-- [frontend/src/components/BacktestForm.tsx:21-44](file://frontend/src/components/BacktestForm.tsx#L21-L44)
+- [frontend/src/components/BacktestForm.tsx:21-44](../../../../../frontend/src/components/BacktestForm.tsx#L21-L44)
 
 章节来源
-- [frontend/src/components/BacktestForm.tsx:1-522](file://frontend/src/components/BacktestForm.tsx#L1-L522)
+- [frontend/src/components/BacktestForm.tsx:1-522](../../../../../frontend/src/components/BacktestForm.tsx#L1-L522)
 
 ### BacktestResult 组件
 - 职责：展示回测指标、资金曲线、股价走势与交易明细。
@@ -188,10 +188,10 @@ BacktestResult --> ChartData : "构造图表数据"
 ```
 
 图表来源
-- [frontend/src/components/BacktestResult.tsx:9-41](file://frontend/src/components/BacktestResult.tsx#L9-L41)
+- [frontend/src/components/BacktestResult.tsx:9-41](../../../../../frontend/src/components/BacktestResult.tsx#L9-L41)
 
 章节来源
-- [frontend/src/components/BacktestResult.tsx:1-221](file://frontend/src/components/BacktestResult.tsx#L1-L221)
+- [frontend/src/components/BacktestResult.tsx:1-221](../../../../../frontend/src/components/BacktestResult.tsx#L1-L221)
 
 ### 入口与初始化流程
 - index.html：提供根节点 root 与模块脚本入口。
@@ -211,12 +211,12 @@ React-->>Browser : 渲染应用
 ```
 
 图表来源
-- [frontend/index.html:9-12](file://frontend/index.html#L9-L12)
-- [frontend/src/main.tsx:6-10](file://frontend/src/main.tsx#L6-L10)
+- [frontend/index.html:9-12](../../../../../frontend/index.html#L9-L12)
+- [frontend/src/main.tsx:6-10](../../../../../frontend/src/main.tsx#L6-L10)
 
 章节来源
-- [frontend/index.html:1-14](file://frontend/index.html#L1-L14)
-- [frontend/src/main.tsx:1-11](file://frontend/src/main.tsx#L1-L11)
+- [frontend/index.html:1-14](../../../../../frontend/index.html#L1-L14)
+- [frontend/src/main.tsx:1-11](../../../../../frontend/src/main.tsx#L1-L11)
 
 ## 依赖关系分析
 - 运行时依赖：react、react-dom、axios、recharts、lucide-react。
@@ -233,12 +233,12 @@ VCFG --> SERVER["server.proxy"]
 ```
 
 图表来源
-- [frontend/package.json:1-28](file://frontend/package.json#L1-L28)
-- [frontend/vite.config.ts:1-16](file://frontend/vite.config.ts#L1-L16)
+- [frontend/package.json:1-28](../../../../../frontend/package.json#L1-L28)
+- [frontend/vite.config.ts:1-16](../../../../../frontend/vite.config.ts#L1-L16)
 
 章节来源
-- [frontend/package.json:1-28](file://frontend/package.json#L1-L28)
-- [frontend/vite.config.ts:1-16](file://frontend/vite.config.ts#L1-L16)
+- [frontend/package.json:1-28](../../../../../frontend/package.json#L1-L28)
+- [frontend/vite.config.ts:1-16](../../../../../frontend/vite.config.ts#L1-L16)
 
 ## 性能与构建优化
 - 开发服务器
@@ -254,8 +254,8 @@ VCFG --> SERVER["server.proxy"]
   - 针对静态资源启用 CDN 与缓存策略
 
 章节来源
-- [frontend/vite.config.ts:4-15](file://frontend/vite.config.ts#L4-L15)
-- [frontend/package.json:6-11](file://frontend/package.json#L6-L11)
+- [frontend/vite.config.ts:4-15](../../../../../frontend/vite.config.ts#L4-L15)
+- [frontend/package.json:6-11](../../../../../frontend/package.json#L6-L11)
 
 ## 故障排查指南
 - 无法连接后端
@@ -273,9 +273,9 @@ VCFG --> SERVER["server.proxy"]
   - 确认日期字段可被正确解析
 
 章节来源
-- [frontend/src/App.tsx:13-36](file://frontend/src/App.tsx#L13-L36)
-- [frontend/src/components/StrategyList.tsx:20-41](file://frontend/src/components/StrategyList.tsx#L20-L41)
-- [frontend/src/components/BacktestResult.tsx:35-41](file://frontend/src/components/BacktestResult.tsx#L35-L41)
+- [frontend/src/App.tsx:13-36](../../../../../frontend/src/App.tsx#L13-L36)
+- [frontend/src/components/StrategyList.tsx:20-41](../../../../../frontend/src/components/StrategyList.tsx#L20-L41)
+- [frontend/src/components/BacktestResult.tsx:35-41](../../../../../frontend/src/components/BacktestResult.tsx#L35-L41)
 
 ## 结论
 该前端应用采用清晰的组件分层与“父组件提升状态”的状态管理模式，结合 Vite 的开发体验与构建能力，快速实现了量化策略查看与回测的核心功能。当前实现简洁直观，易于扩展；后续可在路由、状态管理、数据层抽象与性能优化方面进一步演进。

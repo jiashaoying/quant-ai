@@ -2,10 +2,10 @@
 
 <cite>
 **本文引用的文件**   
-- [DATA_SOURCES.md](file://DATA_SOURCES.md)
-- [data_source_manager.py](file://backend/app/services/data_source_manager.py)
-- [market_data.py](file://backend/app/services/market_data.py)
-- [requirements.txt](file://backend/requirements.txt)
+- [DATA_SOURCES.md](../../../../../DATA_SOURCES.md)
+- [data_source_manager.py](../../../../../backend/app/services/data_source_manager.py)
+- [market_data.py](../../../../../backend/app/services/market_data.py)
+- [requirements.txt](../../../../../backend/requirements.txt)
 </cite>
 
 ## 目录
@@ -44,13 +44,13 @@ Manager --> MOCK["模拟数据"]
 ```
 
 图表来源
-- [market_data.py:11-41](file://backend/app/services/market_data.py#L11-L41)
-- [data_source_manager.py:14-54](file://backend/app/services/data_source_manager.py#L14-L54)
-- [data_source_manager.py:250-274](file://backend/app/services/data_source_manager.py#L250-L274)
+- [market_data.py:11-41](../../../../../backend/app/services/market_data.py#L11-L41)
+- [data_source_manager.py:14-54](../../../../../backend/app/services/data_source_manager.py#L14-L54)
+- [data_source_manager.py:250-274](../../../../../backend/app/services/data_source_manager.py#L250-L274)
 
 章节来源
-- [market_data.py:1-41](file://backend/app/services/market_data.py#L1-L41)
-- [data_source_manager.py:1-54](file://backend/app/services/data_source_manager.py#L1-L54)
+- [market_data.py:1-41](../../../../../backend/app/services/market_data.py#L1-L41)
+- [data_source_manager.py:1-54](../../../../../backend/app/services/data_source_manager.py#L1-L54)
 
 ## 核心组件
 - DataSourceManager：多数据源调度器，负责根据股票代码与市场类型自动选择数据源，或按指定 source 参数直接调用对应实现。
@@ -58,8 +58,8 @@ Manager --> MOCK["模拟数据"]
 - YFinance 集成：通过 yf.Ticker(symbol).history(...) 获取历史数据，并标准化为 OHLCV。
 
 章节来源
-- [data_source_manager.py:14-54](file://backend/app/services/data_source_manager.py#L14-L54)
-- [market_data.py:11-41](file://backend/app/services/market_data.py#L11-L41)
+- [data_source_manager.py:14-54](../../../../../backend/app/services/data_source_manager.py#L14-L54)
+- [market_data.py:11-41](../../../../../backend/app/services/market_data.py#L11-L41)
 
 ## 架构总览
 下图展示了从 API 到数据源的调用链，以及 YFinance 在其中的位置。
@@ -91,9 +91,9 @@ API-->>Client : 返回标准化OHLCV数据
 ```
 
 图表来源
-- [market_data.py:14-41](file://backend/app/services/market_data.py#L14-L41)
-- [data_source_manager.py:17-54](file://backend/app/services/data_source_manager.py#L17-L54)
-- [data_source_manager.py:250-274](file://backend/app/services/data_source_manager.py#L250-L274)
+- [market_data.py:14-41](../../../../../backend/app/services/market_data.py#L14-L41)
+- [data_source_manager.py:17-54](../../../../../backend/app/services/data_source_manager.py#L17-L54)
+- [data_source_manager.py:250-274](../../../../../backend/app/services/data_source_manager.py#L250-L274)
 
 ## 详细组件分析
 
@@ -120,10 +120,10 @@ Normalize --> ReturnDF["返回标准化OHLCV DataFrame"]
 ```
 
 图表来源
-- [data_source_manager.py:250-274](file://backend/app/services/data_source_manager.py#L250-L274)
+- [data_source_manager.py:250-274](../../../../../backend/app/services/data_source_manager.py#L250-L274)
 
 章节来源
-- [data_source_manager.py:250-274](file://backend/app/services/data_source_manager.py#L250-L274)
+- [data_source_manager.py:250-274](../../../../../backend/app/services/data_source_manager.py#L250-L274)
 
 ### 自动数据源选择与降级策略
 - 当 source="auto" 时，系统优先尝试腾讯财经（内置），随后尝试 yfinance，再尝试 AKShare/BaoStock（A股），最后兜底为模拟数据。
@@ -150,10 +150,10 @@ BSOCK --> |否| UseMock["使用模拟数据"]
 ```
 
 图表来源
-- [data_source_manager.py:56-109](file://backend/app/services/data_source_manager.py#L56-L109)
+- [data_source_manager.py:56-109](../../../../../backend/app/services/data_source_manager.py#L56-L109)
 
 章节来源
-- [data_source_manager.py:56-109](file://backend/app/services/data_source_manager.py#L56-L109)
+- [data_source_manager.py:56-109](../../../../../backend/app/services/data_source_manager.py#L56-L109)
 
 ### 全球市场支持与资产类别
 - 美股：通过 yfinance 直接以 ticker 名称（如 AAPL、MSFT）获取。
@@ -162,8 +162,8 @@ BSOCK --> |否| UseMock["使用模拟数据"]
 - A股：更推荐使用 AKShare/BaoStock，但也可通过 yfinance 获取（稳定性与速度不如专用库）。
 
 章节来源
-- [DATA_SOURCES.md:17-20](file://DATA_SOURCES.md#L17-L20)
-- [data_source_manager.py:64-87](file://backend/app/services/data_source_manager.py#L64-L87)
+- [DATA_SOURCES.md:17-20](../../../../../DATA_SOURCES.md#L17-L20)
+- [data_source_manager.py:64-87](../../../../../backend/app/services/data_source_manager.py#L64-L87)
 
 ### 日期范围与周期参数处理
 - 当同时提供 start_date 与 end_date：
@@ -175,8 +175,8 @@ BSOCK --> |否| UseMock["使用模拟数据"]
 - 最终返回的 DataFrame 均包含 Date 列，便于后续分析与可视化。
 
 章节来源
-- [data_source_manager.py:131-142](file://backend/app/services/data_source_manager.py#L131-L142)
-- [data_source_manager.py:250-274](file://backend/app/services/data_source_manager.py#L250-L274)
+- [data_source_manager.py:131-142](../../../../../backend/app/services/data_source_manager.py#L131-L142)
+- [data_source_manager.py:250-274](../../../../../backend/app/services/data_source_manager.py#L250-L274)
 
 ### 数据格式转换与标准化
 - yfinance 返回的原始列名可能包含 Date、Open、High、Low、Close、Volume 等。
@@ -187,7 +187,7 @@ BSOCK --> |否| UseMock["使用模拟数据"]
 - 输出始终为统一的 OHLCV 格式，便于上层回测引擎与前端展示。
 
 章节来源
-- [data_source_manager.py:270-273](file://backend/app/services/data_source_manager.py#L270-L273)
+- [data_source_manager.py:270-273](../../../../../backend/app/services/data_source_manager.py#L270-L273)
 
 ## 依赖关系分析
 - yfinance 作为可选依赖，已在 requirements.txt 中声明。
@@ -206,12 +206,12 @@ DS --> BS["baostock"]
 ```
 
 图表来源
-- [requirements.txt:1-16](file://backend/requirements.txt#L1-L16)
-- [data_source_manager.py:1-11](file://backend/app/services/data_source_manager.py#L1-L11)
+- [requirements.txt:1-16](../../../../../backend/requirements.txt#L1-L16)
+- [data_source_manager.py:1-11](../../../../../backend/app/services/data_source_manager.py#L1-L11)
 
 章节来源
-- [requirements.txt:1-16](file://backend/requirements.txt#L1-L16)
-- [data_source_manager.py:1-11](file://backend/app/services/data_source_manager.py#L1-L11)
+- [requirements.txt:1-16](../../../../../backend/requirements.txt#L1-L16)
+- [data_source_manager.py:1-11](../../../../../backend/app/services/data_source_manager.py#L1-L11)
 
 ## 性能与网络优化
 - 缓存与复用：
@@ -243,8 +243,8 @@ DS --> BS["baostock"]
   - 切换 source="yfinance" 单独测试 YFinance 路径。
 
 章节来源
-- [data_source_manager.py:56-109](file://backend/app/services/data_source_manager.py#L56-L109)
-- [data_source_manager.py:250-274](file://backend/app/services/data_source_manager.py#L250-L274)
+- [data_source_manager.py:56-109](../../../../../backend/app/services/data_source_manager.py#L56-L109)
+- [data_source_manager.py:250-274](../../../../../backend/app/services/data_source_manager.py#L250-L274)
 
 ## 结论
 - YFinance 在本项目中作为全球市场数据的重要补充，尤其适用于美股与港股。
@@ -271,5 +271,5 @@ DS --> BS["baostock"]
   - 说明：系统优先使用腾讯财经/AKShare/BaoStock，失败后回退 yfinance。
 
 章节来源
-- [DATA_SOURCES.md:60-79](file://DATA_SOURCES.md#L60-L79)
-- [data_source_manager.py:64-87](file://backend/app/services/data_source_manager.py#L64-L87)
+- [DATA_SOURCES.md:60-79](../../../../../DATA_SOURCES.md#L60-L79)
+- [data_source_manager.py:64-87](../../../../../backend/app/services/data_source_manager.py#L64-L87)

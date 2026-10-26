@@ -2,10 +2,10 @@
 
 <cite>
 **本文引用的文件**   
-- [backend/app/strategies/engine.py](file://backend/app/strategies/engine.py)
-- [backend/app/strategies/transformer_dl.py](file://backend/app/strategies/transformer_dl.py)
-- [backend/tests/test_strategy_engine.py](file://backend/tests/test_strategy_engine.py)
-- [backend/app/api/strategies.py](file://backend/app/api/strategies.py)
+- [backend/app/strategies/engine.py](../../../../../../backend/app/strategies/engine.py)
+- [backend/app/strategies/transformer_dl.py](../../../../../../backend/app/strategies/transformer_dl.py)
+- [backend/tests/test_strategy_engine.py](../../../../../../backend/tests/test_strategy_engine.py)
+- [backend/app/api/strategies.py](../../../../../../backend/app/api/strategies.py)
 </cite>
 
 ## 目录
@@ -43,16 +43,16 @@ D["backend/app/strategies/transformer_dl.py<br/>RSI特征计算辅助"] --> E["�
 ```
 
 **图表来源**
-- [backend/app/strategies/engine.py:114-150](file://backend/app/strategies/engine.py#L114-L150)
-- [backend/app/api/strategies.py:11-24](file://backend/app/api/strategies.py#L11-L24)
-- [backend/tests/test_strategy_engine.py:110-120](file://backend/tests/test_strategy_engine.py#L110-L120)
-- [backend/app/strategies/transformer_dl.py:98-111](file://backend/app/strategies/transformer_dl.py#L98-L111)
+- [backend/app/strategies/engine.py:114-150](../../../../../../backend/app/strategies/engine.py#L114-L150)
+- [backend/app/api/strategies.py:11-24](../../../../../../backend/app/api/strategies.py#L11-L24)
+- [backend/tests/test_strategy_engine.py:110-120](../../../../../../backend/tests/test_strategy_engine.py#L110-L120)
+- [backend/app/strategies/transformer_dl.py:98-111](../../../../../../backend/app/strategies/transformer_dl.py#L98-L111)
 
 **章节来源**
-- [backend/app/strategies/engine.py:114-150](file://backend/app/strategies/engine.py#L114-L150)
-- [backend/app/api/strategies.py:11-24](file://backend/app/api/strategies.py#L11-L24)
-- [backend/tests/test_strategy_engine.py:110-120](file://backend/tests/test_strategy_engine.py#L110-L120)
-- [backend/app/strategies/transformer_dl.py:98-111](file://backend/app/strategies/transformer_dl.py#L98-L111)
+- [backend/app/strategies/engine.py:114-150](../../../../../../backend/app/strategies/engine.py#L114-L150)
+- [backend/app/api/strategies.py:11-24](../../../../../../backend/app/api/strategies.py#L11-L24)
+- [backend/tests/test_strategy_engine.py:110-120](../../../../../../backend/tests/test_strategy_engine.py#L110-L120)
+- [backend/app/strategies/transformer_dl.py:98-111](../../../../../../backend/app/strategies/transformer_dl.py#L98-L111)
 
 ## 核心组件
 - RSIStrategy：封装RSI计算与信号生成，包含参数period、oversold、overbought。
@@ -62,9 +62,9 @@ D["backend/app/strategies/transformer_dl.py<br/>RSI特征计算辅助"] --> E["�
 - FeatureEngineer._calculate_rsi()：深度学习策略的特征工程中使用的RSI计算辅助方法。
 
 **章节来源**
-- [backend/app/strategies/engine.py:114-150](file://backend/app/strategies/engine.py#L114-L150)
-- [backend/app/strategies/engine.py:252-258](file://backend/app/strategies/engine.py#L252-L258)
-- [backend/app/strategies/transformer_dl.py:98-111](file://backend/app/strategies/transformer_dl.py#L98-L111)
+- [backend/app/strategies/engine.py:114-150](../../../../../../backend/app/strategies/engine.py#L114-L150)
+- [backend/app/strategies/engine.py:252-258](../../../../../../backend/app/strategies/engine.py#L252-L258)
+- [backend/app/strategies/transformer_dl.py:98-111](../../../../../../backend/app/strategies/transformer_dl.py#L98-L111)
 
 ## 架构总览
 RSI策略在系统中的调用路径如下：
@@ -87,10 +87,10 @@ Engine-->>API : 返回结果供回测/可视化
 ```
 
 **图表来源**
-- [backend/app/api/strategies.py:11-24](file://backend/app/api/strategies.py#L11-L24)
-- [backend/app/strategies/engine.py:506-597](file://backend/app/strategies/engine.py#L506-L597)
-- [backend/app/strategies/engine.py:617-622](file://backend/app/strategies/engine.py#L617-L622)
-- [backend/app/strategies/engine.py:135-150](file://backend/app/strategies/engine.py#L135-L150)
+- [backend/app/api/strategies.py:11-24](../../../../../../backend/app/api/strategies.py#L11-L24)
+- [backend/app/strategies/engine.py:506-597](../../../../../../backend/app/strategies/engine.py#L506-L597)
+- [backend/app/strategies/engine.py:617-622](../../../../../../backend/app/strategies/engine.py#L617-L622)
+- [backend/app/strategies/engine.py:135-150](../../../../../../backend/app/strategies/engine.py#L135-L150)
 
 ## 详细组件分析
 
@@ -125,10 +125,10 @@ RSI --> End(["结束"])
 ```
 
 **图表来源**
-- [backend/app/strategies/engine.py:126-133](file://backend/app/strategies/engine.py#L126-L133)
+- [backend/app/strategies/engine.py:126-133](../../../../../../backend/app/strategies/engine.py#L126-L133)
 
 **章节来源**
-- [backend/app/strategies/engine.py:126-133](file://backend/app/strategies/engine.py#L126-L133)
+- [backend/app/strategies/engine.py:126-133](../../../../../../backend/app/strategies/engine.py#L126-L133)
 
 ### 参数说明与设置原则
 - period：RSI的滚动窗口长度，默认14。较短的period更敏感，较长的period更平滑。
@@ -143,8 +143,8 @@ RSI --> End(["结束"])
 这些约束有助于避免极端参数导致的信号噪声或失效。
 
 **章节来源**
-- [backend/app/strategies/engine.py:116-124](file://backend/app/strategies/engine.py#L116-L124)
-- [backend/app/strategies/engine.py:537-544](file://backend/app/strategies/engine.py#L537-L544)
+- [backend/app/strategies/engine.py:116-124](../../../../../../backend/app/strategies/engine.py#L116-L124)
+- [backend/app/strategies/engine.py:537-544](../../../../../../backend/app/strategies/engine.py#L537-L544)
 
 ### 信号生成流程
 generate_signals()的执行流程：
@@ -172,10 +172,10 @@ Position --> Return(["返回结果DataFrame"])
 ```
 
 **图表来源**
-- [backend/app/strategies/engine.py:135-150](file://backend/app/strategies/engine.py#L135-L150)
+- [backend/app/strategies/engine.py:135-150](../../../../../../backend/app/strategies/engine.py#L135-L150)
 
 **章节来源**
-- [backend/app/strategies/engine.py:135-150](file://backend/app/strategies/engine.py#L135-L150)
+- [backend/app/strategies/engine.py:135-150](../../../../../../backend/app/strategies/engine.py#L135-L150)
 
 ### pandas操作细节：delta.where()与rolling().mean()
 - delta.where(delta > 0, 0)：将非正变动置为0，仅保留上涨幅度。
@@ -184,7 +184,7 @@ Position --> Return(["返回结果DataFrame"])
 - 这些操作向量化且高效，适合时间序列数据处理。
 
 **章节来源**
-- [backend/app/strategies/engine.py:126-133](file://backend/app/strategies/engine.py#L126-L133)
+- [backend/app/strategies/engine.py:126-133](../../../../../../backend/app/strategies/engine.py#L126-L133)
 
 ### 其他RSI实现参考
 - MultiFactorStrategy._calc_rsi()：在多因子策略中用于RSI因子打分，处理loss为0的情况用replace(0, np.nan)避免除零。
@@ -193,8 +193,8 @@ Position --> Return(["返回结果DataFrame"])
 这些实现展示了在不同场景下对RSI计算的变体与稳健性处理。
 
 **章节来源**
-- [backend/app/strategies/engine.py:252-258](file://backend/app/strategies/engine.py#L252-L258)
-- [backend/app/strategies/transformer_dl.py:98-111](file://backend/app/strategies/transformer_dl.py#L98-L111)
+- [backend/app/strategies/engine.py:252-258](../../../../../../backend/app/strategies/engine.py#L252-L258)
+- [backend/app/strategies/transformer_dl.py:98-111](../../../../../../backend/app/strategies/transformer_dl.py#L98-L111)
 
 ## 依赖关系分析
 RSI策略依赖以下模块与外部库：
@@ -212,14 +212,14 @@ PT["pytest"] --> TST["RSI策略测试"]
 ```
 
 **图表来源**
-- [backend/app/strategies/engine.py:1-6](file://backend/app/strategies/engine.py#L1-L6)
-- [backend/app/api/strategies.py:1-6](file://backend/app/api/strategies.py#L1-L6)
-- [backend/tests/test_strategy_engine.py:1-6](file://backend/tests/test_strategy_engine.py#L1-L6)
+- [backend/app/strategies/engine.py:1-6](../../../../../../backend/app/strategies/engine.py#L1-L6)
+- [backend/app/api/strategies.py:1-6](../../../../../../backend/app/api/strategies.py#L1-L6)
+- [backend/tests/test_strategy_engine.py:1-6](../../../../../../backend/tests/test_strategy_engine.py#L1-L6)
 
 **章节来源**
-- [backend/app/strategies/engine.py:1-6](file://backend/app/strategies/engine.py#L1-L6)
-- [backend/app/api/strategies.py:1-6](file://backend/app/api/strategies.py#L1-L6)
-- [backend/tests/test_strategy_engine.py:1-6](file://backend/tests/test_strategy_engine.py#L1-L6)
+- [backend/app/strategies/engine.py:1-6](../../../../../../backend/app/strategies/engine.py#L1-L6)
+- [backend/app/api/strategies.py:1-6](../../../../../../backend/app/api/strategies.py#L1-L6)
+- [backend/tests/test_strategy_engine.py:1-6](../../../../../../backend/tests/test_strategy_engine.py#L1-L6)
 
 ## 性能与实现特性
 - 向量化计算：pandas的diff、where、rolling.mean均为向量化操作，适合大规模时间序列。
@@ -228,8 +228,8 @@ PT["pytest"] --> TST["RSI策略测试"]
 - 边界处理：RSI在单边行情中可能长期处于超买或超卖区，需结合其他过滤条件。
 
 **章节来源**
-- [backend/app/strategies/engine.py:135-150](file://backend/app/strategies/engine.py#L135-L150)
-- [backend/app/strategies/engine.py:252-258](file://backend/app/strategies/engine.py#L252-L258)
+- [backend/app/strategies/engine.py:135-150](../../../../../../backend/app/strategies/engine.py#L135-L150)
+- [backend/app/strategies/engine.py:252-258](../../../../../../backend/app/strategies/engine.py#L252-L258)
 
 ## 参数调优与市场周期适配
 - 短周期（period=5~10）：适用于高频或短线交易，信号更敏感，但假信号较多。
@@ -244,7 +244,7 @@ PT["pytest"] --> TST["RSI策略测试"]
   - 震荡市：保持标准阈值，配合成交量或波动率过滤。
 
 **章节来源**
-- [backend/app/strategies/engine.py:537-544](file://backend/app/strategies/engine.py#L537-L544)
+- [backend/app/strategies/engine.py:537-544](../../../../../../backend/app/strategies/engine.py#L537-L544)
 
 ## 背离与多重顶底判断
 - 背离：
@@ -270,7 +270,7 @@ PT["pytest"] --> TST["RSI策略测试"]
   - 使用多因子模型（如MultiFactorStrategy）综合RSI与其他指标，提升鲁棒性。
 
 **章节来源**
-- [backend/app/strategies/engine.py:208-324](file://backend/app/strategies/engine.py#L208-L324)
+- [backend/app/strategies/engine.py:208-324](../../../../../../backend/app/strategies/engine.py#L208-L324)
 
 ## 故障排查
 - RSI值为NaN：
@@ -286,8 +286,8 @@ PT["pytest"] --> TST["RSI策略测试"]
   - generate_signals()复制DataFrame，大数据集时考虑分块处理或优化内存。
 
 **章节来源**
-- [backend/tests/test_strategy_engine.py:116-120](file://backend/tests/test_strategy_engine.py#L116-L120)
-- [backend/app/strategies/engine.py:135-150](file://backend/app/strategies/engine.py#L135-L150)
+- [backend/tests/test_strategy_engine.py:116-120](../../../../../../backend/tests/test_strategy_engine.py#L116-L120)
+- [backend/app/strategies/engine.py:135-150](../../../../../../backend/app/strategies/engine.py#L135-L150)
 
 ## 结论
 RSI策略在本仓库中实现简洁清晰，核心计算基于pandas向量化操作，信号生成逻辑直观。通过合理设置period、oversold、overbought参数，并结合市场周期与背离、多重顶底等高级用法，可在不同环境中取得稳定效果。对于趋势行情，建议结合趋势跟踪策略；对于震荡行情，RSI的反转信号更具价值。多因子与深度学习策略中也融入了RSI特征，体现了其在量化体系中的基础地位。

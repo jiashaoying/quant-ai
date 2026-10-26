@@ -2,15 +2,15 @@
 
 <cite>
 **本文引用的文件**   
-- [backend/main.py](file://backend/main.py)
-- [backend/app/api/strategies.py](file://backend/app/api/strategies.py)
-- [backend/app/api/backtest.py](file://backend/app/api/backtest.py)
-- [backend/app/api/market.py](file://backend/app/api/market.py)
-- [backend/app/core/config.py](file://backend/app/core/config.py)
-- [backend/app/models/models.py](file://backend/app/models/models.py)
-- [backend/app/strategies/engine.py](file://backend/app/strategies/engine.py)
-- [backend/app/backtest/engine.py](file://backend/app/backtest/engine.py)
-- [backend/app/services/market_data.py](file://backend/app/services/market_data.py)
+- [backend/main.py](../../../../../backend/main.py)
+- [backend/app/api/strategies.py](../../../../../backend/app/api/strategies.py)
+- [backend/app/api/backtest.py](../../../../../backend/app/api/backtest.py)
+- [backend/app/api/market.py](../../../../../backend/app/api/market.py)
+- [backend/app/core/config.py](../../../../../backend/app/core/config.py)
+- [backend/app/models/models.py](../../../../../backend/app/models/models.py)
+- [backend/app/strategies/engine.py](../../../../../backend/app/strategies/engine.py)
+- [backend/app/backtest/engine.py](../../../../../backend/app/backtest/engine.py)
+- [backend/app/services/market_data.py](../../../../../backend/app/services/market_data.py)
 </cite>
 
 ## 目录
@@ -54,16 +54,16 @@ MktService --> DSM["数据源管理器<br/>app/services/data_source_manager.py"]
 ```
 
 图表来源
-- [backend/main.py:9-27](file://backend/main.py#L9-L27)
-- [backend/app/api/strategies.py:8-24](file://backend/app/api/strategies.py#L8-L24)
-- [backend/app/api/backtest.py:13-76](file://backend/app/api/backtest.py#L13-L76)
-- [backend/app/api/market.py:8-46](file://backend/app/api/market.py#L8-L46)
-- [backend/app/strategies/engine.py:506-655](file://backend/app/strategies/engine.py#L506-L655)
-- [backend/app/backtest/engine.py:10-70](file://backend/app/backtest/engine.py#L10-L70)
-- [backend/app/services/market_data.py:11-41](file://backend/app/services/market_data.py#L11-L41)
+- [backend/main.py:9-27](../../../../../backend/main.py#L9-L27)
+- [backend/app/api/strategies.py:8-24](../../../../../backend/app/api/strategies.py#L8-L24)
+- [backend/app/api/backtest.py:13-76](../../../../../backend/app/api/backtest.py#L13-L76)
+- [backend/app/api/market.py:8-46](../../../../../backend/app/api/market.py#L8-L46)
+- [backend/app/strategies/engine.py:506-655](../../../../../backend/app/strategies/engine.py#L506-L655)
+- [backend/app/backtest/engine.py:10-70](../../../../../backend/app/backtest/engine.py#L10-L70)
+- [backend/app/services/market_data.py:11-41](../../../../../backend/app/services/market_data.py#L11-L41)
 
 章节来源
-- [backend/main.py:1-36](file://backend/main.py#L1-L36)
+- [backend/main.py:1-36](../../../../../backend/main.py#L1-L36)
 
 ## 核心组件
 - FastAPI应用与中间件：注册CORS、挂载各业务Router、健康检查与根路径
@@ -72,10 +72,10 @@ MktService --> DSM["数据源管理器<br/>app/services/data_source_manager.py"]
 - 市场数据服务：统一封装多数据源获取、股票信息与代码搜索
 
 章节来源
-- [backend/main.py:9-27](file://backend/main.py#L9-L27)
-- [backend/app/strategies/engine.py:506-655](file://backend/app/strategies/engine.py#L506-L655)
-- [backend/app/backtest/engine.py:10-163](file://backend/app/backtest/engine.py#L10-L163)
-- [backend/app/services/market_data.py:11-106](file://backend/app/services/market_data.py#L11-L106)
+- [backend/main.py:9-27](../../../../../backend/main.py#L9-L27)
+- [backend/app/strategies/engine.py:506-655](../../../../../backend/app/strategies/engine.py#L506-L655)
+- [backend/app/backtest/engine.py:10-163](../../../../../backend/app/backtest/engine.py#L10-L163)
+- [backend/app/services/market_data.py:11-106](../../../../../backend/app/services/market_data.py#L11-L106)
 
 ## 架构总览
 下图展示一次“执行回测”的端到端调用流程：
@@ -102,10 +102,10 @@ BR-->>C : JSON响应
 ```
 
 图表来源
-- [backend/app/api/backtest.py:28-69](file://backend/app/api/backtest.py#L28-L69)
-- [backend/app/services/market_data.py:14-41](file://backend/app/services/market_data.py#L14-L41)
-- [backend/app/strategies/engine.py:600-655](file://backend/app/strategies/engine.py#L600-L655)
-- [backend/app/backtest/engine.py:15-70](file://backend/app/backtest/engine.py#L15-L70)
+- [backend/app/api/backtest.py:28-69](../../../../../backend/app/api/backtest.py#L28-L69)
+- [backend/app/services/market_data.py:14-41](../../../../../backend/app/services/market_data.py#L14-L41)
+- [backend/app/strategies/engine.py:600-655](../../../../../backend/app/strategies/engine.py#L600-L655)
+- [backend/app/backtest/engine.py:15-70](../../../../../backend/app/backtest/engine.py#L15-L70)
 
 ## 详细接口规范
 
@@ -118,8 +118,8 @@ BR-->>C : JSON响应
 - CORS：已启用允许所有来源与方法，便于本地调试
 
 章节来源
-- [backend/main.py:9-22](file://backend/main.py#L9-L22)
-- [backend/app/core/config.py:8-24](file://backend/app/core/config.py#L8-L24)
+- [backend/main.py:9-22](../../../../../backend/main.py#L9-L22)
+- [backend/app/core/config.py:8-24](../../../../../backend/app/core/config.py#L8-L24)
 
 ---
 
@@ -142,8 +142,8 @@ BR-->>C : JSON响应
     .then(console.log);
 
 章节来源
-- [backend/app/api/strategies.py:11-14](file://backend/app/api/strategies.py#L11-L14)
-- [backend/app/strategies/engine.py:506-597](file://backend/app/strategies/engine.py#L506-L597)
+- [backend/app/api/strategies.py:11-14](../../../../../backend/app/api/strategies.py#L11-L14)
+- [backend/app/strategies/engine.py:506-597](../../../../../backend/app/strategies/engine.py#L506-L597)
 
 #### 获取策略详情
 - 方法：GET
@@ -164,7 +164,7 @@ BR-->>C : JSON响应
     .then(console.log);
 
 章节来源
-- [backend/app/api/strategies.py:17-24](file://backend/app/api/strategies.py#L17-L24)
+- [backend/app/api/strategies.py:17-24](../../../../../backend/app/api/strategies.py#L17-L24)
 
 ---
 
@@ -229,8 +229,8 @@ BR-->>C : JSON响应
     .then(console.log);
 
 章节来源
-- [backend/app/api/backtest.py:16-69](file://backend/app/api/backtest.py#L16-L69)
-- [backend/app/backtest/engine.py:15-70](file://backend/app/backtest/engine.py#L15-L70)
+- [backend/app/api/backtest.py:16-69](../../../../../backend/app/api/backtest.py#L16-L69)
+- [backend/app/backtest/engine.py:15-70](../../../../../backend/app/backtest/engine.py#L15-L70)
 
 #### 查询回测历史
 - 方法：GET
@@ -244,7 +244,7 @@ BR-->>C : JSON响应
   - GET http://localhost:8000/api/backtest/history
 
 章节来源
-- [backend/app/api/backtest.py:72-76](file://backend/app/api/backtest.py#L72-L76)
+- [backend/app/api/backtest.py:72-76](../../../../../backend/app/api/backtest.py#L72-L76)
 
 ---
 
@@ -275,8 +275,8 @@ BR-->>C : JSON响应
     .then(console.log);
 
 章节来源
-- [backend/app/api/market.py:11-27](file://backend/app/api/market.py#L11-L27)
-- [backend/app/services/market_data.py:14-41](file://backend/app/services/market_data.py#L14-L41)
+- [backend/app/api/market.py:11-27](../../../../../backend/app/api/market.py#L11-L27)
+- [backend/app/services/market_data.py:14-41](../../../../../backend/app/services/market_data.py#L14-L41)
 
 #### 获取股票基本信息
 - 方法：GET
@@ -297,8 +297,8 @@ BR-->>C : JSON响应
     .then(console.log);
 
 章节来源
-- [backend/app/api/market.py:30-38](file://backend/app/api/market.py#L30-L38)
-- [backend/app/services/market_data.py:43-82](file://backend/app/services/market_data.py#L43-L82)
+- [backend/app/api/market.py:30-38](../../../../../backend/app/api/market.py#L30-L38)
+- [backend/app/services/market_data.py:43-82](../../../../../backend/app/services/market_data.py#L43-L82)
 
 #### 搜索股票代码
 - 方法：GET
@@ -318,8 +318,8 @@ BR-->>C : JSON响应
     .then(console.log);
 
 章节来源
-- [backend/app/api/market.py:41-46](file://backend/app/api/market.py#L41-L46)
-- [backend/app/services/market_data.py:84-105](file://backend/app/services/market_data.py#L84-L105)
+- [backend/app/api/market.py:41-46](../../../../../backend/app/api/market.py#L41-L46)
+- [backend/app/services/market_data.py:84-105](../../../../../backend/app/services/market_data.py#L84-L105)
 
 ---
 
@@ -328,7 +328,7 @@ BR-->>C : JSON响应
 - GET /api/health：返回健康状态{"status":"healthy"}
 
 章节来源
-- [backend/main.py:29-35](file://backend/main.py#L29-L35)
+- [backend/main.py:29-35](../../../../../backend/main.py#L29-L35)
 
 ## 依赖关系分析
 - 路由到服务/引擎的单向依赖：
@@ -348,14 +348,14 @@ M["market.py"] --> MS
 ```
 
 图表来源
-- [backend/app/api/strategies.py:6-14](file://backend/app/api/strategies.py#L6-L14)
-- [backend/app/api/backtest.py:9-11](file://backend/app/api/backtest.py#L9-L11)
-- [backend/app/api/market.py:6-7](file://backend/app/api/market.py#L6-L7)
+- [backend/app/api/strategies.py:6-14](../../../../../backend/app/api/strategies.py#L6-L14)
+- [backend/app/api/backtest.py:9-11](../../../../../backend/app/api/backtest.py#L9-L11)
+- [backend/app/api/market.py:6-7](../../../../../backend/app/api/market.py#L6-L7)
 
 章节来源
-- [backend/app/api/strategies.py:1-24](file://backend/app/api/strategies.py#L1-L24)
-- [backend/app/api/backtest.py:1-76](file://backend/app/api/backtest.py#L1-L76)
-- [backend/app/api/market.py:1-46](file://backend/app/api/market.py#L1-L46)
+- [backend/app/api/strategies.py:1-24](../../../../../backend/app/api/strategies.py#L1-L24)
+- [backend/app/api/backtest.py:1-76](../../../../../backend/app/api/backtest.py#L1-L76)
+- [backend/app/api/market.py:1-46](../../../../../backend/app/api/market.py#L1-L46)
 
 ## 性能与限制
 - 回测计算复杂度：
@@ -384,9 +384,9 @@ M["market.py"] --> MS
   - 检查.env环境变量与数据库连接（如启用持久化）
 
 章节来源
-- [backend/app/api/backtest.py:68-69](file://backend/app/api/backtest.py#L68-L69)
-- [backend/app/api/strategies.py:20-24](file://backend/app/api/strategies.py#L20-L24)
-- [backend/app/core/config.py:10-12](file://backend/app/core/config.py#L10-L12)
+- [backend/app/api/backtest.py:68-69](../../../../../backend/app/api/backtest.py#L68-L69)
+- [backend/app/api/strategies.py:20-24](../../../../../backend/app/api/strategies.py#L20-L24)
+- [backend/app/core/config.py:10-12](../../../../../backend/app/core/config.py#L10-L12)
 
 ## 结论
 本API提供了完整的策略管理、回测执行与市场数据访问能力，结构清晰、职责分明。建议在后续迭代中补充鉴权、限流、缓存与历史回测持久化能力，以提升生产可用性与扩展性。
@@ -400,7 +400,7 @@ M["market.py"] --> MS
 - 回测结果表backtest_results：id、strategy_id、symbol、start_date、end_date、initial_capital、final_value、total_return、annual_return、max_drawdown、sharpe_ratio、win_rate、total_trades、trades_data、equity_curve、created_at
 
 章节来源
-- [backend/app/models/models.py:11-44](file://backend/app/models/models.py#L11-L44)
+- [backend/app/models/models.py:11-44](../../../../../backend/app/models/models.py#L11-L44)
 
 ### 最佳实践
 - 参数校验：在客户端侧对必填字段与取值范围进行预校验，减少无效请求

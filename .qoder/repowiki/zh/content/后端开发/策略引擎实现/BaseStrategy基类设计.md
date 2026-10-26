@@ -2,10 +2,10 @@
 
 <cite>
 **本文引用的文件**   
-- [backend/app/strategies/engine.py](file://backend/app/strategies/engine.py)
-- [backend/app/strategies/transformer_dl.py](file://backend/app/strategies/transformer_dl.py)
-- [backend/tests/test_strategy_engine.py](file://backend/tests/test_strategy_engine.py)
-- [AGENTS.md](file://AGENTS.md)
+- [backend/app/strategies/engine.py](../../../../../../backend/app/strategies/engine.py)
+- [backend/app/strategies/transformer_dl.py](../../../../../../backend/app/strategies/transformer_dl.py)
+- [backend/tests/test_strategy_engine.py](../../../../../../backend/tests/test_strategy_engine.py)
+- [AGENTS.md](../../../../../../AGENTS.md)
 </cite>
 
 ## 目录
@@ -46,14 +46,14 @@ T --> E
 ```
 
 图表来源
-- [backend/app/strategies/engine.py:17-656](file://backend/app/strategies/engine.py#L17-L656)
-- [backend/app/strategies/transformer_dl.py:324-516](file://backend/app/strategies/transformer_dl.py#L324-L516)
-- [backend/tests/test_strategy_engine.py:26-63](file://backend/tests/test_strategy_engine.py#L26-L63)
+- [backend/app/strategies/engine.py:17-656](../../../../../../backend/app/strategies/engine.py#L17-L656)
+- [backend/app/strategies/transformer_dl.py:324-516](../../../../../../backend/app/strategies/transformer_dl.py#L324-L516)
+- [backend/tests/test_strategy_engine.py:26-63](../../../../../../backend/tests/test_strategy_engine.py#L26-L63)
 
 章节来源
-- [backend/app/strategies/engine.py:17-656](file://backend/app/strategies/engine.py#L17-L656)
-- [backend/app/strategies/transformer_dl.py:324-516](file://backend/app/strategies/transformer_dl.py#L324-L516)
-- [backend/tests/test_strategy_engine.py:26-63](file://backend/tests/test_strategy_engine.py#L26-L63)
+- [backend/app/strategies/engine.py:17-656](../../../../../../backend/app/strategies/engine.py#L17-L656)
+- [backend/app/strategies/transformer_dl.py:324-516](../../../../../../backend/app/strategies/transformer_dl.py#L324-L516)
+- [backend/tests/test_strategy_engine.py:26-63](../../../../../../backend/tests/test_strategy_engine.py#L26-L63)
 
 ## 核心组件
 - BaseStrategy：策略抽象基类，统一策略初始化与信号生成接口。
@@ -62,8 +62,8 @@ T --> E
 - 工厂与注册：get_available_strategies() 返回策略元数据；create_strategy() 根据 id 动态实例化策略；create_transformer_dl_strategy() 为深度学习策略提供独立工厂。
 
 章节来源
-- [backend/app/strategies/engine.py:17-656](file://backend/app/strategies/engine.py#L17-L656)
-- [backend/app/strategies/transformer_dl.py:324-516](file://backend/app/strategies/transformer_dl.py#L324-L516)
+- [backend/app/strategies/engine.py:17-656](../../../../../../backend/app/strategies/engine.py#L17-L656)
+- [backend/app/strategies/transformer_dl.py:324-516](../../../../../../backend/app/strategies/transformer_dl.py#L324-L516)
 
 ## 架构总览
 策略子系统采用“抽象基类 + 多实现 + 工厂”的模式：
@@ -97,8 +97,8 @@ TransformerDLStrategy ..> BaseStrategy : "约定相同接口"
 ```
 
 图表来源
-- [backend/app/strategies/engine.py:17-504](file://backend/app/strategies/engine.py#L17-L504)
-- [backend/app/strategies/transformer_dl.py:324-487](file://backend/app/strategies/transformer_dl.py#L324-L487)
+- [backend/app/strategies/engine.py:17-504](../../../../../../backend/app/strategies/engine.py#L17-L504)
+- [backend/app/strategies/transformer_dl.py:324-487](../../../../../../backend/app/strategies/transformer_dl.py#L324-L487)
 
 ## 详细组件分析
 
@@ -113,7 +113,7 @@ TransformerDLStrategy ..> BaseStrategy : "约定相同接口"
   - 未实现 generate_signals 时抛出 NotImplementedError，确保契约被遵守。
 
 章节来源
-- [backend/app/strategies/engine.py:17-25](file://backend/app/strategies/engine.py#L17-L25)
+- [backend/app/strategies/engine.py:17-25](../../../../../../backend/app/strategies/engine.py#L17-L25)
 
 ### 具体策略类概览
 - MACrossStrategy：均线交叉，短均线上穿长均线买入，下穿卖出。
@@ -129,7 +129,7 @@ TransformerDLStrategy ..> BaseStrategy : "约定相同接口"
 - 输出：在输入基础上追加 signal（1/-1/0）、position（信号差分）列的 DataFrame。
 
 章节来源
-- [backend/app/strategies/engine.py:28-504](file://backend/app/strategies/engine.py#L28-L504)
+- [backend/app/strategies/engine.py:28-504](../../../../../../backend/app/strategies/engine.py#L28-L504)
 
 ### TransformerDLStrategy（深度学习策略）
 - 特点
@@ -140,7 +140,7 @@ TransformerDLStrategy ..> BaseStrategy : "约定相同接口"
   - 虽不直接继承 BaseStrategy，但遵循相同的 generate_signals 接口约定，便于与回测引擎集成。
 
 章节来源
-- [backend/app/strategies/transformer_dl.py:324-516](file://backend/app/strategies/transformer_dl.py#L324-L516)
+- [backend/app/strategies/transformer_dl.py:324-516](../../../../../../backend/app/strategies/transformer_dl.py#L324-L516)
 
 ## 依赖关系分析
 - 模块内依赖
@@ -165,16 +165,16 @@ CreateDL --> |否| InstantiateOther["实例化其他策略"]
 ```
 
 图表来源
-- [backend/app/strategies/engine.py:9-14](file://backend/app/strategies/engine.py#L9-L14)
-- [backend/app/strategies/engine.py:647-653](file://backend/app/strategies/engine.py#L647-L653)
-- [backend/app/strategies/transformer_dl.py:18-25](file://backend/app/strategies/transformer_dl.py#L18-L25)
-- [backend/app/strategies/transformer_dl.py:492-515](file://backend/app/strategies/transformer_dl.py#L492-L515)
+- [backend/app/strategies/engine.py:9-14](../../../../../../backend/app/strategies/engine.py#L9-L14)
+- [backend/app/strategies/engine.py:647-653](../../../../../../backend/app/strategies/engine.py#L647-L653)
+- [backend/app/strategies/transformer_dl.py:18-25](../../../../../../backend/app/strategies/transformer_dl.py#L18-L25)
+- [backend/app/strategies/transformer_dl.py:492-515](../../../../../../backend/app/strategies/transformer_dl.py#L492-L515)
 
 章节来源
-- [backend/app/strategies/engine.py:9-14](file://backend/app/strategies/engine.py#L9-L14)
-- [backend/app/strategies/engine.py:647-653](file://backend/app/strategies/engine.py#L647-L653)
-- [backend/app/strategies/transformer_dl.py:18-25](file://backend/app/strategies/transformer_dl.py#L18-L25)
-- [backend/app/strategies/transformer_dl.py:492-515](file://backend/app/strategies/transformer_dl.py#L492-L515)
+- [backend/app/strategies/engine.py:9-14](../../../../../../backend/app/strategies/engine.py#L9-L14)
+- [backend/app/strategies/engine.py:647-653](../../../../../../backend/app/strategies/engine.py#L647-L653)
+- [backend/app/strategies/transformer_dl.py:18-25](../../../../../../backend/app/strategies/transformer_dl.py#L18-L25)
+- [backend/app/strategies/transformer_dl.py:492-515](../../../../../../backend/app/strategies/transformer_dl.py#L492-L515)
 
 ## 性能与复杂度
 - 时间复杂度
@@ -201,10 +201,10 @@ CreateDL --> |否| InstantiateOther["实例化其他策略"]
   - 缺少 PyTorch 依赖时将抛出 ImportError。
 
 章节来源
-- [backend/app/strategies/engine.py:23-25](file://backend/app/strategies/engine.py#L23-L25)
-- [backend/app/strategies/engine.py:654-655](file://backend/app/strategies/engine.py#L654-L655)
-- [backend/app/strategies/transformer_dl.py:492-498](file://backend/app/strategies/transformer_dl.py#L492-L498)
-- [backend/tests/test_strategy_engine.py:57-63](file://backend/tests/test_strategy_engine.py#L57-L63)
+- [backend/app/strategies/engine.py:23-25](../../../../../../backend/app/strategies/engine.py#L23-L25)
+- [backend/app/strategies/engine.py:654-655](../../../../../../backend/app/strategies/engine.py#L654-L655)
+- [backend/app/strategies/transformer_dl.py:492-498](../../../../../../backend/app/strategies/transformer_dl.py#L492-L498)
+- [backend/tests/test_strategy_engine.py:57-63](../../../../../../backend/tests/test_strategy_engine.py#L57-L63)
 
 ## 工厂模式与注册机制
 - 策略注册
@@ -238,13 +238,13 @@ Factory-->>Client : 返回 BaseStrategy 实例
 ```
 
 图表来源
-- [backend/app/strategies/engine.py:506-597](file://backend/app/strategies/engine.py#L506-L597)
-- [backend/app/strategies/engine.py:600-656](file://backend/app/strategies/engine.py#L600-L656)
-- [backend/app/strategies/transformer_dl.py:492-515](file://backend/app/strategies/transformer_dl.py#L492-L515)
+- [backend/app/strategies/engine.py:506-597](../../../../../../backend/app/strategies/engine.py#L506-L597)
+- [backend/app/strategies/engine.py:600-656](../../../../../../backend/app/strategies/engine.py#L600-L656)
+- [backend/app/strategies/transformer_dl.py:492-515](../../../../../../backend/app/strategies/transformer_dl.py#L492-L515)
 
 章节来源
-- [backend/app/strategies/engine.py:506-656](file://backend/app/strategies/engine.py#L506-L656)
-- [backend/app/strategies/transformer_dl.py:492-515](file://backend/app/strategies/transformer_dl.py#L492-L515)
+- [backend/app/strategies/engine.py:506-656](../../../../../../backend/app/strategies/engine.py#L506-L656)
+- [backend/app/strategies/transformer_dl.py:492-515](../../../../../../backend/app/strategies/transformer_dl.py#L492-L515)
 
 ## 继承开发新策略指南
 - 必要导入
@@ -262,9 +262,9 @@ Factory-->>Client : 返回 BaseStrategy 实例
   - 在 create_strategy() 中添加对应分支，将 strategy_id 映射到新策略构造器。
 
 章节来源
-- [backend/app/strategies/engine.py:17-25](file://backend/app/strategies/engine.py#L17-L25)
-- [backend/app/strategies/engine.py:506-656](file://backend/app/strategies/engine.py#L506-L656)
-- [AGENTS.md:93-106](file://AGENTS.md#L93-L106)
+- [backend/app/strategies/engine.py:17-25](../../../../../../backend/app/strategies/engine.py#L17-L25)
+- [backend/app/strategies/engine.py:506-656](../../../../../../backend/app/strategies/engine.py#L506-L656)
+- [AGENTS.md:93-106](../../../../../../AGENTS.md#L93-L106)
 
 ## 最佳实践与常见陷阱
 - 最佳实践
@@ -280,9 +280,9 @@ Factory-->>Client : 返回 BaseStrategy 实例
   - 深度学习策略在未安装 PyTorch 时直接运行，导致 ImportError。
 
 章节来源
-- [backend/app/strategies/engine.py:23-25](file://backend/app/strategies/engine.py#L23-L25)
-- [backend/tests/test_strategy_engine.py:57-63](file://backend/tests/test_strategy_engine.py#L57-L63)
-- [backend/app/strategies/transformer_dl.py:492-498](file://backend/app/strategies/transformer_dl.py#L492-L498)
+- [backend/app/strategies/engine.py:23-25](../../../../../../backend/app/strategies/engine.py#L23-L25)
+- [backend/tests/test_strategy_engine.py:57-63](../../../../../../backend/tests/test_strategy_engine.py#L57-L63)
+- [backend/app/strategies/transformer_dl.py:492-498](../../../../../../backend/app/strategies/transformer_dl.py#L492-L498)
 
 ## 故障排查
 - 症状：create_strategy("unknown") 抛出 ValueError
@@ -299,10 +299,10 @@ Factory-->>Client : 返回 BaseStrategy 实例
   - 解决：参考测试用例中的 _assert_signal_schema 断言进行自检。
 
 章节来源
-- [backend/app/strategies/engine.py:654-655](file://backend/app/strategies/engine.py#L654-L655)
-- [backend/app/strategies/engine.py:23-25](file://backend/app/strategies/engine.py#L23-L25)
-- [backend/app/strategies/transformer_dl.py:492-498](file://backend/app/strategies/transformer_dl.py#L492-L498)
-- [backend/tests/test_strategy_engine.py:57-63](file://backend/tests/test_strategy_engine.py#L57-L63)
+- [backend/app/strategies/engine.py:654-655](../../../../../../backend/app/strategies/engine.py#L654-L655)
+- [backend/app/strategies/engine.py:23-25](../../../../../../backend/app/strategies/engine.py#L23-L25)
+- [backend/app/strategies/transformer_dl.py:492-498](../../../../../../backend/app/strategies/transformer_dl.py#L492-L498)
+- [backend/tests/test_strategy_engine.py:57-63](../../../../../../backend/tests/test_strategy_engine.py#L57-L63)
 
 ## 结论
 BaseStrategy 通过抽象基类统一了策略的生命周期与接口契约，结合工厂模式实现了策略的动态注册与实例化。该设计使系统具备良好的可扩展性与可维护性：新增策略只需遵循接口规范，并在注册表与工厂中完成三处同步。配合严格的输入输出约定与测试断言，可有效降低接入成本与出错概率。对于深度学习策略，通过可选依赖与独立工厂进一步解耦了复杂依赖，提升了系统的鲁棒性。

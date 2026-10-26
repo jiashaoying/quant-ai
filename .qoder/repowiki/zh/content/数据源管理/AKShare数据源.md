@@ -2,11 +2,11 @@
 
 <cite>
 **本文引用的文件**   
-- [DATA_SOURCES.md](file://DATA_SOURCES.md)
-- [data_source_manager.py](file://backend/app/services/data_source_manager.py)
-- [market_data.py](file://backend/app/services/market_data.py)
-- [market.py](file://backend/app/api/market.py)
-- [requirements.txt](file://backend/requirements.txt)
+- [DATA_SOURCES.md](../../../../../DATA_SOURCES.md)
+- [data_source_manager.py](../../../../../backend/app/services/data_source_manager.py)
+- [market_data.py](../../../../../backend/app/services/market_data.py)
+- [market.py](../../../../../backend/app/api/market.py)
+- [requirements.txt](../../../../../backend/requirements.txt)
 </cite>
 
 ## 目录
@@ -41,14 +41,14 @@ DSM --> MK["模拟数据"]
 ```
 
 图表来源
-- [market.py:11-27](file://backend/app/api/market.py#L11-L27)
-- [market_data.py:11-41](file://backend/app/services/market_data.py#L11-L41)
-- [data_source_manager.py:14-54](file://backend/app/services/data_source_manager.py#L14-L54)
+- [market.py:11-27](../../../../../backend/app/api/market.py#L11-L27)
+- [market_data.py:11-41](../../../../../backend/app/services/market_data.py#L11-L41)
+- [data_source_manager.py:14-54](../../../../../backend/app/services/data_source_manager.py#L14-L54)
 
 章节来源
-- [market.py:1-46](file://backend/app/api/market.py#L1-L46)
-- [market_data.py:1-55](file://backend/app/services/market_data.py#L1-L55)
-- [data_source_manager.py:1-110](file://backend/app/services/data_source_manager.py#L1-L110)
+- [market.py:1-46](../../../../../backend/app/api/market.py#L1-L46)
+- [market_data.py:1-55](../../../../../backend/app/services/market_data.py#L1-L55)
+- [data_source_manager.py:1-110](../../../../../backend/app/services/data_source_manager.py#L1-L110)
 
 ## 核心组件
 - 数据源管理器 DataSourceManager：负责多数据源的统一调度、自动降级与结果标准化。
@@ -61,9 +61,9 @@ DSM --> MK["模拟数据"]
 - 异常捕获与降级策略，确保服务可用性。
 
 章节来源
-- [data_source_manager.py:14-110](file://backend/app/services/data_source_manager.py#L14-L110)
-- [market_data.py:11-41](file://backend/app/services/market_data.py#L11-L41)
-- [market.py:11-27](file://backend/app/api/market.py#L11-L27)
+- [data_source_manager.py:14-110](../../../../../backend/app/services/data_source_manager.py#L14-L110)
+- [market_data.py:11-41](../../../../../backend/app/services/market_data.py#L11-L41)
+- [market.py:11-27](../../../../../backend/app/api/market.py#L11-L27)
 
 ## 架构总览
 下图展示从前端发起请求到最终返回 OHLCV 数据的端到端流程，以及 AKShare 在其中的位置。
@@ -94,10 +94,10 @@ API-->>Client : {symbol, data : records[]}
 ```
 
 图表来源
-- [market.py:11-27](file://backend/app/api/market.py#L11-L27)
-- [market_data.py:11-41](file://backend/app/services/market_data.py#L11-L41)
-- [data_source_manager.py:56-109](file://backend/app/services/data_source_manager.py#L56-L109)
-- [data_source_manager.py:276-335](file://backend/app/services/data_source_manager.py#L276-L335)
+- [market.py:11-27](../../../../../backend/app/api/market.py#L11-L27)
+- [market_data.py:11-41](../../../../../backend/app/services/market_data.py#L11-L41)
+- [data_source_manager.py:56-109](../../../../../backend/app/services/data_source_manager.py#L56-L109)
+- [data_source_manager.py:276-335](../../../../../backend/app/services/data_source_manager.py#L276-L335)
 
 ## 详细组件分析
 
@@ -127,10 +127,10 @@ ConvertDate --> ReturnDF["返回标准化DataFrame"]
 ```
 
 图表来源
-- [data_source_manager.py:276-335](file://backend/app/services/data_source_manager.py#L276-L335)
+- [data_source_manager.py:276-335](../../../../../backend/app/services/data_source_manager.py#L276-L335)
 
 章节来源
-- [data_source_manager.py:276-335](file://backend/app/services/data_source_manager.py#L276-L335)
+- [data_source_manager.py:276-335](../../../../../backend/app/services/data_source_manager.py#L276-L335)
 
 ### 股票代码格式转换逻辑
 - 目标：将标准格式（如 600519.SS、000858.SZ）转换为 AKShare 所需的纯数字代码。
@@ -146,17 +146,17 @@ TakeFirst --> Out["输出pure_symbol: '600519'"]
 ```
 
 图表来源
-- [data_source_manager.py:286-287](file://backend/app/services/data_source_manager.py#L286-L287)
+- [data_source_manager.py:286-287](../../../../../backend/app/services/data_source_manager.py#L286-L287)
 
 章节来源
-- [data_source_manager.py:286-287](file://backend/app/services/data_source_manager.py#L286-L287)
+- [data_source_manager.py:286-287](../../../../../backend/app/services/data_source_manager.py#L286-L287)
 
 ### 前复权数据处理
 - AKShare 调用时设置 adjust="qfq"，表示使用前复权价格序列。
 - 目的：消除分红派息对价格的影响，便于技术分析比较。
 
 章节来源
-- [data_source_manager.py:304-310](file://backend/app/services/data_source_manager.py#L304-L310)
+- [data_source_manager.py:304-310](../../../../../backend/app/services/data_source_manager.py#L304-L310)
 
 ### 日期格式转换过程
 - 输入：YYYY-MM-DD（用户传入）。
@@ -171,10 +171,10 @@ FormatAK --> AKInput["作为start_date传给AKShare"]
 ```
 
 图表来源
-- [data_source_manager.py:290-300](file://backend/app/services/data_source_manager.py#L290-L300)
+- [data_source_manager.py:290-300](../../../../../backend/app/services/data_source_manager.py#L290-L300)
 
 章节来源
-- [data_source_manager.py:290-300](file://backend/app/services/data_source_manager.py#L290-L300)
+- [data_source_manager.py:290-300](../../../../../backend/app/services/data_source_manager.py#L290-L300)
 
 ### 数据列重命名与类型转换机制
 - 列重命名：
@@ -198,10 +198,10 @@ TypeConv --> Output["标准化DataFrame"]
 ```
 
 图表来源
-- [data_source_manager.py:315-329](file://backend/app/services/data_source_manager.py#L315-L329)
+- [data_source_manager.py:315-329](../../../../../backend/app/services/data_source_manager.py#L315-L329)
 
 章节来源
-- [data_source_manager.py:315-329](file://backend/app/services/data_source_manager.py#L315-L329)
+- [data_source_manager.py:315-329](../../../../../backend/app/services/data_source_manager.py#L315-L329)
 
 ### 自动选择与降级策略
 - 优先顺序（自动模式）：
@@ -224,10 +224,10 @@ TryBS --> |失败| Mock["返回模拟数据"]
 ```
 
 图表来源
-- [data_source_manager.py:56-109](file://backend/app/services/data_source_manager.py#L56-L109)
+- [data_source_manager.py:56-109](../../../../../backend/app/services/data_source_manager.py#L56-L109)
 
 章节来源
-- [data_source_manager.py:56-109](file://backend/app/services/data_source_manager.py#L56-L109)
+- [data_source_manager.py:56-109](../../../../../backend/app/services/data_source_manager.py#L56-L109)
 
 ## 依赖关系分析
 - 外部依赖
@@ -252,16 +252,16 @@ DSM --> YF
 ```
 
 图表来源
-- [requirements.txt:1-16](file://backend/requirements.txt#L1-L16)
-- [market.py:1-46](file://backend/app/api/market.py#L1-L46)
-- [market_data.py:1-55](file://backend/app/services/market_data.py#L1-L55)
-- [data_source_manager.py:1-110](file://backend/app/services/data_source_manager.py#L1-L110)
+- [requirements.txt:1-16](../../../../../backend/requirements.txt#L1-L16)
+- [market.py:1-46](../../../../../backend/app/api/market.py#L1-L46)
+- [market_data.py:1-55](../../../../../backend/app/services/market_data.py#L1-L55)
+- [data_source_manager.py:1-110](../../../../../backend/app/services/data_source_manager.py#L1-L110)
 
 章节来源
-- [requirements.txt:1-16](file://backend/requirements.txt#L1-L16)
-- [market.py:1-46](file://backend/app/api/market.py#L1-L46)
-- [market_data.py:1-55](file://backend/app/services/market_data.py#L1-L55)
-- [data_source_manager.py:1-110](file://backend/app/services/data_source_manager.py#L1-L110)
+- [requirements.txt:1-16](../../../../../backend/requirements.txt#L1-L16)
+- [market.py:1-46](../../../../../backend/app/api/market.py#L1-L46)
+- [market_data.py:1-55](../../../../../backend/app/services/market_data.py#L1-L55)
+- [data_source_manager.py:1-110](../../../../../backend/app/services/data_source_manager.py#L1-L110)
 
 ## 性能与稳定性
 - 网络依赖
@@ -292,8 +292,8 @@ DSM --> YF
   - 在自动模式下观察实际使用的数据源，必要时手动指定 source。
 
 章节来源
-- [data_source_manager.py:276-335](file://backend/app/services/data_source_manager.py#L276-L335)
-- [data_source_manager.py:56-109](file://backend/app/services/data_source_manager.py#L56-L109)
+- [data_source_manager.py:276-335](../../../../../backend/app/services/data_source_manager.py#L276-L335)
+- [data_source_manager.py:56-109](../../../../../backend/app/services/data_source_manager.py#L56-L109)
 
 ## 结论
 本项目通过 DataSourceManager 统一管理多数据源，并以 AKShare 作为 A 股的重要数据源之一。其优势在于免费、无需注册、数据全面，配合前复权与标准化输出，可满足大多数量化分析与回测需求。结合自动选择与降级策略，系统在稳定性与可用性方面具备良好表现。推荐在生产环境中安装 akshare 与 baostock，以获得更可靠的 A 股数据支撑。
@@ -309,7 +309,7 @@ DSM --> YF
   - pip install baostock
 
 章节来源
-- [DATA_SOURCES.md:26-43](file://DATA_SOURCES.md#L26-L43)
+- [DATA_SOURCES.md:26-43](../../../../../DATA_SOURCES.md#L26-L43)
 
 ### 使用示例（A 股历史数据）
 - 通过 API 获取 A 股历史数据（自动选择数据源）：
@@ -320,8 +320,8 @@ DSM --> YF
   - Date、Open、High、Low、Close、Volume（均为统一英文列名与数值类型）。
 
 章节来源
-- [market.py:11-27](file://backend/app/api/market.py#L11-L27)
-- [data_source_manager.py:276-335](file://backend/app/services/data_source_manager.py#L276-L335)
+- [market.py:11-27](../../../../../backend/app/api/market.py#L11-L27)
+- [data_source_manager.py:276-335](../../../../../backend/app/services/data_source_manager.py#L276-L335)
 
 ### AKShare 函数要点速查
 - 函数：ak.stock_zh_a_hist
@@ -334,4 +334,4 @@ DSM --> YF
   - Date、Open、High、Low、Close、Volume
 
 章节来源
-- [data_source_manager.py:304-329](file://backend/app/services/data_source_manager.py#L304-L329)
+- [data_source_manager.py:304-329](../../../../../backend/app/services/data_source_manager.py#L304-L329)

@@ -2,12 +2,12 @@
 
 <cite>
 **本文引用的文件**   
-- [backend/main.py](file://backend/main.py)
-- [backend/app/api/market.py](file://backend/app/api/market.py)
-- [backend/app/services/market_data.py](file://backend/app/services/market_data.py)
-- [backend/app/services/data_source_manager.py](file://backend/app/services/data_source_manager.py)
-- [backend/app/core/config.py](file://backend/app/core/config.py)
-- [DATA_SOURCES.md](file://DATA_SOURCES.md)
+- [backend/main.py](../../../../../../backend/main.py)
+- [backend/app/api/market.py](../../../../../../backend/app/api/market.py)
+- [backend/app/services/market_data.py](../../../../../../backend/app/services/market_data.py)
+- [backend/app/services/data_source_manager.py](../../../../../../backend/app/services/data_source_manager.py)
+- [backend/app/core/config.py](../../../../../../backend/app/core/config.py)
+- [DATA_SOURCES.md](../../../../../../DATA_SOURCES.md)
 </cite>
 
 ## 目录
@@ -52,13 +52,13 @@ Manager --> Mock["模拟数据"]
 ```
 
 图表来源
-- [backend/main.py:1-36](file://backend/main.py#L1-L36)
-- [backend/app/api/market.py:1-47](file://backend/app/api/market.py#L1-L47)
-- [backend/app/services/market_data.py:1-106](file://backend/app/services/market_data.py#L1-L106)
-- [backend/app/services/data_source_manager.py:1-469](file://backend/app/services/data_source_manager.py#L1-L469)
+- [backend/main.py:1-36](../../../../../../backend/main.py#L1-L36)
+- [backend/app/api/market.py:1-47](../../../../../../backend/app/api/market.py#L1-L47)
+- [backend/app/services/market_data.py:1-106](../../../../../../backend/app/services/market_data.py#L1-L106)
+- [backend/app/services/data_source_manager.py:1-469](../../../../../../backend/app/services/data_source_manager.py#L1-L469)
 
 章节来源
-- [backend/main.py:1-36](file://backend/main.py#L1-L36)
+- [backend/main.py:1-36](../../../../../../backend/main.py#L1-L36)
 
 ## 核心组件
 - 路由层：提供 /api/market/stock/{symbol} 等接口，统一返回结构与错误码
@@ -67,10 +67,10 @@ Manager --> Mock["模拟数据"]
 - 配置：Settings 提供默认市场等配置项
 
 章节来源
-- [backend/app/api/market.py:1-47](file://backend/app/api/market.py#L1-L47)
-- [backend/app/services/market_data.py:1-106](file://backend/app/services/market_data.py#L1-L106)
-- [backend/app/services/data_source_manager.py:1-469](file://backend/app/services/data_source_manager.py#L1-L469)
-- [backend/app/core/config.py:1-25](file://backend/app/core/config.py#L1-L25)
+- [backend/app/api/market.py:1-47](../../../../../../backend/app/api/market.py#L1-L47)
+- [backend/app/services/market_data.py:1-106](../../../../../../backend/app/services/market_data.py#L1-L106)
+- [backend/app/services/data_source_manager.py:1-469](../../../../../../backend/app/services/data_source_manager.py#L1-L469)
+- [backend/app/core/config.py:1-25](../../../../../../backend/app/core/config.py#L1-L25)
 
 ## 架构总览
 下图展示一次股票数据请求从客户端到数据源的完整调用链，以及自动选择数据源的决策路径。
@@ -126,9 +126,9 @@ R-->>C : { symbol, data : records[] }
 ```
 
 图表来源
-- [backend/app/api/market.py:11-27](file://backend/app/api/market.py#L11-L27)
-- [backend/app/services/market_data.py:14-41](file://backend/app/services/market_data.py#L14-L41)
-- [backend/app/services/data_source_manager.py:17-109](file://backend/app/services/data_source_manager.py#L17-L109)
+- [backend/app/api/market.py:11-27](../../../../../../backend/app/api/market.py#L11-L27)
+- [backend/app/services/market_data.py:14-41](../../../../../../backend/app/services/market_data.py#L14-L41)
+- [backend/app/services/data_source_manager.py:17-109](../../../../../../backend/app/services/data_source_manager.py#L17-L109)
 
 ## 详细组件分析
 
@@ -147,7 +147,7 @@ R-->>C : { symbol, data : records[] }
   - 捕获异常并返回 HTTP 400，detail 为异常信息
 
 章节来源
-- [backend/app/api/market.py:11-27](file://backend/app/api/market.py#L11-L27)
+- [backend/app/api/market.py:11-27](../../../../../../backend/app/api/market.py#L11-L27)
 
 ### 服务层 MarketDataService
 - 职责：
@@ -157,7 +157,7 @@ R-->>C : { symbol, data : records[] }
   - get_stock_info 中直接引用了 yfinance，但当前未导入该模块，存在运行时风险（见“故障排查指南”）
 
 章节来源
-- [backend/app/services/market_data.py:11-106](file://backend/app/services/market_data.py#L11-L106)
+- [backend/app/services/market_data.py:11-106](../../../../../../backend/app/services/market_data.py#L11-L106)
 
 ### 数据源管理器 DataSourceManager
 - 统一入口：get_stock_data(symbol, start_date, end_date, period, source)
@@ -213,10 +213,10 @@ ReturnMock --> End
 ```
 
 图表来源
-- [backend/app/services/data_source_manager.py:17-109](file://backend/app/services/data_source_manager.py#L17-L109)
+- [backend/app/services/data_source_manager.py:17-109](../../../../../../backend/app/services/data_source_manager.py#L17-L109)
 
 章节来源
-- [backend/app/services/data_source_manager.py:17-469](file://backend/app/services/data_source_manager.py#L17-L469)
+- [backend/app/services/data_source_manager.py:17-469](../../../../../../backend/app/services/data_source_manager.py#L17-L469)
 
 ### 数据格式标准化（OHLCV）
 - 统一字段：
@@ -232,11 +232,11 @@ ReturnMock --> End
   - 返回 DataFrame.to_dict('records') 作为前端可用数组
 
 章节来源
-- [backend/app/services/data_source_manager.py:181-208](file://backend/app/services/data_source_manager.py#L181-L208)
-- [backend/app/services/data_source_manager.py:250-274](file://backend/app/services/data_source_manager.py#L250-L274)
-- [backend/app/services/data_source_manager.py:276-335](file://backend/app/services/data_source_manager.py#L276-L335)
-- [backend/app/services/data_source_manager.py:337-412](file://backend/app/services/data_source_manager.py#L337-L412)
-- [backend/app/services/data_source_manager.py:418-468](file://backend/app/services/data_source_manager.py#L418-L468)
+- [backend/app/services/data_source_manager.py:181-208](../../../../../../backend/app/services/data_source_manager.py#L181-L208)
+- [backend/app/services/data_source_manager.py:250-274](../../../../../../backend/app/services/data_source_manager.py#L250-L274)
+- [backend/app/services/data_source_manager.py:276-335](../../../../../../backend/app/services/data_source_manager.py#L276-L335)
+- [backend/app/services/data_source_manager.py:337-412](../../../../../../backend/app/services/data_source_manager.py#L337-L412)
+- [backend/app/services/data_source_manager.py:418-468](../../../../../../backend/app/services/data_source_manager.py#L418-L468)
 
 ### 股票代码参数验证与标准化
 - 支持格式：
@@ -249,8 +249,8 @@ ReturnMock --> End
   - 无法识别的代码在腾讯财经路径会抛出 ValueError
 
 章节来源
-- [backend/app/services/data_source_manager.py:210-248](file://backend/app/services/data_source_manager.py#L210-L248)
-- [backend/app/api/market.py:11-27](file://backend/app/api/market.py#L11-L27)
+- [backend/app/services/data_source_manager.py:210-248](../../../../../../backend/app/services/data_source_manager.py#L210-L248)
+- [backend/app/api/market.py:11-27](../../../../../../backend/app/api/market.py#L11-L27)
 
 ## 依赖关系分析
 - 路由层依赖服务层，服务层依赖数据源管理器
@@ -270,14 +270,14 @@ Manager --> BS["baostock"]
 ```
 
 图表来源
-- [backend/app/api/market.py:1-47](file://backend/app/api/market.py#L1-L47)
-- [backend/app/services/market_data.py:1-106](file://backend/app/services/market_data.py#L1-L106)
-- [backend/app/services/data_source_manager.py:1-469](file://backend/app/services/data_source_manager.py#L1-L469)
+- [backend/app/api/market.py:1-47](../../../../../../backend/app/api/market.py#L1-L47)
+- [backend/app/services/market_data.py:1-106](../../../../../../backend/app/services/market_data.py#L1-L106)
+- [backend/app/services/data_source_manager.py:1-469](../../../../../../backend/app/services/data_source_manager.py#L1-L469)
 
 章节来源
-- [backend/app/api/market.py:1-47](file://backend/app/api/market.py#L1-L47)
-- [backend/app/services/market_data.py:1-106](file://backend/app/services/market_data.py#L1-L106)
-- [backend/app/services/data_source_manager.py:1-469](file://backend/app/services/data_source_manager.py#L1-L469)
+- [backend/app/api/market.py:1-47](../../../../../../backend/app/api/market.py#L1-L47)
+- [backend/app/services/market_data.py:1-106](../../../../../../backend/app/services/market_data.py#L1-L106)
+- [backend/app/services/data_source_manager.py:1-469](../../../../../../backend/app/services/data_source_manager.py#L1-L469)
 
 ## 性能与优化建议
 - 网络请求优化
@@ -314,8 +314,8 @@ Manager --> BS["baostock"]
   - 对异常波动阈值进行告警
 
 章节来源
-- [backend/app/api/market.py:26-27](file://backend/app/api/market.py#L26-L27)
-- [backend/app/services/market_data.py:43-82](file://backend/app/services/market_data.py#L43-L82)
+- [backend/app/api/market.py:26-27](../../../../../../backend/app/api/market.py#L26-L27)
+- [backend/app/services/market_data.py:43-82](../../../../../../backend/app/services/market_data.py#L43-L82)
 
 ## 结论
 本市场数据API通过清晰的分层设计与多数据源管理器，实现了灵活的股票数据获取能力。自动选择与降级策略确保在不同环境与依赖条件下仍可稳定返回数据。建议在后续迭代中完善缓存、重试、监控与数据质量检查，以提升稳定性与性能。
@@ -342,5 +342,5 @@ Manager --> BS["baostock"]
   - 当所有真实数据源失败时，系统将返回模拟数据，便于测试与演示
 
 章节来源
-- [backend/app/api/market.py:11-27](file://backend/app/api/market.py#L11-L27)
-- [DATA_SOURCES.md:45-58](file://DATA_SOURCES.md#L45-L58)
+- [backend/app/api/market.py:11-27](../../../../../../backend/app/api/market.py#L11-L27)
+- [DATA_SOURCES.md:45-58](../../../../../../DATA_SOURCES.md#L45-L58)

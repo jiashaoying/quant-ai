@@ -2,16 +2,16 @@
 
 <cite>
 **本文引用的文件**   
-- [Makefile](file://Makefile)
-- [backend/main.py](file://backend/main.py)
-- [backend/requirements.txt](file://backend/requirements.txt)
-- [backend/pytest.ini](file://backend/pytest.ini)
-- [backend/tests/conftest.py](file://backend/tests/conftest.py)
-- [backend/tests/test_backtest_engine.py](file://backend/tests/test_backtest_engine.py)
-- [backend/tests/test_strategy_engine.py](file://backend/tests/test_strategy_engine.py)
-- [frontend/package.json](file://frontend/package.json)
-- [frontend/tsconfig.json](file://frontend/tsconfig.json)
-- [frontend/vite.config.ts](file://frontend/vite.config.ts)
+- [Makefile](../../../../../../Makefile)
+- [backend/main.py](../../../../../../backend/main.py)
+- [backend/requirements.txt](../../../../../../backend/requirements.txt)
+- [backend/pytest.ini](../../../../../../backend/pytest.ini)
+- [backend/tests/conftest.py](../../../../../../backend/tests/conftest.py)
+- [backend/tests/test_backtest_engine.py](../../../../../../backend/tests/test_backtest_engine.py)
+- [backend/tests/test_strategy_engine.py](../../../../../../backend/tests/test_strategy_engine.py)
+- [frontend/package.json](../../../../../../frontend/package.json)
+- [frontend/tsconfig.json](../../../../../../frontend/tsconfig.json)
+- [frontend/vite.config.ts](../../../../../../frontend/vite.config.ts)
 </cite>
 
 ## 目录
@@ -71,21 +71,21 @@ FP --> FV
 ```
 
 **图表来源**
-- [Makefile:1-21](file://Makefile#L1-L21)
-- [backend/main.py:1-36](file://backend/main.py#L1-L36)
-- [backend/requirements.txt:1-16](file://backend/requirements.txt#L1-L16)
-- [backend/pytest.ini:1-7](file://backend/pytest.ini#L1-L7)
-- [backend/tests/conftest.py:1-47](file://backend/tests/conftest.py#L1-L47)
-- [backend/tests/test_backtest_engine.py:1-179](file://backend/tests/test_backtest_engine.py#L1-L179)
-- [backend/tests/test_strategy_engine.py:1-187](file://backend/tests/test_strategy_engine.py#L1-L187)
-- [frontend/package.json:1-28](file://frontend/package.json#L1-L28)
-- [frontend/tsconfig.json:1-26](file://frontend/tsconfig.json#L1-L26)
-- [frontend/vite.config.ts:1-16](file://frontend/vite.config.ts#L1-L16)
+- [Makefile:1-21](../../../../../../Makefile#L1-L21)
+- [backend/main.py:1-36](../../../../../../backend/main.py#L1-L36)
+- [backend/requirements.txt:1-16](../../../../../../backend/requirements.txt#L1-L16)
+- [backend/pytest.ini:1-7](../../../../../../backend/pytest.ini#L1-L7)
+- [backend/tests/conftest.py:1-47](../../../../../../backend/tests/conftest.py#L1-L47)
+- [backend/tests/test_backtest_engine.py:1-179](../../../../../../backend/tests/test_backtest_engine.py#L1-L179)
+- [backend/tests/test_strategy_engine.py:1-187](../../../../../../backend/tests/test_strategy_engine.py#L1-L187)
+- [frontend/package.json:1-28](../../../../../../frontend/package.json#L1-L28)
+- [frontend/tsconfig.json:1-26](../../../../../../frontend/tsconfig.json#L1-L26)
+- [frontend/vite.config.ts:1-16](../../../../../../frontend/vite.config.ts#L1-L16)
 
 **章节来源**
-- [Makefile:1-21](file://Makefile#L1-L21)
-- [backend/main.py:1-36](file://backend/main.py#L1-L36)
-- [frontend/package.json:1-28](file://frontend/package.json#L1-L28)
+- [Makefile:1-21](../../../../../../Makefile#L1-L21)
+- [backend/main.py:1-36](../../../../../../backend/main.py#L1-L36)
+- [frontend/package.json:1-28](../../../../../../frontend/package.json#L1-L28)
 
 ## 核心组件
 - 后端服务入口：FastAPI 应用定义、CORS 中间件、路由注册与健康检查接口。
@@ -94,15 +94,15 @@ FP --> FV
 - 统一命令：Makefile 聚合 check-backend 与 check-frontend，便于 CI 一键执行。
 
 **章节来源**
-- [backend/main.py:1-36](file://backend/main.py#L1-L36)
-- [backend/pytest.ini:1-7](file://backend/pytest.ini#L1-L7)
-- [backend/tests/conftest.py:1-47](file://backend/tests/conftest.py#L1-L47)
-- [backend/tests/test_backtest_engine.py:1-179](file://backend/tests/test_backtest_engine.py#L1-L179)
-- [backend/tests/test_strategy_engine.py:1-187](file://backend/tests/test_strategy_engine.py#L1-L187)
-- [frontend/package.json:1-28](file://frontend/package.json#L1-L28)
-- [frontend/tsconfig.json:1-26](file://frontend/tsconfig.json#L1-L26)
-- [frontend/vite.config.ts:1-16](file://frontend/vite.config.ts#L1-L16)
-- [Makefile:1-21](file://Makefile#L1-L21)
+- [backend/main.py:1-36](../../../../../../backend/main.py#L1-L36)
+- [backend/pytest.ini:1-7](../../../../../../backend/pytest.ini#L1-L7)
+- [backend/tests/conftest.py:1-47](../../../../../../backend/tests/conftest.py#L1-L47)
+- [backend/tests/test_backtest_engine.py:1-179](../../../../../../backend/tests/test_backtest_engine.py#L1-L179)
+- [backend/tests/test_strategy_engine.py:1-187](../../../../../../backend/tests/test_strategy_engine.py#L1-L187)
+- [frontend/package.json:1-28](../../../../../../frontend/package.json#L1-L28)
+- [frontend/tsconfig.json:1-26](../../../../../../frontend/tsconfig.json#L1-L26)
+- [frontend/vite.config.ts:1-16](../../../../../../frontend/vite.config.ts#L1-L16)
+- [Makefile:1-21](../../../../../../Makefile#L1-L21)
 
 ## 架构总览
 下图展示从代码提交到自动化验证的关键流程：触发器 → 环境准备 → 代码质量检查 → 单元测试 → 前端构建 → 后端健康检查。
@@ -148,17 +148,17 @@ PyTest-->>CI : 返回测试结果与覆盖率(可选)
 ```
 
 **图表来源**
-- [backend/pytest.ini:1-7](file://backend/pytest.ini#L1-L7)
-- [backend/tests/conftest.py:1-47](file://backend/tests/conftest.py#L1-L47)
-- [backend/tests/test_backtest_engine.py:1-179](file://backend/tests/test_backtest_engine.py#L1-L179)
-- [backend/tests/test_strategy_engine.py:1-187](file://backend/tests/test_strategy_engine.py#L1-L187)
+- [backend/pytest.ini:1-7](../../../../../../backend/pytest.ini#L1-L7)
+- [backend/tests/conftest.py:1-47](../../../../../../backend/tests/conftest.py#L1-L47)
+- [backend/tests/test_backtest_engine.py:1-179](../../../../../../backend/tests/test_backtest_engine.py#L1-L179)
+- [backend/tests/test_strategy_engine.py:1-187](../../../../../../backend/tests/test_strategy_engine.py#L1-L187)
 
 **章节来源**
-- [backend/main.py:1-36](file://backend/main.py#L1-L36)
-- [backend/pytest.ini:1-7](file://backend/pytest.ini#L1-L7)
-- [backend/tests/conftest.py:1-47](file://backend/tests/conftest.py#L1-L47)
-- [backend/tests/test_backtest_engine.py:1-179](file://backend/tests/test_backtest_engine.py#L1-L179)
-- [backend/tests/test_strategy_engine.py:1-187](file://backend/tests/test_strategy_engine.py#L1-L187)
+- [backend/main.py:1-36](../../../../../../backend/main.py#L1-L36)
+- [backend/pytest.ini:1-7](../../../../../../backend/pytest.ini#L1-L7)
+- [backend/tests/conftest.py:1-47](../../../../../../backend/tests/conftest.py#L1-L47)
+- [backend/tests/test_backtest_engine.py:1-179](../../../../../../backend/tests/test_backtest_engine.py#L1-L179)
+- [backend/tests/test_strategy_engine.py:1-187](../../../../../../backend/tests/test_strategy_engine.py#L1-L187)
 
 ### 前端类型检查与构建
 - package.json 定义了 dev/build/preview/typecheck/check 脚本，其中 typecheck 使用 tsc --noEmit 进行纯类型检查。
@@ -175,14 +175,14 @@ Build --> Dist["产出 dist 静态资源"]
 ```
 
 **图表来源**
-- [frontend/package.json:1-28](file://frontend/package.json#L1-L28)
-- [frontend/tsconfig.json:1-26](file://frontend/tsconfig.json#L1-L26)
-- [frontend/vite.config.ts:1-16](file://frontend/vite.config.ts#L1-L16)
+- [frontend/package.json:1-28](../../../../../../frontend/package.json#L1-L28)
+- [frontend/tsconfig.json:1-26](../../../../../../frontend/tsconfig.json#L1-L26)
+- [frontend/vite.config.ts:1-16](../../../../../../frontend/vite.config.ts#L1-L16)
 
 **章节来源**
-- [frontend/package.json:1-28](file://frontend/package.json#L1-L28)
-- [frontend/tsconfig.json:1-26](file://frontend/tsconfig.json#L1-L26)
-- [frontend/vite.config.ts:1-16](file://frontend/vite.config.ts#L1-L16)
+- [frontend/package.json:1-28](../../../../../../frontend/package.json#L1-L28)
+- [frontend/tsconfig.json:1-26](../../../../../../frontend/tsconfig.json#L1-L26)
+- [frontend/vite.config.ts:1-16](../../../../../../frontend/vite.config.ts#L1-L16)
 
 ### 统一命令与 CI 入口
 - Makefile 提供 check、check-backend、check-frontend、install-deps 目标，便于在 CI 中统一调用。
@@ -202,10 +202,10 @@ Merge --> Exit["退出码反映整体状态"]
 ```
 
 **图表来源**
-- [Makefile:1-21](file://Makefile#L1-L21)
+- [Makefile:1-21](../../../../../../Makefile#L1-L21)
 
 **章节来源**
-- [Makefile:1-21](file://Makefile#L1-L21)
+- [Makefile:1-21](../../../../../../Makefile#L1-L21)
 
 ## 依赖关系分析
 - 后端依赖 FastAPI、Uvicorn、Pydantic、Pandas、NumPy、yfinance、Plotly、SQLAlchemy、AkShare、Baostock、Torch、Scikit-learn、pytest。
@@ -223,14 +223,14 @@ FE_DEPS --> TS["TypeScript 类型检查"]
 ```
 
 **图表来源**
-- [Makefile:1-21](file://Makefile#L1-L21)
-- [backend/requirements.txt:1-16](file://backend/requirements.txt#L1-L16)
-- [frontend/package.json:1-28](file://frontend/package.json#L1-L28)
+- [Makefile:1-21](../../../../../../Makefile#L1-L21)
+- [backend/requirements.txt:1-16](../../../../../../backend/requirements.txt#L1-L16)
+- [frontend/package.json:1-28](../../../../../../frontend/package.json#L1-L28)
 
 **章节来源**
-- [backend/requirements.txt:1-16](file://backend/requirements.txt#L1-L16)
-- [frontend/package.json:1-28](file://frontend/package.json#L1-L28)
-- [Makefile:1-21](file://Makefile#L1-L21)
+- [backend/requirements.txt:1-16](../../../../../../backend/requirements.txt#L1-L16)
+- [frontend/package.json:1-28](../../../../../../frontend/package.json#L1-L28)
+- [Makefile:1-21](../../../../../../Makefile#L1-L21)
 
 ## 性能与质量保障
 - 代码质量
@@ -259,10 +259,10 @@ FE_DEPS --> TS["TypeScript 类型检查"]
   - 若代理配置异常，确认 vite.config.ts 的 proxy target 指向正确的后端地址。
 
 **章节来源**
-- [backend/pytest.ini:1-7](file://backend/pytest.ini#L1-L7)
-- [backend/tests/conftest.py:1-47](file://backend/tests/conftest.py#L1-L47)
-- [frontend/tsconfig.json:1-26](file://frontend/tsconfig.json#L1-L26)
-- [frontend/vite.config.ts:1-16](file://frontend/vite.config.ts#L1-L16)
+- [backend/pytest.ini:1-7](../../../../../../backend/pytest.ini#L1-L7)
+- [backend/tests/conftest.py:1-47](../../../../../../backend/tests/conftest.py#L1-L47)
+- [frontend/tsconfig.json:1-26](../../../../../../frontend/tsconfig.json#L1-L26)
+- [frontend/vite.config.ts:1-16](../../../../../../frontend/vite.config.ts#L1-L16)
 
 ## 结论
 本项目已具备清晰的测试与类型检查基础，配合 Makefile 可实现统一的 CI 入口。建议在仓库中添加平台化的 CI/CD 配置，实现自动化构建、镜像推送与应用部署，并引入分支策略、版本标签管理与回滚机制，以支撑稳定可靠的发布流程。

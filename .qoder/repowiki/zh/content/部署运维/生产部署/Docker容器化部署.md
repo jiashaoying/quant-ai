@@ -2,14 +2,14 @@
 
 <cite>
 **本文引用的文件**   
-- [backend/main.py](file://backend/main.py)
-- [backend/requirements.txt](file://backend/requirements.txt)
-- [backend/app/core/config.py](file://backend/app/core/config.py)
-- [backend/app/db/database.py](file://backend/app/db/database.py)
-- [frontend/package.json](file://frontend/package.json)
-- [frontend/vite.config.ts](file://frontend/vite.config.ts)
-- [Makefile](file://Makefile)
-- [QUICKSTART.md](file://QUICKSTART.md)
+- [backend/main.py](../../../../../../backend/main.py)
+- [backend/requirements.txt](../../../../../../backend/requirements.txt)
+- [backend/app/core/config.py](../../../../../../backend/app/core/config.py)
+- [backend/app/db/database.py](../../../../../../backend/app/db/database.py)
+- [frontend/package.json](../../../../../../frontend/package.json)
+- [frontend/vite.config.ts](../../../../../../frontend/vite.config.ts)
+- [Makefile](../../../../../../Makefile)
+- [QUICKSTART.md](../../../../../../QUICKSTART.md)
 </cite>
 
 ## 目录
@@ -51,16 +51,16 @@ Nginx --> FastAPI
 ```
 
 **图表来源**
-- [backend/main.py:9-35](file://backend/main.py#L9-L35)
-- [backend/app/db/database.py:9-19](file://backend/app/db/database.py#L9-L19)
-- [frontend/vite.config.ts:6-14](file://frontend/vite.config.ts#L6-L14)
+- [backend/main.py:9-35](../../../../../../backend/main.py#L9-L35)
+- [backend/app/db/database.py:9-19](../../../../../../backend/app/db/database.py#L9-L19)
+- [frontend/vite.config.ts:6-14](../../../../../../frontend/vite.config.ts#L6-L14)
 
 **章节来源**
-- [backend/main.py:1-36](file://backend/main.py#L1-L36)
-- [backend/app/core/config.py:8-24](file://backend/app/core/config.py#L8-L24)
-- [backend/app/db/database.py:1-29](file://backend/app/db/database.py#L1-L29)
-- [frontend/package.json:6-12](file://frontend/package.json#L6-L12)
-- [frontend/vite.config.ts:1-16](file://frontend/vite.config.ts#L1-L16)
+- [backend/main.py:1-36](../../../../../../backend/main.py#L1-L36)
+- [backend/app/core/config.py:8-24](../../../../../../backend/app/core/config.py#L8-L24)
+- [backend/app/db/database.py:1-29](../../../../../../backend/app/db/database.py#L1-L29)
+- [frontend/package.json:6-12](../../../../../../frontend/package.json#L6-L12)
+- [frontend/vite.config.ts:1-16](../../../../../../frontend/vite.config.ts#L1-L16)
 
 ## 核心组件
 - 后端FastAPI应用
@@ -72,11 +72,11 @@ Nginx --> FastAPI
   - 生产构建输出静态资源，可由Nginx托管。
 
 **章节来源**
-- [backend/main.py:9-35](file://backend/main.py#L9-L35)
-- [backend/app/core/config.py:8-24](file://backend/app/core/config.py#L8-L24)
-- [backend/app/db/database.py:9-28](file://backend/app/db/database.py#L9-L28)
-- [frontend/package.json:6-12](file://frontend/package.json#L6-L12)
-- [frontend/vite.config.ts:6-14](file://frontend/vite.config.ts#L6-L14)
+- [backend/main.py:9-35](../../../../../../backend/main.py#L9-L35)
+- [backend/app/core/config.py:8-24](../../../../../../backend/app/core/config.py#L8-L24)
+- [backend/app/db/database.py:9-28](../../../../../../backend/app/db/database.py#L9-L28)
+- [frontend/package.json:6-12](../../../../../../frontend/package.json#L6-L12)
+- [frontend/vite.config.ts:6-14](../../../../../../frontend/vite.config.ts#L6-L14)
 
 ## 架构总览
 下图展示容器化后的系统交互：浏览器访问Nginx（前端静态资源），Nginx反向代理API请求至FastAPI；FastAPI读写SQLite数据库文件。
@@ -98,9 +98,9 @@ Nginx-->>Browser : JSON响应
 ```
 
 **图表来源**
-- [backend/main.py:24-35](file://backend/main.py#L24-L35)
-- [backend/app/db/database.py:9-19](file://backend/app/db/database.py#L9-L19)
-- [frontend/vite.config.ts:6-14](file://frontend/vite.config.ts#L6-L14)
+- [backend/main.py:24-35](../../../../../../backend/main.py#L24-L35)
+- [backend/app/db/database.py:9-19](../../../../../../backend/app/db/database.py#L9-L19)
+- [frontend/vite.config.ts:6-14](../../../../../../frontend/vite.config.ts#L6-L14)
 
 ## 详细组件分析
 
@@ -136,14 +136,14 @@ FastAPIApp --> Database : "初始化/获取会话"
 ```
 
 **图表来源**
-- [backend/app/core/config.py:8-24](file://backend/app/core/config.py#L8-L24)
-- [backend/app/db/database.py:9-28](file://backend/app/db/database.py#L9-L28)
-- [backend/main.py:9-35](file://backend/main.py#L9-L35)
+- [backend/app/core/config.py:8-24](../../../../../../backend/app/core/config.py#L8-L24)
+- [backend/app/db/database.py:9-28](../../../../../../backend/app/db/database.py#L9-L28)
+- [backend/main.py:9-35](../../../../../../backend/main.py#L9-L35)
 
 **章节来源**
-- [backend/main.py:9-35](file://backend/main.py#L9-L35)
-- [backend/app/core/config.py:8-24](file://backend/app/core/config.py#L8-L24)
-- [backend/app/db/database.py:9-28](file://backend/app/db/database.py#L9-L28)
+- [backend/main.py:9-35](../../../../../../backend/main.py#L9-L35)
+- [backend/app/core/config.py:8-24](../../../../../../backend/app/core/config.py#L8-L24)
+- [backend/app/db/database.py:9-28](../../../../../../backend/app/db/database.py#L9-L28)
 
 ### 前端React应用
 - 开发模式
@@ -159,12 +159,12 @@ ViteBuild --> Output["dist目录产出HTML/CSS/JS"]
 ```
 
 **图表来源**
-- [frontend/package.json:6-12](file://frontend/package.json#L6-L12)
-- [frontend/vite.config.ts:6-14](file://frontend/vite.config.ts#L6-L14)
+- [frontend/package.json:6-12](../../../../../../frontend/package.json#L6-L12)
+- [frontend/vite.config.ts:6-14](../../../../../../frontend/vite.config.ts#L6-L14)
 
 **章节来源**
-- [frontend/package.json:6-12](file://frontend/package.json#L6-L12)
-- [frontend/vite.config.ts:1-16](file://frontend/vite.config.ts#L1-L16)
+- [frontend/package.json:6-12](../../../../../../frontend/package.json#L6-L12)
+- [frontend/vite.config.ts:1-16](../../../../../../frontend/vite.config.ts#L1-L16)
 
 ## 依赖关系分析
 - 后端依赖
@@ -184,12 +184,12 @@ F --> I["axios/recharts/lucide-react"]
 ```
 
 **图表来源**
-- [backend/requirements.txt:1-16](file://backend/requirements.txt#L1-L16)
-- [frontend/package.json:13-26](file://frontend/package.json#L13-L26)
+- [backend/requirements.txt:1-16](../../../../../../backend/requirements.txt#L1-L16)
+- [frontend/package.json:13-26](../../../../../../frontend/package.json#L13-L26)
 
 **章节来源**
-- [backend/requirements.txt:1-16](file://backend/requirements.txt#L1-L16)
-- [frontend/package.json:13-26](file://frontend/package.json#L13-L26)
+- [backend/requirements.txt:1-16](../../../../../../backend/requirements.txt#L1-L16)
+- [frontend/package.json:13-26](../../../../../../frontend/package.json#L13-L26)
 
 ## 性能与镜像优化
 - 多阶段构建
@@ -225,7 +225,7 @@ F --> I["axios/recharts/lucide-react"]
   - 安装PyTorch CPU精简版与scikit-learn。
 
 **章节来源**
-- [QUICKSTART.md:236-291](file://QUICKSTART.md#L236-L291)
+- [QUICKSTART.md:236-291](../../../../../../QUICKSTART.md#L236-L291)
 
 ## 结论
 通过多阶段构建、环境变量注入、端口映射与数据卷挂载，配合健康检查、日志收集与资源限制，可将该量化策略查看系统稳定地部署到生产环境。建议在生产环境中使用外部数据库替代SQLite，并根据业务规模调整Uvicorn workers数量与Nginx并发参数。
@@ -245,11 +245,11 @@ F --> I["axios/recharts/lucide-react"]
   - 暴露8000端口
   - 启动命令：uvicorn main:app --host 0.0.0.0 --port 8000
 
-参考实现位置：[backend/Dockerfile.backend](file://backend/Dockerfile.backend)
+参考实现位置：[backend/Dockerfile.backend](../../../../../../backend/Dockerfile.backend)
 
 **章节来源**
-- [backend/main.py:9-35](file://backend/main.py#L9-L35)
-- [backend/requirements.txt:1-16](file://backend/requirements.txt#L1-L16)
+- [backend/main.py:9-35](../../../../../../backend/main.py#L9-L35)
+- [backend/requirements.txt:1-16](../../../../../../backend/requirements.txt#L1-L16)
 
 ### 前端Dockerfile（多阶段构建）
 - 构建阶段
@@ -262,11 +262,11 @@ F --> I["axios/recharts/lucide-react"]
   - 暴露80端口
   - 可选：配置Nginx反向代理到后端API（当后端不在同一容器时）
 
-参考实现位置：[frontend/Dockerfile.frontend](file://frontend/Dockerfile.frontend)
+参考实现位置：[frontend/Dockerfile.frontend](../../../../../../frontend/Dockerfile.frontend)
 
 **章节来源**
-- [frontend/package.json:6-12](file://frontend/package.json#L6-L12)
-- [frontend/vite.config.ts:6-14](file://frontend/vite.config.ts#L6-L14)
+- [frontend/package.json:6-12](../../../../../../frontend/package.json#L6-L12)
+- [frontend/vite.config.ts:6-14](../../../../../../frontend/vite.config.ts#L6-L14)
 
 ### docker-compose.yml（容器编排）
 - 服务定义
@@ -279,12 +279,12 @@ F --> I["axios/recharts/lucide-react"]
 - 资源限制
   - 为各服务设置CPU与内存上限。
 
-参考实现位置：[docker-compose.yml](file://docker-compose.yml)
+参考实现位置：[docker-compose.yml](../../../../../../docker-compose.yml)
 
 **章节来源**
-- [backend/app/core/config.py:8-24](file://backend/app/core/config.py#L8-L24)
-- [backend/app/db/database.py:9-19](file://backend/app/db/database.py#L9-L19)
-- [backend/main.py:33-35](file://backend/main.py#L33-L35)
+- [backend/app/core/config.py:8-24](../../../../../../backend/app/core/config.py#L8-L24)
+- [backend/app/db/database.py:9-19](../../../../../../backend/app/db/database.py#L9-L19)
+- [backend/main.py:33-35](../../../../../../backend/main.py#L33-L35)
 
 ### 环境变量与配置清单
 - 后端环境变量
@@ -295,12 +295,12 @@ F --> I["axios/recharts/lucide-react"]
   - 生产环境可通过构建时注入API_BASE_URL，或通过Nginx反向代理统一处理
 
 参考实现位置：
-- [backend/app/core/config.py:8-24](file://backend/app/core/config.py#L8-L24)
-- [frontend/vite.config.ts:6-14](file://frontend/vite.config.ts#L6-L14)
+- [backend/app/core/config.py:8-24](../../../../../../backend/app/core/config.py#L8-L24)
+- [frontend/vite.config.ts:6-14](../../../../../../frontend/vite.config.ts#L6-L14)
 
 **章节来源**
-- [backend/app/core/config.py:8-24](file://backend/app/core/config.py#L8-L24)
-- [frontend/vite.config.ts:6-14](file://frontend/vite.config.ts#L6-L14)
+- [backend/app/core/config.py:8-24](../../../../../../backend/app/core/config.py#L8-L24)
+- [frontend/vite.config.ts:6-14](../../../../../../frontend/vite.config.ts#L6-L14)
 
 ### 健康检查与日志
 - 健康检查
@@ -309,10 +309,10 @@ F --> I["axios/recharts/lucide-react"]
   - 使用Docker默认json-file驱动，可在docker-compose中配置日志轮转与大小限制。
 
 参考实现位置：
-- [backend/main.py:33-35](file://backend/main.py#L33-L35)
+- [backend/main.py:33-35](../../../../../../backend/main.py#L33-L35)
 
 **章节来源**
-- [backend/main.py:33-35](file://backend/main.py#L33-L35)
+- [backend/main.py:33-35](../../../../../../backend/main.py#L33-L35)
 
 ### 端口映射与数据卷挂载
 - 端口映射
@@ -322,10 +322,10 @@ F --> I["axios/recharts/lucide-react"]
   - SQLite数据文件挂载到宿主机的持久化目录，避免容器重建导致数据丢失。
 
 参考实现位置：
-- [docker-compose.yml](file://docker-compose.yml)
+- [docker-compose.yml](../../../../../../docker-compose.yml)
 
 **章节来源**
-- [docker-compose.yml](file://docker-compose.yml)
+- [docker-compose.yml](../../../../../../docker-compose.yml)
 
 ### 依赖管理与版本控制
 - 后端依赖锁定
@@ -336,9 +336,9 @@ F --> I["axios/recharts/lucide-react"]
   - 先复制依赖清单文件，再复制源码，充分利用Docker层缓存。
 
 参考实现位置：
-- [backend/requirements.txt:1-16](file://backend/requirements.txt#L1-L16)
-- [frontend/package.json:1-28](file://frontend/package.json#L1-L28)
+- [backend/requirements.txt:1-16](../../../../../../backend/requirements.txt#L1-L16)
+- [frontend/package.json:1-28](../../../../../../frontend/package.json#L1-L28)
 
 **章节来源**
-- [backend/requirements.txt:1-16](file://backend/requirements.txt#L1-L16)
-- [frontend/package.json:1-28](file://frontend/package.json#L1-L28)
+- [backend/requirements.txt:1-16](../../../../../../backend/requirements.txt#L1-L16)
+- [frontend/package.json:1-28](../../../../../../frontend/package.json#L1-L28)

@@ -2,11 +2,11 @@
 
 <cite>
 **本文引用的文件**   
-- [backend/main.py](file://backend/main.py)
-- [backend/app/core/config.py](file://backend/app/core/config.py)
-- [backend/app/api/strategies.py](file://backend/app/api/strategies.py)
-- [backend/app/api/backtest.py](file://backend/app/api/backtest.py)
-- [backend/app/api/market.py](file://backend/app/api/market.py)
+- [backend/main.py](../../../../../backend/main.py)
+- [backend/app/core/config.py](../../../../../backend/app/core/config.py)
+- [backend/app/api/strategies.py](../../../../../backend/app/api/strategies.py)
+- [backend/app/api/backtest.py](../../../../../backend/app/api/backtest.py)
+- [backend/app/api/market.py](../../../../../backend/app/api/market.py)
 </cite>
 
 ## 目录
@@ -38,12 +38,12 @@ A --> E["backend/app/core/config.py<br/>应用配置"]
 ```
 
 图表来源
-- [backend/main.py:9-27](file://backend/main.py#L9-L27)
-- [backend/app/core/config.py:8-24](file://backend/app/core/config.py#L8-L24)
+- [backend/main.py:9-27](../../../../../backend/main.py#L9-L27)
+- [backend/app/core/config.py:8-24](../../../../../backend/app/core/config.py#L8-L24)
 
 章节来源
-- [backend/main.py:1-36](file://backend/main.py#L1-L36)
-- [backend/app/core/config.py:1-25](file://backend/app/core/config.py#L1-L25)
+- [backend/main.py:1-36](../../../../../backend/main.py#L1-L36)
+- [backend/app/core/config.py:1-25](../../../../../backend/app/core/config.py#L1-L25)
 
 ## 核心组件
 - FastAPI实例创建与元信息设置：标题、描述、版本
@@ -52,7 +52,7 @@ A --> E["backend/app/core/config.py<br/>应用配置"]
 - 健康检查接口：根路径与 /api/health
 
 章节来源
-- [backend/main.py:9-35](file://backend/main.py#L9-L35)
+- [backend/main.py:9-35](../../../../../backend/main.py#L9-L35)
 
 ## 架构总览
 下图展示FastAPI应用启动时的关键交互：实例化、中间件加载、路由挂载与健康检查。
@@ -72,7 +72,7 @@ Health-->>Client : 返回状态信息
 ```
 
 图表来源
-- [backend/main.py:9-35](file://backend/main.py#L9-L35)
+- [backend/main.py:9-35](../../../../../backend/main.py#L9-L35)
 
 ## 详细组件分析
 
@@ -89,8 +89,8 @@ Health-->>Client : 返回状态信息
   - DEBUG开关可用于控制日志级别与调试行为
 
 章节来源
-- [backend/main.py:9-13](file://backend/main.py#L9-L13)
-- [backend/app/core/config.py:8-24](file://backend/app/core/config.py#L8-L24)
+- [backend/main.py:9-13](../../../../../backend/main.py#L9-L13)
+- [backend/app/core/config.py:8-24](../../../../../backend/app/core/config.py#L8-L24)
 
 ### CORS跨域中间件
 - allow_origins: ["*"]
@@ -103,7 +103,7 @@ Health-->>Client : 返回状态信息
 - 生产环境建议收紧allow_origins为具体前端域名，避免安全风险
 
 章节来源
-- [backend/main.py:15-22](file://backend/main.py#L15-L22)
+- [backend/main.py:15-22](../../../../../backend/main.py#L15-L22)
 
 ### 路由注册机制
 - 策略模块
@@ -130,16 +130,16 @@ RegMarket --> End
 ```
 
 图表来源
-- [backend/main.py:24-27](file://backend/main.py#L24-L27)
-- [backend/app/api/strategies.py:8-24](file://backend/app/api/strategies.py#L8-L24)
-- [backend/app/api/backtest.py:13-76](file://backend/app/api/backtest.py#L13-L76)
-- [backend/app/api/market.py:8-46](file://backend/app/api/market.py#L8-L46)
+- [backend/main.py:24-27](../../../../../backend/main.py#L24-L27)
+- [backend/app/api/strategies.py:8-24](../../../../../backend/app/api/strategies.py#L8-L24)
+- [backend/app/api/backtest.py:13-76](../../../../../backend/app/api/backtest.py#L13-L76)
+- [backend/app/api/market.py:8-46](../../../../../backend/app/api/market.py#L8-L46)
 
 章节来源
-- [backend/main.py:24-27](file://backend/main.py#L24-L27)
-- [backend/app/api/strategies.py:1-25](file://backend/app/api/strategies.py#L1-L25)
-- [backend/app/api/backtest.py:1-77](file://backend/app/api/backtest.py#L1-L77)
-- [backend/app/api/market.py:1-47](file://backend/app/api/market.py#L1-L47)
+- [backend/main.py:24-27](../../../../../backend/main.py#L24-L27)
+- [backend/app/api/strategies.py:1-25](../../../../../backend/app/api/strategies.py#L1-L25)
+- [backend/app/api/backtest.py:1-77](../../../../../backend/app/api/backtest.py#L1-L77)
+- [backend/app/api/market.py:1-47](../../../../../backend/app/api/market.py#L1-L47)
 
 ### 健康检查接口
 - GET /：返回应用欢迎消息
@@ -158,10 +158,10 @@ Health-->>Client : {"status" : "healthy"}
 ```
 
 图表来源
-- [backend/main.py:29-35](file://backend/main.py#L29-L35)
+- [backend/main.py:29-35](../../../../../backend/main.py#L29-L35)
 
 章节来源
-- [backend/main.py:29-35](file://backend/main.py#L29-L35)
+- [backend/main.py:29-35](../../../../../backend/main.py#L29-L35)
 
 ### 回测接口调用链（示例）
 以下序列图展示POST /api/backtest/run的调用链路，体现数据获取、策略生成信号、回测引擎执行与结果组装。
@@ -186,10 +186,10 @@ BacktestRouter-->>Client : 回测结果(含策略/标的/数据源信息)
 ```
 
 图表来源
-- [backend/app/api/backtest.py:28-69](file://backend/app/api/backtest.py#L28-L69)
+- [backend/app/api/backtest.py:28-69](../../../../../backend/app/api/backtest.py#L28-L69)
 
 章节来源
-- [backend/app/api/backtest.py:16-69](file://backend/app/api/backtest.py#L16-L69)
+- [backend/app/api/backtest.py:16-69](../../../../../backend/app/api/backtest.py#L16-L69)
 
 ## 依赖关系分析
 - 应用入口依赖
@@ -214,14 +214,14 @@ M --> MS
 ```
 
 图表来源
-- [backend/main.py:4-7](file://backend/main.py#L4-L7)
-- [backend/app/api/backtest.py:9-11](file://backend/app/api/backtest.py#L9-L11)
-- [backend/app/api/market.py:6](file://backend/app/api/market.py#L6)
+- [backend/main.py:4-7](../../../../../backend/main.py#L4-L7)
+- [backend/app/api/backtest.py:9-11](../../../../../backend/app/api/backtest.py#L9-L11)
+- [backend/app/api/market.py:6](../../../../../backend/app/api/market.py#L6)
 
 章节来源
-- [backend/main.py:4-7](file://backend/main.py#L4-L7)
-- [backend/app/api/backtest.py:9-11](file://backend/app/api/backtest.py#L9-L11)
-- [backend/app/api/market.py:6](file://backend/app/api/market.py#L6)
+- [backend/main.py:4-7](../../../../../backend/main.py#L4-L7)
+- [backend/app/api/backtest.py:9-11](../../../../../backend/app/api/backtest.py#L9-L11)
+- [backend/app/api/market.py:6](../../../../../backend/app/api/market.py#L6)
 
 ## 性能与可扩展性
 - CORS中间件
@@ -245,7 +245,7 @@ M --> MS
   - 排查：检查根路径与健康检查处理器是否被覆盖或重定向
 
 章节来源
-- [backend/main.py:15-35](file://backend/main.py#L15-L35)
+- [backend/main.py:15-35](../../../../../backend/main.py#L15-L35)
 
 ## 结论
 本FastAPI应用以清晰的入口与模块化路由组织为基础，配合CORS中间件与基础健康检查，满足前后端分离场景的快速接入与联调需求。建议在生产环境中收紧CORS策略、完善健康检查指标，并将应用元信息与配置统一到Settings中以增强可维护性。
