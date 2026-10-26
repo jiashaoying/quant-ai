@@ -36,4 +36,7 @@ logs/
 *.log
 
 # Qoder cache
-.qoder/
+.qoder/*
+
+# Repo Wiki（生成的项目知识文档，需纳入版本管理）
+!.qoder/repowiki/

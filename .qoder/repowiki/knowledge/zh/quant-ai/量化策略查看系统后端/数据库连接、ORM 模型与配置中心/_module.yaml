@@ -1,0 +1,10 @@
+schema_version: 1
+module_path: c4bd8d45-613d-4e8a-a580-a2f841a910b5/d9430a3f-74bf-4bd1-8598-33658c33b285
+title: 数据库连接、ORM 模型与配置中心
+scope:
+    - backend/app/db/
+    - backend/app/models/
+    - backend/app/core/
+source_files: []
+depends_on: []
+related_to: []

@@ -1,0 +1,95 @@
+# 知识卡导出索引文件
+schema_version: 1
+locale: zh-CN
+branch: main
+nodes_managed: true
+exported_at: "2026-10-26T01:04:13Z"
+modules:
+    "":
+        dir_name: quant-ai
+        title: quant-ai
+        scope: []
+        source_files: []
+        children:
+            - af732bb7-5ba9-4daa-a053-78b671302278
+            - c4bd8d45-613d-4e8a-a580-a2f841a910b5
+        depends_on: []
+        related_to: []
+    af732bb7-5ba9-4daa-a053-78b671302278:
+        dir_name: 量化策略查看系统（前后端聚合）
+        title: 量化策略查看系统（前后端聚合）
+        scope:
+            - AGENTS.md
+            - DATA_SOURCES.md
+            - QUICKSTART.md
+            - Makefile
+            - start.bat
+            - start.sh
+            - .gitignore
+            - README.md
+        source_files: []
+        children:
+            - af732bb7-5ba9-4daa-a053-78b671302278/38f23ebc-3eff-42fa-991f-8d48c8baf111
+        depends_on: []
+        related_to: []
+    af732bb7-5ba9-4daa-a053-78b671302278/38f23ebc-3eff-42fa-991f-8d48c8baf111:
+        dir_name: 量化策略回测前端界面
+        title: 量化策略回测前端界面
+        scope:
+            - frontend/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to: []
+    c4bd8d45-613d-4e8a-a580-a2f841a910b5:
+        dir_name: 量化策略查看系统后端
+        title: 量化策略查看系统后端
+        scope:
+            - backend/
+        source_files: []
+        children:
+            - c4bd8d45-613d-4e8a-a580-a2f841a910b5/55e56186-7da9-4f32-9d4e-562ba764dc64
+            - c4bd8d45-613d-4e8a-a580-a2f841a910b5/96a075f5-1d18-47dc-a988-294c1b29a9ca
+            - c4bd8d45-613d-4e8a-a580-a2f841a910b5/aaae69cd-a142-4541-a904-2f5377423ba5
+            - c4bd8d45-613d-4e8a-a580-a2f841a910b5/d9430a3f-74bf-4bd1-8598-33658c33b285
+        depends_on: []
+        related_to: []
+    c4bd8d45-613d-4e8a-a580-a2f841a910b5/55e56186-7da9-4f32-9d4e-562ba764dc64:
+        dir_name: FastAPI 交易策略与回测路由层
+        title: FastAPI 交易策略与回测路由层
+        scope:
+            - backend/app/api/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to: []
+    c4bd8d45-613d-4e8a-a580-a2f841a910b5/96a075f5-1d18-47dc-a988-294c1b29a9ca:
+        dir_name: 回测引擎与量化策略库
+        title: 回测引擎与量化策略库
+        scope:
+            - backend/app/backtest/
+            - backend/app/strategies/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to: []
+    c4bd8d45-613d-4e8a-a580-a2f841a910b5/aaae69cd-a142-4541-a904-2f5377423ba5:
+        dir_name: 多源股票数据服务
+        title: 多源股票数据服务
+        scope:
+            - backend/app/services/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to: []
+    c4bd8d45-613d-4e8a-a580-a2f841a910b5/d9430a3f-74bf-4bd1-8598-33658c33b285:
+        dir_name: 数据库连接、ORM 模型与配置中心
+        title: 数据库连接、ORM 模型与配置中心
+        scope:
+            - backend/app/db/
+            - backend/app/models/
+            - backend/app/core/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to: []
