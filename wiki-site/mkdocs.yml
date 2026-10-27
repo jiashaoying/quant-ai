@@ -1,7 +1,7 @@
 # 本文件由 wiki-site/build.py 生成，请勿手工编辑 nav 部分
 site_name: quant-ai 量化策略查看系统文档
 site_description: 股票量化策略查看与回测系统（Repo Wiki）静态文档站
-docs_dir: ../.qoder/repowiki/zh/content
+docs_dir: docs
 site_dir: site
 theme:
   name: material

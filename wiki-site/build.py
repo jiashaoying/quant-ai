@@ -2,10 +2,16 @@
 """Repo Wiki 静态文档站构建脚本。
 
 用法（先执行 pip install -r wiki-site/requirements.txt）:
-    python build.py               # 全流程：转换链接 → 生成 mkdocs.yml → 构建 → 后处理
+    python build.py               # 全流程：同步 .qoder 内容 → 转换链接 → 生成 mkdocs.yml → 构建 → 后处理
+    python build.py sync          # 仅同步 .qoder Wiki 内容到 docs/
     python build.py links         # 仅执行 file:// → 相对路径转换
     python build.py config        # 仅重新生成 mkdocs.yml（nav 保持目录层级）
     python build.py postprocess   # 仅对 site/ 产物做外部链接重写
+
+两套目录互不干扰：
+- .qoder/repowiki/zh/content/ 由 Qoder 后台独占维护（不入库）；
+- wiki-site/docs/ 是文档站自己的文档源目录（入库），每次构建从 .qoder 全量同步并在
+  此完成链接转换，绝不回写 .qoder。
 """
 from __future__ import annotations
 
@@ -22,8 +28,9 @@ from typing import Match
 import yaml
 
 ROOT = Path(__file__).resolve().parent.parent  # 仓库根目录
-CONTENT = ROOT / ".qoder" / "repowiki" / "zh" / "content"  # Wiki 内容目录
+CONTENT = ROOT / ".qoder" / "repowiki" / "zh" / "content"  # Qoder Wiki 内容目录（只读来源）
 WIKI_DIR = ROOT / "wiki-site"  # 文档站工程目录
+DOCS_DIR = WIKI_DIR / "docs"  # 文档站自己的文档源目录（入库，与 .qoder 互不干扰）
 SITE_DIR = WIKI_DIR / "site"  # 构建产物目录
 MKDOCS_YML = WIKI_DIR / "mkdocs.yml"
 
@@ -50,23 +57,33 @@ INDEX_MD = """# quant-ai 项目文档
 """
 
 
-def prepare_docs() -> None:
-    """生成 MkDocs 构建所需的附加文件（首页与自定义样式）。
+def sync_docs() -> None:
+    """把 Qoder Wiki 内容全量同步到 docs/ 文档源目录。
 
-    这些文件不直接存放在 content 目录中，而是由本脚本在每次构建时写入，
-    避免被 Qoder 的 Repo Wiki 后台同步清理。
+    .qoder/ 由 Qoder 后台独占维护（不入库）；docs/ 是文档站自己的源目录（入库）。
+    每次构建先清空 docs/ 再整体复制，保证 Qoder 的增删改不会在 docs/ 留下过期文件，
+    且本脚本绝不回写 .qoder。
     """
-    (CONTENT / "index.md").write_text(INDEX_MD, encoding="utf-8")
-    css_dir = CONTENT / "stylesheets"
+    if DOCS_DIR.exists():
+        shutil.rmtree(DOCS_DIR)
+    shutil.copytree(CONTENT, DOCS_DIR)
+    n = sum(1 for _ in DOCS_DIR.rglob("*.md"))
+    print(f"[sync] 已同步 {n} 个文档到 docs/")
+
+
+def prepare_docs() -> None:
+    """生成 MkDocs 构建所需的附加文件（首页与自定义样式），写入 docs/。"""
+    (DOCS_DIR / "index.md").write_text(INDEX_MD, encoding="utf-8")
+    css_dir = DOCS_DIR / "stylesheets"
     css_dir.mkdir(exist_ok=True)
     shutil.copyfile(WIKI_DIR / "extra.css", css_dir / "extra.css")
-    print("[prepare] 已生成 index.md 与 stylesheets/extra.css")
+    print("[prepare] 已生成 docs/index.md 与 docs/stylesheets/extra.css")
 
 
 def fix_file_links() -> None:
-    """把 file:// 引用链接转换为相对 Markdown 链接（GitCode 网页中可直接点击）。"""
+    """把 docs/ 中的 file:// 引用链接转换为相对 Markdown 链接（GitCode 网页中可直接点击）。"""
     converted = missing = 0
-    for md in sorted(CONTENT.rglob("*.md")):
+    for md in sorted(DOCS_DIR.rglob("*.md")):
         text = md.read_text(encoding="utf-8")
 
         def _replace(match: Match) -> str:
@@ -95,32 +112,32 @@ def _nav_entries(dir_path: Path) -> list:
     entries = []
     index_md = dir_path / f"{dir_path.name}.md"
     if index_md.exists():
-        entries.append({index_md.stem: str(index_md.relative_to(CONTENT))})
+        entries.append({index_md.stem: str(index_md.relative_to(DOCS_DIR))})
     for child in sorted(dir_path.iterdir(), key=lambda p: p.name):
         if child.name.startswith(".") or child == index_md or child.name == "index.md":
             continue
         if child.is_dir():
             entries.append({child.name: _nav_entries(child)})
         elif child.suffix == ".md":
-            entries.append({child.stem: str(child.relative_to(CONTENT))})
+            entries.append({child.stem: str(child.relative_to(DOCS_DIR))})
     return entries
 
 
 def generate_mkdocs_config() -> None:
-    """按 content 目录层级生成 mkdocs.yml（导航与目录结构一一对应）。"""
+    """按 docs 目录层级生成 mkdocs.yml（导航与目录结构一一对应）。"""
     nav = []
-    if (CONTENT / "index.md").exists():
+    if (DOCS_DIR / "index.md").exists():
         nav.append({"首页": "index.md"})
     # 总览类页面优先，其余顶层文件按名称排序
     for preferred in ("项目概述", "快速开始", "回测系统"):
-        f = CONTENT / f"{preferred}.md"
+        f = DOCS_DIR / f"{preferred}.md"
         if f.exists():
-            nav.append({preferred: str(f.relative_to(CONTENT))})
-    for f in sorted(p for p in CONTENT.iterdir() if p.is_file() and p.suffix == ".md"):
+            nav.append({preferred: str(f.relative_to(DOCS_DIR))})
+    for f in sorted(p for p in DOCS_DIR.iterdir() if p.is_file() and p.suffix == ".md"):
         if f.name == "index.md" or f.stem in {"项目概述", "快速开始", "回测系统"}:
             continue
-        nav.append({f.stem: str(f.relative_to(CONTENT))})
-    for d in sorted(p for p in CONTENT.iterdir() if p.is_dir() and not p.name.startswith(".")):
+        nav.append({f.stem: str(f.relative_to(DOCS_DIR))})
+    for d in sorted(p for p in DOCS_DIR.iterdir() if p.is_dir() and not p.name.startswith(".")):
         nav.append({d.name: _nav_entries(d)})
 
     nav_text = yaml.safe_dump(nav, allow_unicode=True, sort_keys=False)
@@ -128,7 +145,7 @@ def generate_mkdocs_config() -> None:
     config = f"""# 本文件由 wiki-site/build.py 生成，请勿手工编辑 nav 部分
 site_name: quant-ai 量化策略查看系统文档
 site_description: 股票量化策略查看与回测系统（Repo Wiki）静态文档站
-docs_dir: ../.qoder/repowiki/zh/content
+docs_dir: docs
 site_dir: site
 theme:
   name: material
@@ -220,7 +237,7 @@ def post_process_site() -> None:
         md_file = None
         if rel_site.name == "index.html":
             parent = rel_site.parent
-            candidate = CONTENT / (parent.with_suffix(".md") if str(parent) != "." else Path("index.md"))
+            candidate = DOCS_DIR / (parent.with_suffix(".md") if str(parent) != "." else Path("index.md"))
             if candidate.exists():
                 md_file = candidate
         md_dir = md_file.parent if md_file else None
@@ -268,6 +285,8 @@ def post_process_site() -> None:
 
 def main() -> None:
     mode = sys.argv[1] if len(sys.argv) > 1 else "all"
+    if mode in ("all", "sync"):
+        sync_docs()
     if mode in ("all", "links"):
         fix_file_links()
     if mode in ("all", "prepare"):

@@ -1,0 +1,20 @@
+/* Repo Wiki 文档站自定义样式（构建时复制到 docs_dir 下） */
+
+/* 引用文件区块（<cite>）：Repo Wiki 生成的文件引用说明 */
+cite {
+  display: block;
+  margin: 1rem 0;
+  padding: 0.6rem 1rem;
+  border-left: 4px solid var(--md-primary-fg-color);
+  border-radius: 0 4px 4px 0;
+  background: var(--md-code-bg-color);
+  font-size: 0.85rem;
+}
+
+cite strong {
+  color: var(--md-primary-fg-color);
+}
+
+cite a {
+  word-break: break-all;
+}

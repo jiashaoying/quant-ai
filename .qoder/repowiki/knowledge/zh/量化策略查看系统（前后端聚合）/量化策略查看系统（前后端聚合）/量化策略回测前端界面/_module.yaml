@@ -1,9 +1,0 @@
-schema_version: 1
-module_path: af732bb7-5ba9-4daa-a053-78b671302278/38f23ebc-3eff-42fa-991f-8d48c8baf111
-title: 量化策略回测前端界面
-scope:
-    - frontend/
-source_files: []
-depends_on: []
-related_to:
-    - path: c4bd8d45-613d-4e8a-a580-a2f841a910b5/55e56186-7da9-4f32-9d4e-562ba764dc64

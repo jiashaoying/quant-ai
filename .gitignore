@@ -35,12 +35,5 @@ dist/
 logs/
 *.log
 
-# Qoder cache
+# Qoder cache（Repo Wiki 由 Qoder 后台独占维护，不入库；文档站源目录在 wiki-site/docs/）
 .qoder/*
-
-# Repo Wiki（生成的项目知识文档，需纳入版本管理）
-!.qoder/repowiki/
-
-# Repo Wiki 文档站构建产物（由 wiki-site/build.py 在构建时生成，不入库）
-.qoder/repowiki/zh/content/index.md
-.qoder/repowiki/zh/content/stylesheets/

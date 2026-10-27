@@ -4368,7 +4368,7 @@ F --&gt; I["axios/recharts/lucide-react"]</code></pre>
 <li>暴露8000端口</li>
 <li>启动命令：uvicorn main:app --host 0.0.0.0 --port 8000</li>
 </ul>
-<p>参考实现位置：<a href="../../../../../../backend/Dockerfile.backend">backend/Dockerfile.backend</a></p>
+<p>参考实现位置：<a href="../../../../backend/Dockerfile.backend">backend/Dockerfile.backend</a></p>
 <p><strong>章节来源</strong>
 - <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/main.py#L9-L35">backend/main.py:9-35</a>
 - <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/requirements.txt#L1-L16">backend/requirements.txt:1-16</a></p>
@@ -4384,7 +4384,7 @@ F --&gt; I["axios/recharts/lucide-react"]</code></pre>
 <li>暴露80端口</li>
 <li>可选：配置Nginx反向代理到后端API（当后端不在同一容器时）</li>
 </ul>
-<p>参考实现位置：<a href="../../../../../../frontend/Dockerfile.frontend">frontend/Dockerfile.frontend</a></p>
+<p>参考实现位置：<a href="../../../../frontend/Dockerfile.frontend">frontend/Dockerfile.frontend</a></p>
 <p><strong>章节来源</strong>
 - <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/frontend/package.json#L6-L12">frontend/package.json:6-12</a>
 - <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/frontend/vite.config.ts#L6-L14">frontend/vite.config.ts:6-14</a></p>
@@ -4400,7 +4400,7 @@ F --&gt; I["axios/recharts/lucide-react"]</code></pre>
 <li>资源限制</li>
 <li>为各服务设置CPU与内存上限。</li>
 </ul>
-<p>参考实现位置：<a href="../../../../../../docker-compose.yml">docker-compose.yml</a></p>
+<p>参考实现位置：<a href="../../../../docker-compose.yml">docker-compose.yml</a></p>
 <p><strong>章节来源</strong>
 - <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/core/config.py#L8-L24">backend/app/core/config.py:8-24</a>
 - <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/db/database.py#L9-L19">backend/app/db/database.py:9-19</a>
@@ -4440,9 +4440,9 @@ F --&gt; I["axios/recharts/lucide-react"]</code></pre>
 <li>SQLite数据文件挂载到宿主机的持久化目录，避免容器重建导致数据丢失。</li>
 </ul>
 <p>参考实现位置：
-- <a href="../../../../../../docker-compose.yml">docker-compose.yml</a></p>
+- <a href="../../../../docker-compose.yml">docker-compose.yml</a></p>
 <p><strong>章节来源</strong>
-- <a href="../../../../../../docker-compose.yml">docker-compose.yml</a></p>
+- <a href="../../../../docker-compose.yml">docker-compose.yml</a></p>
 <h3 id="_14">依赖管理与版本控制<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h3>
 <ul>
 <li>后端依赖锁定</li>
