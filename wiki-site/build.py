@@ -297,6 +297,8 @@ def deploy_docs() -> None:
     if REPO_DOCS.exists():
         shutil.rmtree(REPO_DOCS)
     shutil.copytree(SITE_DIR, REPO_DOCS)
+    # GitHub Pages 分支部署默认会跑 Jekyll 构建，加 .nojekyll 跳过（站点已是纯静态产物）
+    (REPO_DOCS / ".nojekyll").write_text("", encoding="utf-8")
     n = sum(1 for _ in REPO_DOCS.rglob("*.html"))
     print(f"[deploy] 已同步构建产物到 docs/（{n} 个 HTML）")
 
