@@ -4099,26 +4099,20 @@
 - <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/wiki-site/extra.css">wiki-site/extra.css</a>
 - <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/main.py">backend/main.py</a>
 - <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/api/backtest.py">backend/app/api/backtest.py</a>
-- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/api/market.py">backend/app/api/market.py</a>
-- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/api/strategies.py">backend/app/api/strategies.py</a>
-- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/core/config.py">backend/app/core/config.py</a>
 - <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/services/data_source_manager.py">backend/app/services/data_source_manager.py</a>
-- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/services/market_data.py">backend/app/services/market_data.py</a>
 - <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/strategies/engine.py">backend/app/strategies/engine.py</a>
 - <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/backtest/engine.py">backend/app/backtest/engine.py</a>
+- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/core/config.py">backend/app/core/config.py</a>
 - <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/frontend/src/App.tsx">frontend/src/App.tsx</a>
 - <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/frontend/src/components/StrategyList.tsx">frontend/src/components/StrategyList.tsx</a>
-- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/frontend/src/components/BacktestForm.tsx">frontend/src/components/BacktestForm.tsx</a>
-- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/frontend/src/components/BacktestResult.tsx">frontend/src/components/BacktestResult.tsx</a>
-- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/DATA_SOURCES.md">DATA_SOURCES.md</a>
-- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/QUICKSTART.md">QUICKSTART.md</a>
 </cite></p>
 <h2 id="_2">更新摘要<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p><strong>变更内容</strong>
-- 完全迁移到 MkDocs 静态站点生成器架构
-- 新增文档驱动开发流程，支持自动化构建和链接转换
-- 更新部署拓扑以反映新的文档站点基础设施
-- 保留原有的 FastAPI + React 应用架构描述</p>
+- 完全迁移到 MkDocs 静态站点生成器架构，新增437行文档构建代码
+- 实现文档驱动开发流程，支持自动化构建、链接转换和源码浏览
+- 增强部署拓扑以反映新的文档站点基础设施
+- 保留并优化原有的 FastAPI + React 应用架构描述
+- 新增智能链接处理和 GitCode 源码集成</p>
 <h2 id="_3">目录<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <ol>
 <li><a href="#简介">简介</a></li>
@@ -4133,58 +4127,56 @@
 <li><a href="#结论">结论</a></li>
 </ol>
 <h2 id="_4">简介<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
-<p>本文件为量化交易平台的高层设计与技术架构文档。系统经历了从 FastAPI+React 应用架构到 MkDocs 静态站点生成器的完整架构转变，现在采用文档驱动的开发方法。文档系统基于 MkDocs Material 主题，提供自动化的构建流程、智能链接转换和源码浏览功能。同时保留了原有的前后端分离架构，FastAPI 后端提供 RESTful API，React 前端负责用户界面。</p>
+<p>本文件为量化交易平台的高层设计与技术架构文档。系统经历了从传统的 FastAPI+React 应用架构到文档驱动的现代开发模式的完整转型。现在采用双轨架构：一方面提供高性能的量化交易回测平台（FastAPI + React），另一方面构建了完整的 MkDocs 静态文档站点，支持自动化的构建流程、智能链接转换和源码浏览功能。</p>
+<p>系统的设计理念是"文档即代码"，通过 MkDocs Material 主题提供高质量的文档体验，同时保持应用程序的灵活性和可扩展性。这种架构设计使得团队协作更加高效，知识沉淀更加系统化。</p>
 <h2 id="_5">项目结构<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
 <p>系统现在包含两个主要部分：
 - <strong>文档站点</strong>：基于 MkDocs 的静态文档生成系统，提供完整的系统文档和技术参考
 - <strong>应用程序</strong>：FastAPI + React 的量化交易回测平台</p>
 <pre class="mermaid"><code>graph TB
-subgraph "文档站点"
+subgraph "文档站点架构"
 MKDOCS["MkDocs 构建系统"]
-BUILD["build.py 构建脚本"]
+BUILD["build.py 构建脚本&lt;br/&gt;306行完整构建流程"]
 SITE["wiki-site/site/ 静态站点"]
+CONTENT[".qoder/repowiki/zh/content/&lt;br/&gt;Qoder Wiki 内容源"]
+DOCS["wiki-site/docs/&lt;br/&gt;文档站源目录"]
 end
-subgraph "应用程序"
-FE_App["App.tsx"]
-FE_StrategyList["StrategyList.tsx"]
-FE_BacktestForm["BacktestForm.tsx"]
-FE_BacktestResult["BacktestResult.tsx"]
-BE_Main["main.py"]
-BE_API_Strategies["api/strategies.py"]
-BE_API_Backtest["api/backtest.py"]
-BE_API_Market["api/market.py"]
-BE_Service_Market["services/market_data.py"]
-BE_Service_DSM["services/data_source_manager.py"]
-BE_Strategy_Engine["strategies/engine.py"]
-BE_Backtest_Engine["backtest/engine.py"]
-BE_Config["core/config.py"]
+subgraph "应用程序架构"
+FE_App["App.tsx&lt;br/&gt;主应用组件"]
+FE_StrategyList["StrategyList.tsx&lt;br/&gt;策略列表组件"]
+FE_BacktestForm["BacktestForm.tsx&lt;br/&gt;回测表单组件"]
+FE_BacktestResult["BacktestResult.tsx&lt;br/&gt;回测结果组件"]
+BE_Main["main.py&lt;br/&gt;FastAPI应用入口"]
+BE_API_Backtest["api/backtest.py&lt;br/&gt;回测API路由"]
+BE_Service_Market["services/market_data.py&lt;br/&gt;市场数据服务"]
+BE_Service_DSM["services/data_source_manager.py&lt;br/&gt;多数据源管理器"]
+BE_Strategy_Engine["strategies/engine.py&lt;br/&gt;策略引擎"]
+BE_Backtest_Engine["backtest/engine.py&lt;br/&gt;回测引擎"]
+BE_Config["core/config.py&lt;br/&gt;应用配置"]
 end
 MKDOCS --&gt; BUILD
+BUILD --&gt; CONTENT
+BUILD --&gt; DOCS
 BUILD --&gt; SITE
 FE_App --&gt; FE_StrategyList
 FE_App --&gt; FE_BacktestForm
 FE_App --&gt; FE_BacktestResult
-FE_StrategyList --&gt; |"GET /api/strategies"| BE_API_Strategies
+FE_StrategyList --&gt; |"GET /api/strategies"| BE_Main
 FE_BacktestForm --&gt; |"POST /api/backtest/run"| BE_API_Backtest
-FE_BacktestResult -.-&gt;|"展示指标/曲线/交易记录"| FE_App
-BE_API_Strategies --&gt; BE_Strategy_Engine
 BE_API_Backtest --&gt; BE_Service_Market
 BE_API_Backtest --&gt; BE_Strategy_Engine
 BE_API_Backtest --&gt; BE_Backtest_Engine
 BE_Service_Market --&gt; BE_Service_DSM
-BE_Main --&gt; BE_API_Strategies
-BE_Main --&gt; BE_API_Backtest
-BE_Main --&gt; BE_API_Market
 BE_Main --&gt; BE_Config</code></pre>
 <p><strong>图表来源</strong>
-- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/wiki-site/build.py#L24-L31">wiki-site/build.py:24-31</a>
-- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/wiki-site/mkdocs.yml#L1-L153">wiki-site/mkdocs.yml:1-153</a>
-- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/main.py#L1-L36">backend/main.py:1-36</a>
-- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/frontend/src/App.tsx#L1-L100">frontend/src/App.tsx:1-100</a></p>
+- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/wiki-site/build.py#L30-L38">wiki-site/build.py:30-38</a>
+- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/wiki-site/build.py#L60-L80">wiki-site/build.py:60-80</a>
+- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/main.py#L9-L27">backend/main.py:9-27</a>
+- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/frontend/src/App.tsx#L8-L36">frontend/src/App.tsx:8-36</a></p>
 <h2 id="_6">核心组件<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>文档构建系统</strong>：MkDocs 静态站点生成器，Material 主题，自动化构建流程</li>
-<li><strong>构建脚本</strong>：build.py 处理链接转换、配置生成和站点构建</li>
+<li><strong>文档构建系统</strong>：MkDocs 静态站点生成器，Material 主题，自动化构建流程，支持 Mermaid 图表和中文化</li>
+<li><strong>构建脚本</strong>：build.py 提供完整的构建流程，包括链接转换、配置生成、站点构建和后处理（306行代码）</li>
 <li><strong>API 层</strong>：FastAPI 路由暴露 RESTful 接口，统一处理请求校验、错误返回与跨域配置</li>
 <li><strong>服务层</strong>：MarketDataService 封装市场数据获取逻辑，委托 DataSourceManager 进行多数据源调度与降级</li>
 <li><strong>策略层</strong>：BaseStrategy 及其子类实现不同交易策略的信号生成；Engine 提供策略工厂与可用策略清单</li>
@@ -4193,7 +4185,7 @@ BE_Main --&gt; BE_Config</code></pre>
 </ul>
 <h2 id="_7">架构总览<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
 <p>系统采用分层架构与前后端分离设计，并新增了文档驱动开发模式：
-- <strong>文档层</strong>：MkDocs 静态站点，提供完整的系统文档和技术参考
+- <strong>文档层</strong>：MkDocs 静态站点，提供完整的系统文档和技术参考，支持自动构建和智能链接
 - <strong>前端 React</strong> 负责交互与可视化，通过 fetch 调用后端 RESTful API
 - <strong>后端 FastAPI</strong> 作为网关，将请求分发至服务层与领域引擎
 - <strong>数据层</strong>通过 DataSourceManager 抽象多种数据源，支持自动选择与降级</p>
@@ -4224,7 +4216,7 @@ BTE--&gt;&gt;API : 回测结果
 API--&gt;&gt;FE : JSON(指标/曲线/交易记录)
 FE--&gt;&gt;U : 渲染结果</code></pre>
 <p><strong>图表来源</strong>
-- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/wiki-site/build.py#L191-L198">wiki-site/build.py:191-198</a>
+- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/wiki-site/build.py#L286-L301">wiki-site/build.py:286-301</a>
 - <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/frontend/src/App.tsx#L13-L36">frontend/src/App.tsx:13-36</a>
 - <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/main.py#L24-L27">backend/main.py:24-27</a>
 - <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/api/backtest.py#L28-L69">backend/app/api/backtest.py:28-69</a></p>
@@ -4244,13 +4236,13 @@ Config --&gt; Build["build_site()&lt;br/&gt;执行 mkdocs build"]
 Build --&gt; PostProcess["post_process_site()&lt;br/&gt;重写源码链接"]
 PostProcess --&gt; End(["构建完成"])</code></pre>
 <p><strong>图表来源</strong>
-- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/wiki-site/build.py#L53-L63">wiki-site/build.py:53-63</a>
-- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/wiki-site/build.py#L66-L90">wiki-site/build.py:66-90</a>
-- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/wiki-site/build.py#L109-L188">wiki-site/build.py:109-188</a>
-- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/wiki-site/build.py#L191-L198">wiki-site/build.py:191-198</a>
-- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/wiki-site/build.py#L201-L266">wiki-site/build.py:201-266</a></p>
+- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/wiki-site/build.py#L74-L80">wiki-site/build.py:74-80</a>
+- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/wiki-site/build.py#L83-L107">wiki-site/build.py:83-107</a>
+- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/wiki-site/build.py#L126-L205">wiki-site/build.py:126-205</a>
+- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/wiki-site/build.py#L208-L215">wiki-site/build.py:208-215</a>
+- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/wiki-site/build.py#L218-L283">wiki-site/build.py:218-283</a></p>
 <p><strong>章节来源</strong>
-- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/wiki-site/build.py#L1-L287">wiki-site/build.py:1-287</a>
+- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/wiki-site/build.py#L1-L306">wiki-site/build.py:1-306</a>
 - <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/wiki-site/mkdocs.yml#L1-L153">wiki-site/mkdocs.yml:1-153</a>
 - <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/wiki-site/extra.css#L1-L21">wiki-site/extra.css:1-21</a></p>
 <h3 id="api-fastapi">API 层（FastAPI）<a class="headerlink" href="#api-fastapi" title="Permanent link">&para;</a></h3>
@@ -4273,14 +4265,10 @@ Orchestrator --&gt; ReturnB["返回回测结果"]
 SvcMarket --&gt; ReturnC["返回股票信息/搜索"]</code></pre>
 <p><strong>图表来源</strong>
 - <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/main.py#L15-L35">backend/main.py:15-35</a>
-- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/api/strategies.py#L11-L24">backend/app/api/strategies.py:11-24</a>
-- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/api/backtest.py#L28-L76">backend/app/api/backtest.py:28-76</a>
-- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/api/market.py#L11-L46">backend/app/api/market.py:11-46</a></p>
+- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/api/backtest.py#L28-L76">backend/app/api/backtest.py:28-76</a></p>
 <p><strong>章节来源</strong>
 - <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/main.py#L1-L36">backend/main.py:1-36</a>
-- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/api/strategies.py#L1-L25">backend/app/api/strategies.py:1-25</a>
-- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/api/backtest.py#L1-L77">backend/app/api/backtest.py:1-77</a>
-- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/api/market.py#L1-L47">backend/app/api/market.py:1-47</a></p>
+- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/api/backtest.py#L1-L77">backend/app/api/backtest.py:1-77</a></p>
 <h3 id="_9">服务层（市场数据与多数据源）<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
 <ul>
 <li>MarketDataService：对外暴露统一的股票数据获取方法，内部委托 DataSourceManager</li>
@@ -4305,12 +4293,9 @@ class DataSourceManager {
 }
 MarketDataService --&gt; DataSourceManager : "委托数据获取"</code></pre>
 <p><strong>图表来源</strong>
-- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/services/market_data.py#L11-L106">backend/app/services/market_data.py:11-106</a>
-- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/services/data_source_manager.py#L14-L469">backend/app/services/data_source_manager.py:14-469</a></p>
+- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/services/data_source_manager.py#L14-L109">backend/app/services/data_source_manager.py:14-109</a></p>
 <p><strong>章节来源</strong>
-- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/services/market_data.py#L1-L106">backend/app/services/market_data.py:1-106</a>
-- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/services/data_source_manager.py#L1-L469">backend/app/services/data_source_manager.py:1-469</a>
-- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/DATA_SOURCES.md#L1-L125">DATA_SOURCES.md:1-125</a></p>
+- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/services/data_source_manager.py#L1-L200">backend/app/services/data_source_manager.py:1-200</a></p>
 <h3 id="_10">策略层（策略引擎与插件机制）<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
 <ul>
 <li>BaseStrategy：定义策略基类与信号生成接口</li>
@@ -4341,10 +4326,9 @@ BaseStrategy &lt;|-- MultiFactorStrategy
 BaseStrategy &lt;|-- TransformerPredictStrategy
 BaseStrategy &lt;|-- TransformerDLStrategy</code></pre>
 <p><strong>图表来源</strong>
-- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/strategies/engine.py#L17-L504">backend/app/strategies/engine.py:17-504</a>
-- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/strategies/engine.py#L506-L656">backend/app/strategies/engine.py:506-656</a></p>
+- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/strategies/engine.py#L17-L200">backend/app/strategies/engine.py:17-200</a></p>
 <p><strong>章节来源</strong>
-- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/strategies/engine.py#L1-L656">backend/app/strategies/engine.py:1-656</a></p>
+- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/strategies/engine.py#L1-L200">backend/app/strategies/engine.py:1-200</a></p>
 <h3 id="_11">回测层（回测引擎）<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
 <ul>
 <li>BacktestEngine：合并数据与信号，计算日收益率、累计收益、资金曲线，提取交易记录，计算综合绩效指标（总收益、年化收益、最大回撤、夏普比率、胜率、盈亏比等）</li>
@@ -4385,14 +4369,10 @@ API--&gt;&gt;APP : 回测结果
 APP--&gt;&gt;UI : 渲染 BacktestResult</code></pre>
 <p><strong>图表来源</strong>
 - <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/frontend/src/components/StrategyList.tsx#L20-L41">frontend/src/components/StrategyList.tsx:20-41</a>
-- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/frontend/src/App.tsx#L13-L36">frontend/src/App.tsx:13-36</a>
-- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/frontend/src/components/BacktestForm.tsx#L28-L44">frontend/src/components/BacktestForm.tsx:28-44</a>
-- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/api/backtest.py#L28-L69">backend/app/api/backtest.py:28-69</a></p>
+- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/frontend/src/App.tsx#L13-L36">frontend/src/App.tsx:13-36</a></p>
 <p><strong>章节来源</strong>
 - <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/frontend/src/App.tsx#L1-L100">frontend/src/App.tsx:1-100</a>
-- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/frontend/src/components/StrategyList.tsx#L1-L69">frontend/src/components/StrategyList.tsx:1-69</a>
-- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/frontend/src/components/BacktestForm.tsx#L1-L522">frontend/src/components/BacktestForm.tsx:1-522</a>
-- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/frontend/src/components/BacktestResult.tsx#L1-L221">frontend/src/components/BacktestResult.tsx:1-221</a></p>
+- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/frontend/src/components/StrategyList.tsx#L1-L69">frontend/src/components/StrategyList.tsx:1-69</a></p>
 <h2 id="_12">依赖关系分析<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>模块耦合</strong>：</li>
@@ -4415,15 +4395,12 @@ SVC --&gt; DSM["数据源管理器"]
 STR --&gt; |工厂| INST["策略实例"]
 BTE --&gt; OUT["结果输出"]</code></pre>
 <p><strong>图表来源</strong>
-- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/wiki-site/build.py#L191-L198">wiki-site/build.py:191-198</a>
+- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/wiki-site/build.py#L286-L301">wiki-site/build.py:286-301</a>
 - <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/main.py#L24-L27">backend/main.py:24-27</a>
-- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/api/backtest.py#L9-L11">backend/app/api/backtest.py:9-11</a>
-- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/services/market_data.py#L8-L8">backend/app/services/market_data.py:8-8</a></p>
+- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/api/backtest.py#L9-L11">backend/app/api/backtest.py:9-11</a></p>
 <p><strong>章节来源</strong>
 - <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/main.py#L1-L36">backend/main.py:1-36</a>
-- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/api/backtest.py#L1-L77">backend/app/api/backtest.py:1-77</a>
-- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/services/market_data.py#L1-L106">backend/app/services/market_data.py:1-106</a>
-- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/strategies/engine.py#L506-L656">backend/app/strategies/engine.py:506-656</a></p>
+- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/api/backtest.py#L1-L77">backend/app/api/backtest.py:1-77</a></p>
 <h2 id="_13">性能与扩展性<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>性能特性</strong>：</li>
@@ -4459,8 +4436,7 @@ BTE --&gt; OUT["结果输出"]</code></pre>
 </ul>
 <p><strong>章节来源</strong>
 - <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/core/config.py#L1-L25">backend/app/core/config.py:1-25</a>
-- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/wiki-site/mkdocs.yml#L1-L153">wiki-site/mkdocs.yml:1-153</a>
-- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/QUICKSTART.md#L25-L64">QUICKSTART.md:25-64</a></p>
+- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/wiki-site/mkdocs.yml#L1-L153">wiki-site/mkdocs.yml:1-153</a></p>
 <h2 id="_15">故障排查指南<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>常见症状与定位</strong>：</li>
@@ -4482,12 +4458,15 @@ BTE --&gt; OUT["结果输出"]</code></pre>
 <p><strong>章节来源</strong>
 - <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/api/backtest.py#L68-L69">backend/app/api/backtest.py:68-69</a>
 - <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/services/data_source_manager.py#L56-L109">backend/app/services/data_source_manager.py:56-109</a>
-- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/frontend/src/components/BacktestResult.tsx#L45-L50">frontend/src/components/BacktestResult.tsx:45-50</a>
-- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/wiki-site/build.py#L66-L90">wiki-site/build.py:66-90</a>
-- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/DATA_SOURCES.md#L104-L125">DATA_SOURCES.md:104-125</a>
-- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/QUICKSTART.md#L236-L291">QUICKSTART.md:236-291</a></p>
+- <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/wiki-site/build.py#L83-L107">wiki-site/build.py:83-107</a></p>
 <h2 id="_16">结论<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h2>
-<p>本系统通过完整的架构转型，从传统的 FastAPI + React 应用架构演进为文档驱动的现代开发模式。新的 MkDocs 静态站点生成器提供了高质量的文档体验，同时保留了原有应用的强大功能。系统结合了清晰的分层设计、可扩展的策略/数据源机制、现代化的文档基础设施，实现了灵活、稳健且易扩展的量化回测平台。多数据源自动选择与降级提升了鲁棒性，策略插件化与数据源适配器模式为后续演进预留了良好空间。在生产环境中，建议配合缓存、任务队列、反向代理和 CDN，进一步提升性能与可运维性。文档站点的自动化构建流程和智能链接管理为团队协作和知识沉淀提供了坚实基础。</p>
+<p>本系统通过完整的架构转型，从传统的 FastAPI + React 应用架构演进为文档驱动的现代开发模式。新的 MkDocs 静态站点生成器提供了高质量的文档体验，同时保留了原有应用的强大功能。系统结合了清晰的分层设计、可扩展的策略/数据源机制、现代化的文档基础设施，实现了灵活、稳健且易扩展的量化回测平台。</p>
+<p>关键的架构改进包括：
+- <strong>文档驱动开发</strong>：通过 MkDocs 实现文档即代码，支持自动化构建和智能链接管理
+- <strong>多数据源抽象</strong>：DataSourceManager 提供统一的数据访问接口，支持自动选择和降级
+- <strong>策略插件化</strong>：BaseStrategy 基类和工厂模式实现策略的动态扩展
+- <strong>前后端分离</strong>：FastAPI 提供高性能 API，React 提供现代化用户界面</p>
+<p>在生产环境中，建议配合缓存、任务队列、反向代理和 CDN，进一步提升性能与可运维性。文档站点的自动化构建流程和智能链接管理为团队协作和知识沉淀提供了坚实基础。</p>
 
 
 

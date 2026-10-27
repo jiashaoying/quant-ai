@@ -7,11 +7,15 @@
     python build.py links         # 仅执行 file:// → 相对路径转换
     python build.py config        # 仅重新生成 mkdocs.yml（nav 保持目录层级）
     python build.py postprocess   # 仅对 site/ 产物做外部链接重写
+    python build.py deploy        # 仅同步构建产物到仓库根 docs/（GitHub Pages 分支部署）
 
 两套目录互不干扰：
 - .qoder/repowiki/zh/content/ 由 Qoder 后台独占维护（不入库）；
 - wiki-site/docs/ 是文档站自己的文档源目录（入库），每次构建从 .qoder 全量同步并在
   此完成链接转换，绝不回写 .qoder。
+
+GitHub Pages 部署：构建完成后会把 wiki-site/site/ 同步到仓库根 docs/（入库），
+Pages 设置选择「Deploy from a branch」→ main + /docs 即可。
 """
 from __future__ import annotations
 
@@ -32,6 +36,7 @@ CONTENT = ROOT / ".qoder" / "repowiki" / "zh" / "content"  # Qoder Wiki 内容�
 WIKI_DIR = ROOT / "wiki-site"  # 文档站工程目录
 DOCS_DIR = WIKI_DIR / "docs"  # 文档站自己的文档源目录（入库，与 .qoder 互不干扰）
 SITE_DIR = WIKI_DIR / "site"  # 构建产物目录
+REPO_DOCS = ROOT / "docs"  # GitHub Pages 分支部署目录（仓库根 /docs）
 MKDOCS_YML = WIKI_DIR / "mkdocs.yml"
 
 # GitCode 源码浏览地址：文档站中指向仓库源码文件的链接统一重写到这里
@@ -283,6 +288,19 @@ def post_process_site() -> None:
     print(f"[post] 重写 {rewritten} 个仓库文件链接（保留 {kept} 个站内/外部链接）")
 
 
+def deploy_docs() -> None:
+    """把构建产物同步到仓库根 docs/（供 GitHub Pages 分支部署使用）。
+
+    GitHub Pages 的「Deploy from a branch」只认仓库根 / 或 /docs 两个位置，
+    因此将 site/ 整体复制到根级 docs/ 并入库。每次构建先清空再复制，保持幂等。
+    """
+    if REPO_DOCS.exists():
+        shutil.rmtree(REPO_DOCS)
+    shutil.copytree(SITE_DIR, REPO_DOCS)
+    n = sum(1 for _ in REPO_DOCS.rglob("*.html"))
+    print(f"[deploy] 已同步构建产物到 docs/（{n} 个 HTML）")
+
+
 def main() -> None:
     mode = sys.argv[1] if len(sys.argv) > 1 else "all"
     if mode in ("all", "sync"):
@@ -297,6 +315,8 @@ def main() -> None:
         build_site()
     if mode in ("all", "postprocess"):
         post_process_site()
+    if mode in ("all", "deploy"):
+        deploy_docs()
     if mode == "all":
         print(f"✅ 文档站构建完成：{SITE_DIR.relative_to(ROOT)}/")
 

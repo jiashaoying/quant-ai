@@ -4231,10 +4231,10 @@
 </cite></p>
 <h2 id="_1">更新摘要<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p><strong>变更内容</strong> <br />
-- 移除了已删除的后端API端点相关文档内容
-- 更新了文档构建管道相关内容，专注于MkDocs静态文档站构建流程
-- 保留了现有的API路由设计文档结构，但调整了重点以反映后端移除的实际情况
-- 新增了文档站点基础设施的相关说明</p>
+- 更新了文档构建管道相关内容，确保与新的MkDocs静态文档站构建流程兼容
+- 优化了内部链接结构，支持从file://协议到相对路径的自动转换
+- 增强了文档站点基础设施说明，包括源码链接重写功能
+- 保持了现有的API路由设计文档结构和核心内容完整性</p>
 <h2 id="_2">目录<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <ol>
 <li><a href="#引言">引言</a></li>
@@ -4279,7 +4279,7 @@ MService --&gt; DSM["数据源管理器&lt;br/&gt;app/services/data_source_manag
 Models["数据库模型&lt;br/&gt;app/models/models.py"] -.-&gt; Persistence["持久化扩展待实现"]
 Config["应用配置&lt;br/&gt;app/core/config.py"] -.-&gt; Main
 Build["文档构建管道&lt;br/&gt;wiki-site/build.py"] -.-&gt; Docs["静态文档站&lt;br/&gt;wiki-site/site/"]</code></pre>
-<p>图表来源
+<p><strong>图表来源</strong>
 - <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/main.py#L9-L27">main.py:9-27</a>
 - <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/api/strategies.py#L8-L24">strategies.py:8-24</a>
 - <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/api/backtest.py#L13-L76">backtest.py:13-76</a>
@@ -4290,7 +4290,7 @@ Build["文档构建管道&lt;br/&gt;wiki-site/build.py"] -.-&gt; Docs["静态文
 - <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/models/models.py#L11-L44">models.py:11-44</a>
 - <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/core/config.py#L8-L24">config.py:8-24</a>
 - <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/wiki-site/build.py#L24-L31">build.py:24-31</a></p>
-<p>章节来源
+<p><strong>章节来源</strong>
 - <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/main.py#L1-L36">main.py:1-36</a></p>
 <h2 id="_5">核心组件<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
 <ul>
@@ -4305,7 +4305,7 @@ Build["文档构建管道&lt;br/&gt;wiki-site/build.py"] -.-&gt; Docs["静态文
 <li>配置中心：集中管理应用名称、版本、调试开关、数据库URL、默认市场等</li>
 <li>文档构建管道：自动化MkDocs文档站生成，支持源码链接重写</li>
 </ul>
-<p>章节来源
+<p><strong>章节来源</strong>
 - <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/main.py#L9-L35">main.py:9-35</a>
 - <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/api/strategies.py#L11-L24">strategies.py:11-24</a>
 - <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/api/backtest.py#L16-L76">backtest.py:16-76</a>
@@ -4338,7 +4338,7 @@ R-&gt;&gt;B : run(data, signals)
 B--&gt;&gt;R : result字典
 R--&gt;&gt;C : JSON响应
 D-&gt;&gt;D : 自动生成文档站点</code></pre>
-<p>图表来源
+<p><strong>图表来源</strong>
 - <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/api/backtest.py#L28-L69">backtest.py:28-69</a>
 - <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/services/market_data.py#L14-L41">market_data.py:14-41</a>
 - <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/strategies/engine.py#L600-L655">engine.py（策略引擎）:600-655</a>
@@ -4362,10 +4362,10 @@ Start2(["GET /api/strategies/{strategy_id}"]) --&gt; Find["遍历列表匹配 id
 Find --&gt; Found{"找到?"}
 Found --&gt; |是| ReturnDetail["返回策略详情"]
 Found --&gt; |否| NotFound["返回 404"]</code></pre>
-<p>图表来源
+<p><strong>图表来源</strong>
 - <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/api/strategies.py#L11-L24">strategies.py:11-24</a>
 - <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/strategies/engine.py#L506-L597">engine.py（策略引擎）:506-597</a></p>
-<p>章节来源
+<p><strong>章节来源</strong>
 - <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/api/strategies.py#L11-L24">strategies.py:11-24</a>
 - <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/strategies/engine.py#L506-L597">engine.py（策略引擎）:506-597</a></p>
 <h3 id="api_2">回测执行API<a class="headerlink" href="#api_2" title="Permanent link">&para;</a></h3>
@@ -4418,12 +4418,12 @@ FetchData --&gt; |异常| Err400
 CreateStrategy --&gt; |异常| Err400
 GenSignals --&gt; |异常| Err400
 RunBacktest --&gt; |异常| Err400</code></pre>
-<p>图表来源
+<p><strong>图表来源</strong>
 - <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/api/backtest.py#L16-L69">backtest.py:16-69</a>
 - <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/backtest/engine.py#L15-L70">engine.py（回测引擎）:15-70</a>
 - <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/strategies/engine.py#L600-L655">engine.py（策略引擎）:600-655</a>
 - <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/services/market_data.py#L14-L41">market_data.py:14-41</a></p>
-<p>章节来源
+<p><strong>章节来源</strong>
 - <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/api/backtest.py#L16-L76">backtest.py:16-76</a>
 - <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/backtest/engine.py#L15-L163">engine.py（回测引擎）:15-163</a>
 - <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/strategies/engine.py#L600-L655">engine.py（策略引擎）:600-655</a>
@@ -4449,10 +4449,10 @@ TryReal --&gt; |成功| InfoReal["返回真实信息"]
 TryReal --&gt; |失败| InfoMock["返回模拟信息"]
 Search["GET /api/market/search?keyword=..."] --&gt; Match["匹配常见股票"]
 Match --&gt; RespSearch["返回匹配结果数组"]</code></pre>
-<p>图表来源
+<p><strong>图表来源</strong>
 - <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/api/market.py#L11-L46">market.py:11-46</a>
 - <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/services/market_data.py#L14-L106">market_data.py:14-106</a></p>
-<p>章节来源
+<p><strong>章节来源</strong>
 - <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/api/market.py#L11-L46">market.py:11-46</a>
 - <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/services/market_data.py#L14-L106">market_data.py:14-106</a></p>
 <h2 id="_8">依赖关系分析<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
@@ -4479,7 +4479,7 @@ MktSvc --&gt; DSM["data_source_manager.py"]
 Config["config.py"] -.-&gt; Main["main.py"]
 Models["models.py"] -.-&gt; Persistence["持久化扩展"]
 Build["build.py"] -.-&gt; MkDocs["MkDocs构建系统"]</code></pre>
-<p>图表来源
+<p><strong>图表来源</strong>
 - <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/api/strategies.py#L6-L24">strategies.py:6-24</a>
 - <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/api/backtest.py#L9-L76">backtest.py:9-76</a>
 - <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/api/market.py#L6-L46">market.py:6-46</a>
@@ -4488,7 +4488,7 @@ Build["build.py"] -.-&gt; MkDocs["MkDocs构建系统"]</code></pre>
 - <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/models/models.py#L11-L44">models.py:11-44</a>
 - <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/core/config.py#L8-L24">config.py:8-24</a>
 - <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/wiki-site/build.py#L191-L198">build.py:191-198</a></p>
-<p>章节来源
+<p><strong>章节来源</strong>
 - <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/api/strategies.py#L6-L24">strategies.py:6-24</a>
 - <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/api/backtest.py#L9-L76">backtest.py:9-76</a>
 - <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/api/market.py#L6-L46">market.py:6-46</a>
@@ -4512,7 +4512,6 @@ Build["build.py"] -.-&gt; MkDocs["MkDocs构建系统"]</code></pre>
 <li>使用MkDocs Material主题提供现代化文档界面</li>
 <li>自动化链接转换和源码引用重写功能</li>
 </ul>
-<p>[本节为通用指导，不直接分析具体文件]</p>
 <h2 id="_10">故障排查指南<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
 <ul>
 <li>400错误（参数或运行时异常）：</li>
@@ -4534,7 +4533,7 @@ Build["build.py"] -.-&gt; MkDocs["MkDocs构建系统"]</code></pre>
 <li>检查wiki-site/build.py脚本执行权限和依赖安装情况</li>
 <li>验证MkDocs配置文件的语法正确性</li>
 </ul>
-<p>章节来源
+<p><strong>章节来源</strong>
 - <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/api/backtest.py#L68-L69">backtest.py:68-69</a>
 - <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/api/market.py#L26-L27">market.py:26-27</a>
 - <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/api/strategies.py#L20-L24">strategies.py:20-24</a>
@@ -4542,7 +4541,6 @@ Build["build.py"] -.-&gt; MkDocs["MkDocs构建系统"]</code></pre>
 - <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/wiki-site/build.py#L191-L198">build.py:191-198</a></p>
 <h2 id="_11">结论<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
 <p>本系统提供了清晰的RESTful API边界，涵盖策略管理、回测执行与市场数据三大能力域。当前实现以同步方式完成回测计算，具备良好扩展性，可在后续迭代中引入异步任务、缓存与更丰富的数据源。通过统一的错误处理与明确的响应结构，前端可稳定消费API并呈现可视化结果。同时，完善的文档构建管道确保了技术文档的及时更新和高质量输出。</p>
-<p>[本节为总结性内容，不直接分析具体文件]</p>
 <h2 id="api_4">附录：API规范与示例<a class="headerlink" href="#api_4" title="Permanent link">&para;</a></h2>
 <h3 id="restful">RESTful设计规范<a class="headerlink" href="#restful" title="Permanent link">&para;</a></h3>
 <ul>
@@ -4558,7 +4556,6 @@ Build["build.py"] -.-&gt; MkDocs["MkDocs构建系统"]</code></pre>
 <li>404：资源不存在</li>
 <li>5xx：服务端内部错误（当前未显式抛出）</li>
 </ul>
-<p>[本节为通用规范说明，不直接分析具体文件]</p>
 <h3 id="api_5">策略管理API<a class="headerlink" href="#api_5" title="Permanent link">&para;</a></h3>
 <ul>
 <li>GET /api/strategies/</li>
@@ -4567,7 +4564,7 @@ Build["build.py"] -.-&gt; MkDocs["MkDocs构建系统"]</code></pre>
 <li>响应：单个策略对象</li>
 <li>错误：404（未找到）</li>
 </ul>
-<p>章节来源
+<p><strong>章节来源</strong>
 - <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/api/strategies.py#L11-L24">strategies.py:11-24</a>
 - <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/strategies/engine.py#L506-L597">engine.py（策略引擎）:506-597</a></p>
 <h3 id="api_6">回测执行API<a class="headerlink" href="#api_6" title="Permanent link">&para;</a></h3>
@@ -4597,7 +4594,7 @@ Build["build.py"] -.-&gt; MkDocs["MkDocs构建系统"]</code></pre>
 </li>
 <li>错误：400（参数或运行时异常）</li>
 </ul>
-<p>章节来源
+<p><strong>章节来源</strong>
 - <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/api/backtest.py#L16-L69">backtest.py:16-69</a>
 - <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/backtest/engine.py#L15-L163">engine.py（回测引擎）:15-163</a></p>
 <h3 id="api_7">市场数据API<a class="headerlink" href="#api_7" title="Permanent link">&para;</a></h3>
@@ -4610,7 +4607,7 @@ Build["build.py"] -.-&gt; MkDocs["MkDocs构建系统"]</code></pre>
 <li>GET /api/market/search?keyword=...</li>
 <li>响应：[{symbol, name}, ...]</li>
 </ul>
-<p>章节来源
+<p><strong>章节来源</strong>
 - <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/api/market.py#L11-L46">market.py:11-46</a>
 - <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/services/market_data.py#L43-L106">market_data.py:43-106</a></p>
 <h3 id="_12">错误处理机制<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
@@ -4618,7 +4615,7 @@ Build["build.py"] -.-&gt; MkDocs["MkDocs构建系统"]</code></pre>
 <li>统一抛出HTTPException，携带status_code与detail</li>
 <li>客户端应依据状态码与detail进行提示与重试策略</li>
 </ul>
-<p>章节来源
+<p><strong>章节来源</strong>
 - <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/api/backtest.py#L68-L69">backtest.py:68-69</a>
 - <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/api/market.py#L26-L27">market.py:26-27</a>
 - <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/api/strategies.py#L20-L24">strategies.py:20-24</a></p>
@@ -4628,7 +4625,7 @@ Build["build.py"] -.-&gt; MkDocs["MkDocs构建系统"]</code></pre>
 <li>Query参数min_length约束（search接口）</li>
 <li>建议在前端与后端共同实施二次校验，提升健壮性</li>
 </ul>
-<p>章节来源
+<p><strong>章节来源</strong>
 - <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/api/backtest.py#L16-L25">backtest.py:16-25</a>
 - <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/app/api/market.py#L41-L46">market.py:41-46</a></p>
 <h3 id="api_8">API版本管理与向后兼容性<a class="headerlink" href="#api_8" title="Permanent link">&para;</a></h3>
@@ -4639,7 +4636,7 @@ Build["build.py"] -.-&gt; MkDocs["MkDocs构建系统"]</code></pre>
 <li>保持字段向后兼容：新增字段默认值，废弃字段保留但标记deprecated</li>
 <li>变更策略元数据或回测结果结构时，提供迁移指南与兼容层</li>
 </ul>
-<p>章节来源
+<p><strong>章节来源</strong>
 - <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/backend/main.py#L9-L13">main.py:9-13</a></p>
 <h3 id="_14">文档构建管道<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h3>
 <ul>
@@ -4656,7 +4653,7 @@ Build["build.py"] -.-&gt; MkDocs["MkDocs构建系统"]</code></pre>
 <li>python build.py config：仅配置生成</li>
 <li>python build.py postprocess：仅后处理</li>
 </ul>
-<p>章节来源
+<p><strong>章节来源</strong>
 - <a href="https://gitcode.com/jiashaoying/quant-ai/blob/main/wiki-site/build.py#L53-L287">build.py:53-287</a></p>
 
 

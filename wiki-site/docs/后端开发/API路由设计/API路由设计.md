@@ -16,10 +16,10 @@
 
 ## 更新摘要
 **变更内容**   
-- 移除了已删除的后端API端点相关文档内容
-- 更新了文档构建管道相关内容，专注于MkDocs静态文档站构建流程
-- 保留了现有的API路由设计文档结构，但调整了重点以反映后端移除的实际情况
-- 新增了文档站点基础设施的相关说明
+- 更新了文档构建管道相关内容，确保与新的MkDocs静态文档站构建流程兼容
+- 优化了内部链接结构，支持从file://协议到相对路径的自动转换
+- 增强了文档站点基础设施说明，包括源码链接重写功能
+- 保持了现有的API路由设计文档结构和核心内容完整性
 
 ## 目录
 1. [引言](#引言)
@@ -70,7 +70,7 @@ Config["应用配置<br/>app/core/config.py"] -.-> Main
 Build["文档构建管道<br/>wiki-site/build.py"] -.-> Docs["静态文档站<br/>wiki-site/site/"]
 ```
 
-图表来源
+**图表来源**
 - [main.py:9-27](../../../../backend/main.py#L9-L27)
 - [strategies.py:8-24](../../../../backend/app/api/strategies.py#L8-L24)
 - [backtest.py:13-76](../../../../backend/app/api/backtest.py#L13-L76)
@@ -82,7 +82,7 @@ Build["文档构建管道<br/>wiki-site/build.py"] -.-> Docs["静态文档站<br
 - [config.py:8-24](../../../../backend/app/core/config.py#L8-L24)
 - [build.py:24-31](../../../build.py#L24-L31)
 
-章节来源
+**章节来源**
 - [main.py:1-36](../../../../backend/main.py#L1-L36)
 
 ## 核心组件
@@ -97,7 +97,7 @@ Build["文档构建管道<br/>wiki-site/build.py"] -.-> Docs["静态文档站<br
 - 配置中心：集中管理应用名称、版本、调试开关、数据库URL、默认市场等
 - 文档构建管道：自动化MkDocs文档站生成，支持源码链接重写
 
-章节来源
+**章节来源**
 - [main.py:9-35](../../../../backend/main.py#L9-L35)
 - [strategies.py:11-24](../../../../backend/app/api/strategies.py#L11-L24)
 - [backtest.py:16-76](../../../../backend/app/api/backtest.py#L16-L76)
@@ -135,7 +135,7 @@ R-->>C : JSON响应
 D->>D : 自动生成文档站点
 ```
 
-图表来源
+**图表来源**
 - [backtest.py:28-69](../../../../backend/app/api/backtest.py#L28-L69)
 - [market_data.py:14-41](../../../../backend/app/services/market_data.py#L14-L41)
 - [engine.py（策略引擎）:600-655](../../../../backend/app/strategies/engine.py#L600-L655)
@@ -163,11 +163,11 @@ Found --> |是| ReturnDetail["返回策略详情"]
 Found --> |否| NotFound["返回 404"]
 ```
 
-图表来源
+**图表来源**
 - [strategies.py:11-24](../../../../backend/app/api/strategies.py#L11-L24)
 - [engine.py（策略引擎）:506-597](../../../../backend/app/strategies/engine.py#L506-L597)
 
-章节来源
+**章节来源**
 - [strategies.py:11-24](../../../../backend/app/api/strategies.py#L11-L24)
 - [engine.py（策略引擎）:506-597](../../../../backend/app/strategies/engine.py#L506-L597)
 
@@ -217,13 +217,13 @@ GenSignals --> |异常| Err400
 RunBacktest --> |异常| Err400
 ```
 
-图表来源
+**图表来源**
 - [backtest.py:16-69](../../../../backend/app/api/backtest.py#L16-L69)
 - [engine.py（回测引擎）:15-70](../../../../backend/app/backtest/engine.py#L15-L70)
 - [engine.py（策略引擎）:600-655](../../../../backend/app/strategies/engine.py#L600-L655)
 - [market_data.py:14-41](../../../../backend/app/services/market_data.py#L14-L41)
 
-章节来源
+**章节来源**
 - [backtest.py:16-76](../../../../backend/app/api/backtest.py#L16-L76)
 - [engine.py（回测引擎）:15-163](../../../../backend/app/backtest/engine.py#L15-L163)
 - [engine.py（策略引擎）:600-655](../../../../backend/app/strategies/engine.py#L600-L655)
@@ -252,11 +252,11 @@ Search["GET /api/market/search?keyword=..."] --> Match["匹配常见股票"]
 Match --> RespSearch["返回匹配结果数组"]
 ```
 
-图表来源
+**图表来源**
 - [market.py:11-46](../../../../backend/app/api/market.py#L11-L46)
 - [market_data.py:14-106](../../../../backend/app/services/market_data.py#L14-L106)
 
-章节来源
+**章节来源**
 - [market.py:11-46](../../../../backend/app/api/market.py#L11-L46)
 - [market_data.py:14-106](../../../../backend/app/services/market_data.py#L14-L106)
 
@@ -286,7 +286,7 @@ Models["models.py"] -.-> Persistence["持久化扩展"]
 Build["build.py"] -.-> MkDocs["MkDocs构建系统"]
 ```
 
-图表来源
+**图表来源**
 - [strategies.py:6-24](../../../../backend/app/api/strategies.py#L6-L24)
 - [backtest.py:9-76](../../../../backend/app/api/backtest.py#L9-L76)
 - [market.py:6-46](../../../../backend/app/api/market.py#L6-L46)
@@ -296,7 +296,7 @@ Build["build.py"] -.-> MkDocs["MkDocs构建系统"]
 - [config.py:8-24](../../../../backend/app/core/config.py#L8-L24)
 - [build.py:191-198](../../../build.py#L191-L198)
 
-章节来源
+**章节来源**
 - [strategies.py:6-24](../../../../backend/app/api/strategies.py#L6-L24)
 - [backtest.py:9-76](../../../../backend/app/api/backtest.py#L9-L76)
 - [market.py:6-46](../../../../backend/app/api/market.py#L6-L46)
@@ -320,8 +320,6 @@ Build["build.py"] -.-> MkDocs["MkDocs构建系统"]
   - 使用MkDocs Material主题提供现代化文档界面
   - 自动化链接转换和源码引用重写功能
 
-[本节为通用指导，不直接分析具体文件]
-
 ## 故障排查指南
 - 400错误（参数或运行时异常）：
   - 回测执行与市场数据接口在异常分支抛出HTTPException(400)，detail包含异常消息
@@ -340,7 +338,7 @@ Build["build.py"] -.-> MkDocs["MkDocs构建系统"]
   - 检查wiki-site/build.py脚本执行权限和依赖安装情况
   - 验证MkDocs配置文件的语法正确性
 
-章节来源
+**章节来源**
 - [backtest.py:68-69](../../../../backend/app/api/backtest.py#L68-L69)
 - [market.py:26-27](../../../../backend/app/api/market.py#L26-L27)
 - [strategies.py:20-24](../../../../backend/app/api/strategies.py#L20-L24)
@@ -349,8 +347,6 @@ Build["build.py"] -.-> MkDocs["MkDocs构建系统"]
 
 ## 结论
 本系统提供了清晰的RESTful API边界，涵盖策略管理、回测执行与市场数据三大能力域。当前实现以同步方式完成回测计算，具备良好扩展性，可在后续迭代中引入异步任务、缓存与更丰富的数据源。通过统一的错误处理与明确的响应结构，前端可稳定消费API并呈现可视化结果。同时，完善的文档构建管道确保了技术文档的及时更新和高质量输出。
-
-[本节为总结性内容，不直接分析具体文件]
 
 ## 附录：API规范与示例
 
@@ -367,8 +363,6 @@ Build["build.py"] -.-> MkDocs["MkDocs构建系统"]
   - 404：资源不存在
   - 5xx：服务端内部错误（当前未显式抛出）
 
-[本节为通用规范说明，不直接分析具体文件]
-
 ### 策略管理API
 - GET /api/strategies/
   - 响应：策略数组，每项包含id、name、description、parameters
@@ -376,7 +370,7 @@ Build["build.py"] -.-> MkDocs["MkDocs构建系统"]
   - 响应：单个策略对象
   - 错误：404（未找到）
 
-章节来源
+**章节来源**
 - [strategies.py:11-24](../../../../backend/app/api/strategies.py#L11-L24)
 - [engine.py（策略引擎）:506-597](../../../../backend/app/strategies/engine.py#L506-L597)
 
@@ -402,7 +396,7 @@ Build["build.py"] -.-> MkDocs["MkDocs构建系统"]
     - is_mock: boolean
   - 错误：400（参数或运行时异常）
 
-章节来源
+**章节来源**
 - [backtest.py:16-69](../../../../backend/app/api/backtest.py#L16-L69)
 - [engine.py（回测引擎）:15-163](../../../../backend/app/backtest/engine.py#L15-L163)
 
@@ -415,7 +409,7 @@ Build["build.py"] -.-> MkDocs["MkDocs构建系统"]
 - GET /api/market/search?keyword=...
   - 响应：[{symbol, name}, ...]
 
-章节来源
+**章节来源**
 - [market.py:11-46](../../../../backend/app/api/market.py#L11-L46)
 - [market_data.py:43-106](../../../../backend/app/services/market_data.py#L43-L106)
 
@@ -423,7 +417,7 @@ Build["build.py"] -.-> MkDocs["MkDocs构建系统"]
 - 统一抛出HTTPException，携带status_code与detail
 - 客户端应依据状态码与detail进行提示与重试策略
 
-章节来源
+**章节来源**
 - [backtest.py:68-69](../../../../backend/app/api/backtest.py#L68-L69)
 - [market.py:26-27](../../../../backend/app/api/market.py#L26-L27)
 - [strategies.py:20-24](../../../../backend/app/api/strategies.py#L20-L24)
@@ -433,7 +427,7 @@ Build["build.py"] -.-> MkDocs["MkDocs构建系统"]
 - Query参数min_length约束（search接口）
 - 建议在前端与后端共同实施二次校验，提升健壮性
 
-章节来源
+**章节来源**
 - [backtest.py:16-25](../../../../backend/app/api/backtest.py#L16-L25)
 - [market.py:41-46](../../../../backend/app/api/market.py#L41-L46)
 
@@ -444,7 +438,7 @@ Build["build.py"] -.-> MkDocs["MkDocs构建系统"]
   - 保持字段向后兼容：新增字段默认值，废弃字段保留但标记deprecated
   - 变更策略元数据或回测结果结构时，提供迁移指南与兼容层
 
-章节来源
+**章节来源**
 - [main.py:9-13](../../../../backend/main.py#L9-L13)
 
 ### 文档构建管道
@@ -461,5 +455,5 @@ Build["build.py"] -.-> MkDocs["MkDocs构建系统"]
   - python build.py config：仅配置生成
   - python build.py postprocess：仅后处理
 
-章节来源
+**章节来源**
 - [build.py:53-287](../../../build.py#L53-L287)
