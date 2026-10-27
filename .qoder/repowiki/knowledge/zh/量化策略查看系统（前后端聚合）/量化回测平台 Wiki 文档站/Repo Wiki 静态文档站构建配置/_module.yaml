@@ -1,0 +1,11 @@
+schema_version: 1
+module_path: wiki_site/site_build_config
+title: Repo Wiki 静态文档站构建配置
+scope:
+    - wiki-site/mkdocs.yml
+    - wiki-site/build.py
+    - wiki-site/requirements.txt
+    - wiki-site/extra.css
+source_files: []
+depends_on: []
+related_to: []

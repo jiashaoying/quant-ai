@@ -1,6 +1,6 @@
 schema_version: 1
 module_path: ""
-title: quant-ai
+title: 量化策略查看系统（前后端聚合）
 scope: []
 source_files: []
 depends_on: []

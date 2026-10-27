@@ -1,0 +1,8 @@
+schema_version: 1
+module_path: wiki_site/site_content
+title: 量化回测平台静态站点内容
+scope:
+    - wiki-site/site/
+source_files: []
+depends_on: []
+related_to: []

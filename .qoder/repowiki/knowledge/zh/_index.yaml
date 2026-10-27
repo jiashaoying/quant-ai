@@ -3,16 +3,17 @@ schema_version: 1
 locale: zh-CN
 branch: main
 nodes_managed: true
-exported_at: "2026-10-26T10:17:06Z"
+exported_at: "2026-10-26T10:47:55Z"
 modules:
     "":
-        dir_name: quant-ai
-        title: quant-ai
+        dir_name: 量化策略查看系统（前后端聚合）
+        title: 量化策略查看系统（前后端聚合）
         scope: []
         source_files: []
         children:
             - af732bb7-5ba9-4daa-a053-78b671302278
             - c4bd8d45-613d-4e8a-a580-a2f841a910b5
+            - wiki_site
         depends_on: []
         related_to: []
     af732bb7-5ba9-4daa-a053-78b671302278:
@@ -89,6 +90,38 @@ modules:
             - backend/app/db/
             - backend/app/models/
             - backend/app/core/
+        source_files: []
+        children: []
+        depends_on: []
+        related_to: []
+    wiki_site:
+        dir_name: 量化回测平台 Wiki 文档站
+        title: 量化回测平台 Wiki 文档站
+        scope:
+            - wiki-site/
+        source_files: []
+        children:
+            - wiki_site/site_build_config
+            - wiki_site/site_content
+        depends_on: []
+        related_to: []
+    wiki_site/site_build_config:
+        dir_name: Repo Wiki 静态文档站构建配置
+        title: Repo Wiki 静态文档站构建配置
+        scope:
+            - wiki-site/mkdocs.yml
+            - wiki-site/build.py
+            - wiki-site/requirements.txt
+            - wiki-site/extra.css
+        source_files: []
+        children: []
+        depends_on: []
+        related_to: []
+    wiki_site/site_content:
+        dir_name: 量化回测平台静态站点内容
+        title: 量化回测平台静态站点内容
+        scope:
+            - wiki-site/site/
         source_files: []
         children: []
         depends_on: []

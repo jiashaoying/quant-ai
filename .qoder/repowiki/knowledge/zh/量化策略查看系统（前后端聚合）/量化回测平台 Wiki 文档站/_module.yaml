@@ -1,0 +1,8 @@
+schema_version: 1
+module_path: wiki_site
+title: 量化回测平台 Wiki 文档站
+scope:
+    - wiki-site/
+source_files: []
+depends_on: []
+related_to: []
