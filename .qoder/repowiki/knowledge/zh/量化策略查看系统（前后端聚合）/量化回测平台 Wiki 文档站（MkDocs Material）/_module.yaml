@@ -1,6 +1,6 @@
 schema_version: 1
 module_path: wiki_site
-title: 量化回测平台 Wiki 文档站
+title: 量化回测平台 Wiki 文档站（MkDocs Material）
 scope:
     - wiki-site/
 source_files: []

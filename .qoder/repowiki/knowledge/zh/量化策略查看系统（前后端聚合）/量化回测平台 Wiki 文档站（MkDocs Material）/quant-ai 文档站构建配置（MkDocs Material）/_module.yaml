@@ -1,6 +1,6 @@
 schema_version: 1
 module_path: wiki_site/site_build_config
-title: Repo Wiki 静态文档站构建配置
+title: quant-ai 文档站构建配置（MkDocs Material）
 scope:
     - wiki-site/mkdocs.yml
     - wiki-site/build.py

@@ -5,4 +5,8 @@ scope:
     - backend/app/api/
 source_files: []
 depends_on: []
-related_to: []
+related_to:
+    - path: af732bb7-5ba9-4daa-a053-78b671302278/38f23ebc-3eff-42fa-991f-8d48c8baf111
+    - path: c4bd8d45-613d-4e8a-a580-a2f841a910b5/96a075f5-1d18-47dc-a988-294c1b29a9ca
+    - path: c4bd8d45-613d-4e8a-a580-a2f841a910b5/aaae69cd-a142-4541-a904-2f5377423ba5
+    - path: c4bd8d45-613d-4e8a-a580-a2f841a910b5/d9430a3f-74bf-4bd1-8598-33658c33b285

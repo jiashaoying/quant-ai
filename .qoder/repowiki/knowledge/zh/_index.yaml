@@ -3,7 +3,7 @@ schema_version: 1
 locale: zh-CN
 branch: main
 nodes_managed: true
-exported_at: "2026-10-26T10:47:55Z"
+exported_at: "2026-10-27T01:18:05Z"
 modules:
     "":
         dir_name: 量化策略查看系统（前后端聚合）
@@ -41,7 +41,8 @@ modules:
         source_files: []
         children: []
         depends_on: []
-        related_to: []
+        related_to:
+            - path: c4bd8d45-613d-4e8a-a580-a2f841a910b5/55e56186-7da9-4f32-9d4e-562ba764dc64
     c4bd8d45-613d-4e8a-a580-a2f841a910b5:
         dir_name: 量化策略查看系统后端
         title: 量化策略查看系统后端
@@ -63,7 +64,11 @@ modules:
         source_files: []
         children: []
         depends_on: []
-        related_to: []
+        related_to:
+            - path: af732bb7-5ba9-4daa-a053-78b671302278/38f23ebc-3eff-42fa-991f-8d48c8baf111
+            - path: c4bd8d45-613d-4e8a-a580-a2f841a910b5/96a075f5-1d18-47dc-a988-294c1b29a9ca
+            - path: c4bd8d45-613d-4e8a-a580-a2f841a910b5/aaae69cd-a142-4541-a904-2f5377423ba5
+            - path: c4bd8d45-613d-4e8a-a580-a2f841a910b5/d9430a3f-74bf-4bd1-8598-33658c33b285
     c4bd8d45-613d-4e8a-a580-a2f841a910b5/96a075f5-1d18-47dc-a988-294c1b29a9ca:
         dir_name: 回测引擎与量化策略库
         title: 回测引擎与量化策略库
@@ -73,7 +78,8 @@ modules:
         source_files: []
         children: []
         depends_on: []
-        related_to: []
+        related_to:
+            - path: c4bd8d45-613d-4e8a-a580-a2f841a910b5/55e56186-7da9-4f32-9d4e-562ba764dc64
     c4bd8d45-613d-4e8a-a580-a2f841a910b5/aaae69cd-a142-4541-a904-2f5377423ba5:
         dir_name: 多源股票数据服务
         title: 多源股票数据服务
@@ -82,7 +88,8 @@ modules:
         source_files: []
         children: []
         depends_on: []
-        related_to: []
+        related_to:
+            - path: c4bd8d45-613d-4e8a-a580-a2f841a910b5/55e56186-7da9-4f32-9d4e-562ba764dc64
     c4bd8d45-613d-4e8a-a580-a2f841a910b5/d9430a3f-74bf-4bd1-8598-33658c33b285:
         dir_name: 数据库连接、ORM 模型与配置中心
         title: 数据库连接、ORM 模型与配置中心
@@ -93,10 +100,11 @@ modules:
         source_files: []
         children: []
         depends_on: []
-        related_to: []
+        related_to:
+            - path: c4bd8d45-613d-4e8a-a580-a2f841a910b5/55e56186-7da9-4f32-9d4e-562ba764dc64
     wiki_site:
-        dir_name: 量化回测平台 Wiki 文档站
-        title: 量化回测平台 Wiki 文档站
+        dir_name: 量化回测平台 Wiki 文档站（MkDocs Material）
+        title: 量化回测平台 Wiki 文档站（MkDocs Material）
         scope:
             - wiki-site/
         source_files: []
@@ -106,8 +114,8 @@ modules:
         depends_on: []
         related_to: []
     wiki_site/site_build_config:
-        dir_name: Repo Wiki 静态文档站构建配置
-        title: Repo Wiki 静态文档站构建配置
+        dir_name: quant-ai 文档站构建配置（MkDocs Material）
+        title: quant-ai 文档站构建配置（MkDocs Material）
         scope:
             - wiki-site/mkdocs.yml
             - wiki-site/build.py
@@ -118,8 +126,8 @@ modules:
         depends_on: []
         related_to: []
     wiki_site/site_content:
-        dir_name: 量化回测平台静态站点内容
-        title: 量化回测平台静态站点内容
+        dir_name: 量化回测平台文档静态站点
+        title: 量化回测平台文档静态站点
         scope:
             - wiki-site/site/
         source_files: []
